@@ -1,0 +1,13 @@
+/* USE THIS CSS FILE FOR ALL THE REUSABLE COMPONENT STYLING */
+
+body { /* this is for the background image */
+    background: url(/Images/BackGround.png) center;
+    /* background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed; */
+    background-size: cover;
+    height: 100vh;
+}
+
+.container{
+    /* background: url('../Images/BackGround.png') no repeat center center fixed; */
+    background-size: cover;
+}
