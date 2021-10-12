@@ -12,6 +12,7 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="/css/components.css" />
+        <link rel="stylesheet" href="/css/reviews.css" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
@@ -107,49 +108,72 @@
                     <h1>Leave a Review!</h1>
                     <br>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <!-- Insert Restaurant Card Here -->
                             <div class="card">
                                 <img src="Images/sarnies.jpg" class="card-img-top">
                                 <div class="card-body">
-                                    <h2>Sarnies</h2>
-                                    <h4>Located at XXX</h4>
+                                    <h2>Restaurant Name</h2><br>
+                                    <h4>Address</h4>
+                                    <br><br>
+                                    <h5>Description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio soluta tempora nisi laboriosam quod placeat blanditiis. Officia, in sunt odit reprehenderit corrupti eligendi dignissimos earum tempore nam iusto ex asperiores!</h5>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <!-- Insert Rating Form Here -->
                             <form action="">
-                                <h2>Your Experience</h2>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <br><br><h2>Food Experience</h2>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <br><br><h2>Cleanliness</h2>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <br><br><h2>Customer Service</h2>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
-                                <input type=radio>
+                                <h2>Your Experience</h2><br>
+                                <div class="d-flex justify-content-around">
+                                    😢 Bad
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    Good 😊
+                                </div>
+                                <br><br><h2>Food Experience</h2><br>
+                                <div class="d-flex justify-content-around">
+                                    😢 Bad
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    Good 😊
+                                </div>
+                                <br><br><h2>Cleanliness</h2> <br>
+                                <div class="d-flex justify-content-around">
+                                    😢 Bad
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    Good 😊
+                                </div>
+                                <br><br><h2>Customer Service</h2><br>
+                                <div class="d-flex justify-content-around">
+                                    😢 Bad
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    Good 😊
+                                </div>
 
-                                <br><br><label for="exampleFormControlTextarea1" class="form-label"><h2>Comments</h2></label>
+                                <br><label for="exampleFormControlTextarea1" class="form-label"><h2>Additional Comments</h2></label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                <br><br><br><button type="button" class="btn btn-secondary">Submit</button>
+                                
+                                <div class="row justify-content-center mt-4"> <!-- this is to center the button-->
+                                    <div class="col-3">
+                                        <button type="button" class="btn btn-secondary" id="submitButton">Submit</button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
