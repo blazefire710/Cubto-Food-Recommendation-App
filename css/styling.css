@@ -2,10 +2,10 @@
     color: deeppink;
 }
 
-.restaurant-card {
+.restaurant-card { /* this one prevents the height of the horizontal card from becoming too tall and ugly */
     max-height: 210px;
 }
 
-.fa-gold {
+.fa-gold { 
     color: gold;
 }
