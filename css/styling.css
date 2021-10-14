@@ -6,6 +6,23 @@
     max-height: 210px;
 }
 
-.fa-gold { 
+.fa-gold { /*this is for changing the color of the star icon*/
     color: gold;
+}
+
+.large-font { /*this is for changing font size */
+    font-size: x-large;
+}
+
+.red { 
+    color: red;
+}
+
+.green {
+    color: lightgreen;
+}
+
+.image-resizer-small{ /* this was to fix an image size */
+    height:20px;
+    width: 20px;
 }
