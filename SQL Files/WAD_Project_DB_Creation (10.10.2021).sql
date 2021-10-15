@@ -1,4 +1,4 @@
-drop database cubto;
+-- drop database cubto;
 create Database Cubto;
 use Cubto;
 
