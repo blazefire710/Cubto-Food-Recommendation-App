@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +23,6 @@
             axios.get(url)
                 .then(response => {
                     // console.log(response.data);
-
                     var dataArr = response.data.data;
 
                     // for(var restaurant of dataArr){    // if we wanna do a loop, but for simplicity's sake im just using the first result
@@ -43,6 +41,29 @@
                     primaryContactNo = restaurant.contact.primaryContactNo
                     secondaryContactNo = restaurant.contact.secondaryContactNo
 
+                    // REVIEW DATA
+                    reviewauthorName = restaurant.reviews[0].authorName
+                    reviewprofilePhoto = restaurant.reviews[0].profilePhoto
+                    reviewrating = restaurant.reviews[0].rating
+                    reviewtext = restaurant.reviews[0].text
+                    reviewtime = restaurant.reviews[0].time
+                    reviewtime = restaurant.reviews[0].time.slice(0,10)
+                    reviewdate = restaurant.reviews[0].time.slice(11,-1)
+                    reviewdatetime = restaurant.reviews[0].time.slice(0,10) + "   " + restaurant.reviews[0].time.slice(11,-1)
+
+                    // RESTAURANT DESCRIPTION DATA
+                    name = restaurant.name
+                    description = restaurant.body;
+                    officialWebsite = restaurant.officialWebsite
+                    officialEmail = restaurant.officialEmail
+                    rating = restaurant.rating
+                    temporarilyClosed = restaurant.temporarilyClosed
+
+                    // Location Information
+                    longitude = restaurant.location.longitude
+                    latitude = restaurant.location.latitude
+                    nearestMrtStation = restaurant.nearestMrtStation
+
                     console.log("postalCode: ",postalCode)
                     console.log("block: ",block)
                     console.log("buildingName: ", buildingName)
@@ -54,16 +75,6 @@
                     console.log("primaryContactNo: ", primaryContactNo)
                     console.log("secondaryContactNo: ", secondaryContactNo)
 
-                    // REVIEW DATA
-                    reviewauthorName = restaurant.reviews[0].authorName
-                    reviewprofilePhoto = restaurant.reviews[0].profilePhoto
-                    reviewrating = restaurant.reviews[0].rating
-                    reviewtext = restaurant.reviews[0].text
-                    reviewtime = restaurant.reviews[0].time
-                    reviewtime = restaurant.reviews[0].time.slice(0,10)
-                    reviewdate = restaurant.reviews[0].time.slice(11,-1)
-                    reviewdatetime = restaurant.reviews[0].time.slice(0,10) + "   " + restaurant.reviews[0].time.slice(11,-1)
-
                     console.log("review1authorName: ", reviewauthorName)
                     console.log("review1profilePhoto: ", reviewprofilePhoto)
                     console.log("review1rating: ", reviewrating)
@@ -72,25 +83,12 @@
                     console.log("review1date: ", reviewdate)
                     console.log("review1datetime: ", reviewdatetime)
 
-                    // RESTAURANT DESCRIPTION DATA
-                    name = restaurant.name
-                    description = restaurant.body;
-                    officialWebsite = restaurant.officialWebsite
-                    officialEmail = restaurant.officialEmail
-                    rating = restaurant.rating
-                    temporarilyClosed = restaurant.temporarilyClosed
-
                     console.log("name: ", name)
                     console.log("description: ",description)
                     console.log("officialWebsite: ", officialWebsite)
                     console.log("officialEmail: ", officialEmail)
                     console.log("rating: ", rating)
                     console.log("temporarilyClosed: ", temporarilyClosed)
-
-                    // Location Information
-                    longitude = restaurant.location.longitude
-                    latitude = restaurant.location.latitude
-                    nearestMrtStation = restaurant.nearestMrtStation
 
                     console.log("longtitude: ", longitude)
                     console.log("latitude: ", latitude)
