@@ -1,3 +1,44 @@
+<?php 
+    require_once('ConnectionManager.php');
+
+    if(isset($_POST['signup'])) {
+
+
+        $user_id = "";
+
+        $first_name = $_POST['first_name'];
+        echo "first Name" . $first_name;
+
+        $last_name = $_POST['last_name'];
+        echo "Last Name" . $last_name;
+
+        $password = $_POST['password'];
+        echo "Last Name" . $last_name;
+
+        $email = $_POST['email'];
+        echo "Email" . $email;
+
+        $username = $_POST['username'];
+        echo "username" . $username;
+
+        $question = $_POST['question'];
+        var_dump($question);
+
+        $answer = $_POST['answer'];
+        echo "answer: " . "$answer";
+
+        $new = new AccountDAO();
+        $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
+    }
+    else {
+        echo "havent submit";
+    }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +64,6 @@
 </head>
 
 <body>
-<!-- PHP -->
-<?php 
-
-
-?>
-<!-- PHP----------------------------------------------------------- -->
 
     <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
         <div class="container-fluid">
@@ -91,45 +126,46 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Sign Up</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-4">
+                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST" action = "heehaw.php">
                     <div class="col-md-6">
                         <label for="fname" class="form-label">First Name:</label>
-                        <input type="text" class="form-control" id="fname">
+                        <input type="text" class="form-control" id="fname" name= "first_name">
                     </div>
                     <div class="col-md-6">
                         <label for="lname" class="form-label">Last Name:</label>
-                        <input type="text" class="form-control" id="lname">
+                        <input type="text" class="form-control" id="lname" name= "last_name">
                     </div>
                     <div class="col-12">
                         <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="email" class="form-control" id="email" name= "email">
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">Username:</label>
                         <input type="text" class="form-control" id="inputAddress2"
-                            placeholder="Must be at least 5 characters">
+                            placeholder="Must be at least 5 characters" name = "username">
                     </div>
                     <div class="col-12">
                         <label for="password" class="form-label">Password:</label>
                         <input type="password" class="form-control" id="password"
-                            placeholder="Must be at least 6 characters with a upper and lowercase..">
+                            placeholder="Must be at least 6 characters with a upper and lowercase.." 
+                            name = "password">
                     </div>
                     <div class="col-12">
                         <label for="confirm_password" class="form-label">Confirm Password:</label>
                         <input type="password" class="form-control" id="confirm_password">
                     </div>
                     <div class="col-12">
-                        <label for="secret_question" class="form-label" id='secret_question'>Select your secret
+                        <label for="secret_question" class="form-label" id='secret_question' >Select your secret
                             questionaire:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1" selected>What is your favourite color?</option>
-                            <option value="2">What is your occupation?</option>
-                            <option value="3">What is your favourite day of the week?</option>
+                        <select class="form-select" aria-label="Default select example" name="question">
+                            <option value="What is your favourite color?" selected>What is your favourite color?</option>
+                            <option value="What is your occupation?">What is your occupation?</option>
+                            <option value="What is your favourite day of the week?">What is your favourite day of the week?</option>
                         </select>
                     </div>
                     <div class="col-12">
                         <label for="secret_answer" class="form-label">What is your answer:</label>
-                        <input type="text" class="form-control" id="secret_answer">
+                        <input type="text" class="form-control" id="secret_answer" name="answer">
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -140,7 +176,7 @@
                         </div>
                     </div>
                     <div class="col-12 mb-4">
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <button type="submit" class="btn btn-primary" name = "signup">Sign Up</button>
                     </div>
                 </form>
 

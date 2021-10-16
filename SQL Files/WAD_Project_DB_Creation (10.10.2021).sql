@@ -1,4 +1,4 @@
--- drop database cubto;
+drop database cubto;
 create Database Cubto;
 use Cubto;
 
@@ -17,13 +17,15 @@ Create Table User
 (
 user_id varchar(5) not null,
 username varchar(50) not null,
-Password varchar(255) not null,
+password varchar(255) not null,
 email varchar(50) not null,
 first_name varchar(30),
 last_name varchar(30),
-gender varchar(1),
-birthday date, 
-profile_image longblob,
+question varchar(50), 
+answer varchar(100),
+-- gender varchar(1),
+-- birthday date, 
+-- profile_image longblob,
 
 Constraint user_pk1 PRIMARY KEY (user_id)
 );
