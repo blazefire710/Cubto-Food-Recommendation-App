@@ -3,38 +3,19 @@
 
     if(isset($_POST['signup'])) {
 
-
-        $user_id = "";
+        $user_id = '';
 
         $first_name = $_POST['first_name'];
-        echo "first Name" . $first_name;
-
         $last_name = $_POST['last_name'];
-        echo "Last Name" . $last_name;
-
         $password = $_POST['password'];
-        echo "Last Name" . $last_name;
-
         $email = $_POST['email'];
-        echo "Email" . $email;
-
         $username = $_POST['username'];
-        echo "username" . $username;
-
         $question = $_POST['question'];
-        var_dump($question);
-
         $answer = $_POST['answer'];
-        echo "answer: " . "$answer";
 
         $new = new AccountDAO();
         $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
     }
-    else {
-        echo "havent submit";
-    }
-
-
 ?>
 
 

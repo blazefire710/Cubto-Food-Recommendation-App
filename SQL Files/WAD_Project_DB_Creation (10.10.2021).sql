@@ -15,7 +15,7 @@ Constraint restaurant_pk1 PRIMARY KEY (restaurant_id)
 
 Create Table User
 (
-user_id varchar(5) not null,
+user_id int AUTO_INCREMENT,
 username varchar(50) not null,
 password varchar(255) not null,
 email varchar(50) not null,
