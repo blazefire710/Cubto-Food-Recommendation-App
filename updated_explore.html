@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--bootstrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            background-image: url("../images/Local-Food-Illo_Project-file_2072020-1400x1000-01.webp");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+        .nav-link {
+            color: black;
+            padding-top: 10px;
+        }
+
+        .btn-outline-info {
+            color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
+                    src="../Images/Logo photo.PNG"></a>
+            <!-- insert icon here -->
+            <form class="d-flex w-75">
+                <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" />
+                <button class="btn" type="submit">
+                    🔍
+                </button>
+                <button type="button" class="btn btn-outline-info me-2">Login</button>
+                <button type="button" class="btn btn-outline-info me-2">Signup</button>
+
+            </form>
+        </div>
+    </nav>
+
+    <nav id="bottom-navbar" class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            ">
+        <div class="container-fluid">
+            <div class="">
+                <a class="navbar-brand" href="#">Explore</a>
+                <a class="navbar-brand" href="#">What'sNext?</a>
+                <a class="navbar-brand" href="#">About us</a>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">Guest
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <a class="dropdown-item" href="#">Favourites</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Booking-History</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--main content-->
+    <div class='container' style='background-color: rgb(250, 250, 250);'>
+
+        <!-- <h4 class='display-5 fs-3 p-3'>Explore more</h4> -->
+        <span class='lead fs-6'>{{numResult}} results found</span>
+
+        <div class='container' id='app'>
+
+            <div class='row'>
+                <!--need to add in v-if to generate the number of carousells-->
+
+                <!--first carou-->
+                <div class='col-6' style='border: 1px solid lightgray;'>
+
+                    <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+
+                                <div class='row'>
+                                    <div class='col-12'>
+                                        <h5 class='display-5 fs-4 pt-4 ps-5'>{{name}}</h5>
+                                    </div>
+                                    <div class='col-1'></div>
+                                    <div class='col-3'>{{reviews}}</div>
+                                    <div class='col'>{{rating}}</div>
+
+                                </div>
+                                <!--cards-->
+                                <div class='row p-5'>
+                                    <!--first card-->
+                                    <div class='col'>
+                                        <div class="card" style="width: 10rem;">
+                                            <img src="images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                class="card-img-top" style='height: 130px;' alt="...">
+                                            <div class="card-body">
+                                                <p class="card-text" style='font-size: 10px;'>Some quick example text to
+                                                    build on the card title and make up the bulk of the card's content.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--second card-->
+                                    <div class='col'>
+                                        <div class="card" style="width: 10rem;">
+                                            <img src="images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                class="card-img-top" style='height: 130px;' alt="...">
+                                            <div class="card-body">
+                                                <p class="card-text" style='font-size: 10px;'>Some quick example text to
+                                                    build on the card title and make up the bulk of the card's content.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--next slide for more reviews etc-->
+                            <!--might want to copy the code from above and paste it here again-->
+
+                            <!-- <div class="carousel-item">
+                                <img src="..." class="d-block w-100" alt="...">
+                              </div> -->
+                         
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class='text-center pb-1'>
+                            <a href='#'>See more!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--second carou-->
+                <div class='col-6' style='border: 1px solid lightgray;'>
+
+                    <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+
+                                <div class='row'>
+                                    <div class='col-12'>
+                                        <h5 class='display-5 fs-4 pt-4 ps-5'>{{name}}</h5>
+                                    </div>
+                                    <div class='col-1'></div>
+                                    <div class='col-3'>{{reviews}}</div>
+                                    <div class='col'>{{rating}}</div>
+
+                                </div>
+                                <!--cards-->
+                                <div class='row p-5'>
+                                    <div class='col'>
+                                        <div class="card" style="width: 10rem;">
+                                            <img src="images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                class="card-img-top" style='height: 130px;' alt="...">
+                                            <div class="card-body">
+                                                <p class="card-text" style='font-size: 10px;'>Some quick example text to
+                                                    build on the card title and make up the bulk of the card's content.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class='col'>
+                                        <div class="card" style="width: 10rem;">
+                                            <img src="images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                class="card-img-top" style='height: 130px;' alt="...">
+                                            <div class="card-body">
+                                                <p class="card-text" style='font-size: 10px;'>Some quick example text to
+                                                    build on the card title and make up the bulk of the card's content.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                         
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class='text-center pb-1'>
+                            <a href='#'>See more!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                const app = Vue.createApp({
+                    data(){
+                        return{
+                            name : '',
+                            review : '',
+                            rating : '',
+                            numResult : ''
+                        }
+                    },
+                    computed:{
+                        numResult(){
+                            //perform a for-loop and count += 1
+                        }
+                    }
+                })
+                const vm = app.mount('#app');
+                
+            </script>
+
+
+            <!--bootstrap JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>
