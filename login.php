@@ -34,6 +34,8 @@ require_once('ConnectionManager.php');
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <style>
         body {
@@ -144,7 +146,7 @@ require_once('ConnectionManager.php');
 
 
     <!--main content-->
-    <div class='container'>
+    <div class='container' id='app'>
         <div class='col-2'></div>
         <div class='container mt-5 col-8 pb-5' style='background-color: rgb(250, 250, 250);'>
            
