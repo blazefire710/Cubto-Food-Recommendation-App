@@ -1,3 +1,28 @@
+<?php 
+    require_once('ConnectionManager.php');
+
+    if(isset($_POST['signup'])) {
+
+        $user_id = '';
+
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $question = $_POST['question'];
+        $answer = $_POST['answer'];
+
+        $new = new AccountDAO();
+        $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
+
+        header("Location: Created_Account.html");
+        exit();
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,41 +48,6 @@
 </head>
 
 <body>
-    <!--  
-    <div class='navbar navbar-light bg-light'>
-        
-        <div class=''>
-            <a class="navbar-brand" href="#">
-                <img src="images/—Pngtree—food icon design vector_4996277.png" style="width:80px;" alt="" width="30"
-                    height="24" class="d-inline-block align-text-top">
-            Cubto
-            </a>
-        </div>
-
-        
-        <div class=''>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style='width: 500px;'>
-            </form>
-        </div>
-
-        
-        <div class=''>
-            <a href="#" class="btn btn-outline-success" role="button" data-bs-toggle="button">Login</a>
-            <a href="#" class="btn btn-outline-success" role="button" data-bs-toggle="button">Sign Up</a>
-        </div>
-    </div>
-
-    
-    <div style='background-color: rgb(250, 250, 250);'>
-        <nav class="nav">
-            <a class="nav-link" style='color: black;' aria-current="page" href="#">Explore</a>
-            <a class="nav-link" style='color: black;' href="#">What'sNext</a>
-            <a class="nav-link" style='color: black;' href="#">About Us</a>
-            <i class="fas fa-user"></i>
-            <a class="nav-link" style='color: black;' href="#">Guest</a>
-        </nav>
-    </div> -->
 
     <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
         <div class="container-fluid">
@@ -120,45 +110,46 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Sign Up</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-4">
+                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST">
                     <div class="col-md-6">
                         <label for="fname" class="form-label">First Name:</label>
-                        <input type="text" class="form-control" id="fname">
+                        <input type="text" class="form-control" id="fname" name= "first_name">
                     </div>
                     <div class="col-md-6">
                         <label for="lname" class="form-label">Last Name:</label>
-                        <input type="text" class="form-control" id="lname">
+                        <input type="text" class="form-control" id="lname" name= "last_name">
                     </div>
                     <div class="col-12">
                         <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="email" class="form-control" id="email" name= "email">
                     </div>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">Username:</label>
                         <input type="text" class="form-control" id="inputAddress2"
-                            placeholder="Must be at least 5 characters">
+                            placeholder="Must be at least 5 characters" name = "username">
                     </div>
                     <div class="col-12">
                         <label for="password" class="form-label">Password:</label>
                         <input type="password" class="form-control" id="password"
-                            placeholder="Must be at least 6 characters with a upper and lowercase..">
+                            placeholder="Must be at least 6 characters with a upper and lowercase.." 
+                            name = "password">
                     </div>
                     <div class="col-12">
                         <label for="confirm_password" class="form-label">Confirm Password:</label>
                         <input type="password" class="form-control" id="confirm_password">
                     </div>
                     <div class="col-12">
-                        <label for="secret_question" class="form-label" id='secret_question'>Select your secret
+                        <label for="secret_question" class="form-label" id='secret_question' >Select your secret
                             questionaire:</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1" selected>What is your favourite color?</option>
-                            <option value="2">What is your occupation?</option>
-                            <option value="3">What is your favourite day of the week?</option>
+                        <select class="form-select" aria-label="Default select example" name="question">
+                            <option value="What is your favourite color?" selected>What is your favourite color?</option>
+                            <option value="What is your occupation?">What is your occupation?</option>
+                            <option value="What is your favourite day of the week?">What is your favourite day of the week?</option>
                         </select>
                     </div>
                     <div class="col-12">
                         <label for="secret_answer" class="form-label">What is your answer:</label>
-                        <input type="text" class="form-control" id="secret_answer">
+                        <input type="text" class="form-control" id="secret_answer" name="answer">
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -169,7 +160,7 @@
                         </div>
                     </div>
                     <div class="col-12 mb-4">
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <button type="submit" class="btn btn-primary" name = "signup">Sign Up</button>
                     </div>
                 </form>
 

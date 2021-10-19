@@ -1,3 +1,27 @@
+<?php
+require_once('ConnectionManager.php');
+
+    // if(isset($_POST['signup'])) {
+
+    //     $user_id = '';
+
+    //     $first_name = $_POST['first_name'];
+    //     $last_name = $_POST['last_name'];
+    //     $password = $_POST['password'];
+    //     $email = $_POST['email'];
+    //     $username = $_POST['username'];
+    //     $question = $_POST['question'];
+    //     $answer = $_POST['answer'];
+
+    //     $new = new AccountDAO();
+    //     $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
+
+    //     header("Location: Created_Account.html");
+    //     exit();
+    // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,15 +151,15 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Login</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-1">
+                <form class="row g-3 w-75 mx-auto mt-1" name= "form_data" action>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">Username:</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                        <input type="text" class="form-control" id="inputAddress2" name="username"> 
                     </div>
 
                     <div class="col-12">
                         <label for="password" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" id="password" name ="password">
                     </div>
 
                     <div class="col-12">
@@ -149,19 +173,19 @@
                     <div class="col-12 mb-4 p-0">
                         <div class='container text-center' style='display:flex; justify-content: space-between;'>
                             <button type="submit" class="btn btn-outline-primary w-50 me-2">Login</button>
-
-                            <button type="submit" class="btn btn-outline-primary w-50">Sign Up</button>
+                        
+                            <button type="submit" class="btn btn-outline-primary w-50" onclick="redirect()" >Sign Up</button>
                         </div>
                     </div>
 
 
-                    <div class='col-12 text-center'>
+                    <!-- <div class='col-12 text-center'>
                         <button class="btn btn-success w-100" type="button">Continue with Gmail</button>
                     </div>
 
                     <div class='col-12 text-center mb-4'>
                         <button class="btn btn-primary w-100" type="button">Continue with Facebook</button>
-                    </div>
+                    </div> -->
 
                 </form>
 
@@ -170,7 +194,11 @@
         <div class='col-2'></div>
     </div>
 
-
+    <scipt>
+    function redirect() {
+            location.replace("signup.php")
+        }
+    </scipt>
 
 
 
