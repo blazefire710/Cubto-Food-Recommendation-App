@@ -66,3 +66,4 @@ constraint profile_liking_pk1 primary key (restaurant_id,user_id),
 constraint profile_liking_fk1 foreign key (restaurant_id) References listing(restaurant_id),
 constraint profile_liking_fk2 foreign key (user_id) References listing(user_id)
  )
+ --

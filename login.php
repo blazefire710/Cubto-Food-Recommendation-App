@@ -1,5 +1,6 @@
 <?php
 require_once('ConnectionManager.php');
+// echo "hello";
 
     // if(isset($_POST['signup'])) {
 
