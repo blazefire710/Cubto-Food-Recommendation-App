@@ -4,19 +4,16 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Leave Review</title>
+        <title>Give Review</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="/css/styling.css" />
         <link rel="stylesheet" href="/css/components.css" />
-        <link rel="stylesheet" href="/css/reviews.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
-        />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     </head>
 
     <header>
@@ -127,43 +124,43 @@
                             <form action="">
                                 <h2>Your Experience</h2><br>
                                 <div class="d-flex justify-content-around">
-                                    😢 Bad
+                                    <span class="large-font red">😢Bad</span>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
-                                    Good 😊
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Food Experience</h2><br>
                                 <div class="d-flex justify-content-around">
-                                    😢 Bad
+                                    <span class="large-font red">😢Bad</span>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
-                                    Good 😊
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Cleanliness</h2> <br>
                                 <div class="d-flex justify-content-around">
-                                    😢 Bad
+                                    <span class="large-font red">😢Bad</span>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
-                                    Good 😊
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Customer Service</h2><br>
                                 <div class="d-flex justify-content-around">
-                                    😢 Bad
+                                    <span class="large-font red">😢Bad</span>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
                                     <input type=radio></input>
-                                    Good 😊
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
 
                                 <br><label for="exampleFormControlTextarea1" class="form-label"><h2>Additional Comments</h2></label>

@@ -15,15 +15,17 @@ Constraint restaurant_pk1 PRIMARY KEY (restaurant_id)
 
 Create Table User
 (
-user_id varchar(5) not null,
+user_id int AUTO_INCREMENT,
 username varchar(50) not null,
-Password varchar(255) not null,
+password varchar(255) not null,
 email varchar(50) not null,
 first_name varchar(30),
 last_name varchar(30),
-gender varchar(1),
-birthday date, 
-profile_image longblob,
+question varchar(50), 
+answer varchar(100),
+-- gender varchar(1),
+-- birthday date, 
+-- profile_image longblob,
 
 Constraint user_pk1 PRIMARY KEY (user_id)
 );

@@ -15,11 +15,11 @@
 
         body {
             background-image: url("Images/BackGround.png");
-            background-repeat: no-repeat;
             background-size: cover;
             
         }
         .edit_page_profile {
+            max-width: 200px;
             width: 100%;
             height: auto;
         }
@@ -31,52 +31,84 @@
 
 
     <!-- Top Navigation Bar -->
-    <div class="container-fluid">
-        <div class="row bg-light border border-secondary">
-            <div class="col-2 " ><img class ="logo" src="Images/Logo photo.PNG"></div>
-            <div class="col-1"></div>
-            <div class="col-6"><input class="form-control my-2" type="text" placeholder="Search for places to eat! " aria-label="default input example"></div>
-            <div class="col-3"></div>
-        </div>
-
-        <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Explore</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">What's Next?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav justify-content-end">
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profile <span>&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    </span>
-                </a>
-                <!-- Profile Icon And Drop down -->
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Favourites</a></li>
-                    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Booking History</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Log Out</a></li>
-                </ul>
-                </li>
-            </ul>
+    <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"
+                /></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                    />
+                    <button class="btn" type="submit">🔍</button>
+                    <button type="button" class="btn btn-outline-primary me-2">
+                        Login
+                    </button>
+                    <button type="button" class="btn btn-outline-success me-2">
+                        Signup
+                    </button>
+                </form>
             </div>
-        </div>
         </nav>
 
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            "
+        >
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="#">Explore</a>
+                    <a class="navbar-brand" href="#">What'sNext?</a>
+                    <a class="navbar-brand" href="#">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        >Guest
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="#">Favourites</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"
+                                >Booking-History</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <!-- End of Top Navigation Bar  -->
     <!-- Start of Edit Page Content  -->
 
@@ -141,6 +173,29 @@
                             <div class="mb-3">
                                 <label for="Email" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="Email" placeholder="name@example.com">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Address1" class="form-label">Address 1</label>
+                                <input type="text" class="form-control" id="Address1" placeholder="123 Main St">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Address2" class="form-label">Address 2</label>
+                                <input type="text" class="form-control" id="Address2" placeholder="Apartment, Studio, or Floor">
+                            </div>
+                            <div class="mb-3 d-inline-flex">
+                                <div class="col-4 mx-1">
+                                    <label for="City" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="Address2" placeholder="">
+                                </div>
+                                <div class="col-4 mx-1">
+                                    <label for="State" class="form-label">State</label>
+                                    <input type="text" class="form-control" id="Address2" placeholder="">
+                                </div>
+                                <div class="col-4 mx-1">
+                                    <label for="Zip" class="form-label">Zip</label>
+                                    <input type="text" class="form-control" id="Address2" placeholder="">
+                                </div>
                             </div>
 
                         <!-- Submit Button -->
