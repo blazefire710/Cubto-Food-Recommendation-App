@@ -2,24 +2,36 @@
 require_once('ConnectionManager.php');
 // echo "hello";
 
-    // if(isset($_POST['signup'])) {
+//     if(isset($_POST['signup'])) {
 
-    //     $user_id = '';
+//         $user_id = '';
 
-    //     $first_name = $_POST['first_name'];
-    //     $last_name = $_POST['last_name'];
-    //     $password = $_POST['password'];
-    //     $email = $_POST['email'];
-    //     $username = $_POST['username'];
-    //     $question = $_POST['question'];
-    //     $answer = $_POST['answer'];
+//         $first_name = $_POST['first_name'];
+//         $last_name = $_POST['last_name'];
+//         $password = $_POST['password'];
+//         $email = $_POST['email'];
+//         $username = $_POST['username'];
+//         $question = $_POST['question'];
+//         $answer = $_POST['answer'];
 
-    //     $new = new AccountDAO();
-    //     $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
+//         $new = new AccountDAO();
+//         $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
 
-    //     header("Location: Created_Account.html");
-    //     exit();
-    // }
+//         header("Location: Created_Account.html");
+//         exit();
+//     }
+if(isset($_POST['login'])){
+        $password_input = $_POST['password'];
+        $username = $_POST['username'];
+
+        echo  $password_input;
+        echo $username;
+        
+        $new = new AccountDAO();
+        $result_login = $new -> verify_account($username,$password_input);
+
+        var_dump($result_login);
+}
 
 ?>
 
@@ -40,7 +52,7 @@ require_once('ConnectionManager.php');
 
     <style>
         body {
-            background-image: url("../images/Local-Food-Illo_Project-file_2072020-1400x1000-01.webp");
+            background-image: url("Images/BackGround.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -55,44 +67,6 @@ require_once('ConnectionManager.php');
 </head>
 
 <body>
-    <!-- <div class='container-fluid p-0'>
-      
-        <div class='row first-nav pt-3' style='background-color: white;'>
-            <div class='col-sm-9'>
-
-          
-                <img src="images/—Pngtree—food icon design vector_4996277.png" style="width:80px;" alt="logo" width="30"
-                    height="24" class="d-inline-block align-text-top">
-                <span class='display-5 fs-3'>Cubto</span>
-
-               
-                <input type='text' name='text' id='searchbar' placeholder='Search' class='search-bar ms-3'
-                    style='width: 400px; height: 40px; border: 1px solid rgb(238, 237, 237); border-radius: 5px;'>
-
-            </div>
-
-           
-            <div class='col me-2' style='background-color: white; text-align: end;'>
-                <a class="btn btn-outline-success py-1" href="#" role="button">Login</a>
-                <a class="btn btn-outline-success py-1" href="#" role="button">Sign Up</a>
-            </div>
-        </div>
-
-       
-        <div class='second-nav py-2' style='background-color: white;'>
-            <ul class="nav lead fs-6">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Explore</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">What'sNext</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-            </ul>
-        </div>
-    </div> -->
 
     <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
         <div class="container-fluid">
@@ -154,7 +128,7 @@ require_once('ConnectionManager.php');
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Login</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-1" name= "form_data" action>
+                <form class="row g-3 w-75 mx-auto mt-1" name= "form_data" method="POST" action>
                     <div class="col-12">
                         <label for="inputAddress2" class="form-label">Username:</label>
                         <input type="text" class="form-control" id="inputAddress2" name="username"> 
@@ -175,9 +149,9 @@ require_once('ConnectionManager.php');
                     </div>
                     <div class="col-12 mb-4 p-0">
                         <div class='container text-center' style='display:flex; justify-content: space-between;'>
-                            <button type="submit" class="btn btn-outline-primary w-50 me-2">Login</button>
+                            <button type="submit" class="btn btn-outline-primary w-50 me-2" name='login'>Login</button>
                         
-                            <button type="submit" class="btn btn-outline-primary w-50" onclick="redirect()" >Sign Up</button>
+                            <button type="submit" class="btn btn-outline-primary w-50"  ><a href="signup.php">Sign Up</a></button>
                         </div>
                     </div>
 
@@ -198,9 +172,9 @@ require_once('ConnectionManager.php');
     </div>
 
     <scipt>
-    function redirect() {
+    <!-- function redirect() {
             location.replace("signup.php")
-        }
+        } -->
     </scipt>
 
 

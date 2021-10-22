@@ -1,5 +1,6 @@
 <?php 
 //   
+require_once("Account.php");
 
 class AccountDAO {
 
@@ -39,6 +40,50 @@ class AccountDAO {
       $conn = null;
   
       return null;
+    }
+
+
+    public function verify_account($username,$password_from_input) {
+      
+      $sql = "SELECT * FROM user where username = :username";
+  
+      $servername = 'localhost';
+      $root = 'root';
+      $db_pw = '';
+      $dbname = 'cubto';
+        
+        // Create connection
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      $stmt->execute();
+      
+      if ($stmt->execute()) {
+        while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+          $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer']);
+        }
+
+        if (isset($user)){
+          $password_from_system = $user->getpassword();
+          if (password_verify($password_from_input,$password_from_system)) {
+            return true;}
+
+          else{
+            return false;}
+        }
+      }
+      else{
+        return false;
+      }
+      $stmt = null;
+      $conn = null;
+  
+      return false;
     }
   
   }
