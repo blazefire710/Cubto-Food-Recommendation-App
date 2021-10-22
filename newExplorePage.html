@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--bootstrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--Vue-->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <style>
+        body {
+            background-image: url("Images/BackGround.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+        .nav-link {
+            color: black;
+            padding-top: 10px;
+        }
+
+        .btn-outline-info {
+            color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+        }
+
+        h5 {
+            color: rgb(238, 125, 144);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id='app'>
+        <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
+            style='border-bottom: 1px solid rgb(193, 190, 190);'>
+            <div class="container-fluid">
+                <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
+                        src="../Images/Logo photo.PNG"></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" />
+                    <button class="btn" type="submit">
+                        🔍
+                    </button>
+                    <button type="button" class="btn btn-outline-info me-2">Login</button>
+                    <button type="button" class="btn btn-outline-info me-2">Signup</button>
+
+                </form>
+            </div>
+        </nav>
+
+        <nav id="bottom-navbar" class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="#">Explore</a>
+                    <a class="navbar-brand" href="#">What'sNext?</a>
+                    <a class="navbar-brand" href="#">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Guest
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="#">Favourites</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Booking-History</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--main content-->
+
+        <div class='container mt-4'>
+            <!--cards-->
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col" v-for='restaurant of this.dataArr'>
+                    <div class="card">
+                        <h5 class="card-title ps-3 pt-3">{{restaurant.name}}</h5>
+                        <div class='row row-cols-2'>
+                            <h6 class=" card-title ps-4">{{reviewCount}} Reviews</h6>
+                            <h6 class=" card-title ps-3 float-left">{{restaurant.rating}}⭐️</h6>
+                        </div>
+
+                        <div class="card-body">
+                            <!--caurosell card body-->
+
+                            <div id="carouselExampleControls" class='carousel carousel-dark slide data-bs-touch="false" data-bs-interval="false"'
+                                data-bs-ride="carousel">
+                                <!-- <div class="carousel-inner">
+                              <div class="carousel-item active w-50">
+                                <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="..." class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="..." class="d-block w-100" alt="...">
+                              </div>
+                            </div> -->
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+
+                                <div class='row container carousel-inner' style='display: flex;'>
+                                    
+                                        <div class='first col carousel-item active'> <!--v-for='text of this.newTextArr'-->
+                                            <div class="card ms-5" style="width: 200px;">
+                                                <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg" class="card-img-top" alt="..." style='height: 150px;'>
+                                            </div>
+                                            <div class="card mb-3 ms-5" style="width: 200px;">
+                                                <div class="card-body">
+                                                    <p class="card-text" style='font-size: 12px;'>{{firstReviewText}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class='second col carousel-item'>
+                                            <div class="card ms-5" style="width: 200px;">
+                                                <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                    class="card-img-top" alt="..." style='height: 150px;'>
+                                            </div>
+                                            <div class="card mb-3 ms-5" style="width: 200px;">
+                                                <div class="card-body">
+                                                    <p class="card-text" style='font-size: 12px;'>{{secondReviewText}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class='third carousel-item'>
+                                            <div class="card ms-5" style="width: 200px;">
+                                                <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
+                                                    class="card-img-top" alt="..." style='height: 150px;'>
+                                            </div>
+                                            <div class="card mb-3 ms-5" style="width: 200px;">
+                                                <div class="card-body">
+                                                    <p class="card-text">Some quick example text to build on the card
+                                                        title
+                                                        and
+                                                        make
+                                                        up the bulk of the card's content.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    
+                                </div>
+
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    dataArr: [],
+                    name: '',
+                    review: '',
+                    reviewCount: 0,
+                    rating: '',
+                    firstReviewText: '',
+                    secondReviewText: '',
+                    numResult: 0,
+                    searchQuery: '',
+                    //newTextArr : [],
+                }
+            },
+            created() {
+                //url to extract all the resturants available
+
+                var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=all&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+
+                axios.get(url)
+                    .then(response => {
+                        console.log(response.data);
+                        this.dataArr = response.data.data;
+
+                        for (var restaurant of this.dataArr) {
+                            //this.name = restaurant.name;
+                            //console.log(name);
+
+                            //this.rating = restaurant.rating;
+                            //console.log(rating);
+
+                            var reviewsArr = restaurant.reviews; //an array of 5 objects
+                            //console.log(reviewsArr);
+
+                            var newTextArr = [];
+                            this.reviewCount = 0;
+
+                            for (let each of reviewsArr) {
+
+                                //this.newTextArr.push(each.text);
+                                newTextArr.push(each.text);
+
+                                for (let i = 0; i < 2; i++) {
+                                    this.firstReviewText = newTextArr[0];
+                                    this.firstReviewText = this.firstReviewText.substring(0,100)
+                                    //console.log(this.firstReviewText);
+                                    this.secondReviewText = newTextArr[1];
+                                    this.secondReviewText = this.secondReviewText.substring(0,50)
+                                    //console.log(this.secondReviewText);
+                                }
+
+                                //console.log(each.text);
+                                this.reviewCount += 1;
+                            }
+                            //console.log(newTextArr);
+                            //this.newTextArr = this.newTextArr.slice(0,2);
+
+                            this.numResult += 1;
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+            },
+            methods: {
+                isQuery() {
+                    // var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.searchQuery + '&language=en apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+
+                    // console.log(this.searchQuery);
+
+                    // axios.get(url)
+                    // .then(response => {
+                    //     console.log(response.data);
+                    //     var dataArr = response.data.data;
+
+                    //     for (var restaurant of dataArr) {
+                    //         this.name = restaurant.name;
+                    //         //console.log(name);
+
+                    //         this.rating = restaurant.rating;
+                    //         //console.log(rating);
+
+                    //         var reviewsArr = restaurant.reviews; //an array of 5 objects
+                    //         //console.log(reviewsArr);
+
+                    //         var newTextArr = [];
+
+                    //         for (let each of reviewsArr) {
+
+                    //             newTextArr.push(each.text);
+
+                    //             for (let i = 0; i < 2; i++) {
+                    //                 this.firstReviewText = newTextArr[0];
+                    //                 //console.log(this.firstReviewText);
+                    //                 this.secondReviewText = newTextArr[1];
+                    //                 //console.log(this.secondReviewText);
+                    //             }
+
+                    //             //console.log(each.text);
+                    //             this.reviewCount += 1;
+                    //         }
+                    //         //console.log(newTextArr);
+
+                    //         this.numResult += 1;
+                    //     }
+
+                    // })
+                    // .catch(error => {
+                    //     console.log(error.message)
+                    // })
+                }
+            }
+        })
+        const vm = app.mount('#app');
+
+    </script>
+
+
+    <!--bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
