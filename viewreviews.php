@@ -14,6 +14,13 @@
         <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="/css/styling.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <style>
+            body { /* this is for the background image */
+                background-image: url("Images/BackGround.png");
+                background-size: cover;
+                height: 100vh;
+            }
+        </style>
     </head>
 
     <header>
@@ -26,7 +33,7 @@
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="../Images/Logo photo.PNG"
+                        src="Images/Logo photo.PNG"
                 /></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
@@ -117,11 +124,11 @@
                         <div class="col-md-7">
                             <h3>Overall Ratings</h3>
                             <div id='overall-ratings'>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
                             </div>
                         </div>
 

@@ -1,13 +1,16 @@
 /* USE THIS CSS FILE FOR ALL THE REUSABLE COMPONENT STYLING */
 
+
 body { /* this is for the background image */
-    background-image: url(Images/BackGround.png) center;
-    /* background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed; */
+    /* background-image: url("Images/BackGround.png") center; */
+    background-image: url("Images/BackGround.png");
     background-size: cover;
     height: 100vh;
 }
+/* UPDATE: this css used to work as an external stylesheet, but for some reason it only works when it is an internal stylesheet now. */
 
 .container{
     /* background: url('../Images/BackGround.png') no repeat center center fixed; */
     background-size: cover;
 }
+

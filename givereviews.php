@@ -14,6 +14,13 @@
         <link rel="stylesheet" href="/css/styling.css" />
         <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <style>
+            body { /* this is for the background image */
+                background-image: url("Images/BackGround.png");
+                background-size: cover;
+                height: 100vh;
+            }
+        </style>
     </head>
 
     <header>
@@ -26,7 +33,7 @@
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="../Images/Logo photo.PNG"
+                        src="Images/Logo photo.PNG"
                 /></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
@@ -37,10 +44,10 @@
                         aria-label="Search"
                     />
                     <button class="btn" type="submit">🔍</button>
-                    <button type="button" class="btn btn-outline-primary me-2">
+                    <button type="button" class="btn btn-outline-info me-2">
                         Login
                     </button>
-                    <button type="button" class="btn btn-outline-success me-2">
+                    <button type="button" class="btn btn-outline-info me-2">
                         Signup
                     </button>
                 </form>

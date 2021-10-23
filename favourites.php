@@ -11,9 +11,16 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/styling.css" />
+        <link rel="stylesheet" href="css/components.css" />
+        <style>
+            body { /* this is for the background image */
+                background-image: url("Images/BackGround.png");
+                background-size: cover;
+                height: 100vh;
+            }
+        </style>
     </head>
 
     <header>
@@ -26,7 +33,7 @@
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="../Images/Logo photo.PNG"
+                        src="Images/Logo photo.PNG"
                 /></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
@@ -109,7 +116,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
                                 <img
-                                    src="/Images/sarnies.jpg"
+                                    src="Images/sarnies.jpg"
                                     class="img-fluid mh-100"
                                     alt="..."
                                 />
@@ -136,7 +143,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
                                 <img
-                                    src="/Images/sarnies.jpg"
+                                    src="Images/sarnies.jpg"
                                     class="img-fluid mh-100"
                                     alt="..."
                                 />
@@ -163,7 +170,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
                                 <img
-                                    src="/Images/sarnies.jpg"
+                                    src="Images/sarnies.jpg"
                                     class="img-fluid mh-100"
                                     alt="..."
                                 />
