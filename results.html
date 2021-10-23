@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Profile</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="font.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        
+       
+        <style>
+            .carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+            img {
+            border: 1px solid rgb(201, 201, 201);
+        }
+
+            body {
+                background-image: url(back.png);
+                background-repeat: no-repeat;
+            background-size: cover;
+           
+
+            }
+
+        .btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+            color:rgb(253, 250, 250) ;
+            background-color: rgb(247, 104, 130)!important;
+            border-color:  rgb(247, 104, 130)!important;
+        }
+
+        
+        </style>
+    </head>
+
+</head>
+
+
+<body>
+
+    <nav
+        id="top-navbar"
+        class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+    >
+        <div class="container-fluid">
+            <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;" src="logo.PNG"></a>
+            <!-- insert icon here -->
+            <form class="d-flex w-75">
+                <input
+                    class="form-control "
+                    type="search"
+                    placeholder="Search Places"
+                    aria-label="Search"
+                />
+                <button class="btn" type="submit">
+                    🔍
+                </button>
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <button type="button" class="btn btn-outline-success me-2">Signup</button>
+
+            </form>
+        </div>
+    </nav>
+
+    <nav
+        id="bottom-navbar"
+        class="
+            navbar navbar-expand-lg navbar-light
+            bg-light
+            pb-2
+            border-bottom border-dark
+        "
+    >
+        <div class="container-fluid">
+            <div class="">
+                <a class="navbar-brand" href="#">Explore</a>
+                <a class="navbar-brand" href="#">What'sNext?</a>
+                <a class="navbar-brand" href="#">About us</a>
+            </div>
+            <div class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle text-dark"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    > @johnathan58
+                </a>
+                <ul
+                    class="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                >
+                    <li>
+                        <a class="dropdown-item" href="#">Favourites</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"
+                            >Booking History</a
+                        >
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#"
+                            >Log Out</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 my-2 ">
+        <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color: rgb(248, 246, 246);">
+            <div class="row">
+                <div class="col ms-2">
+                    <!-- <h2 style = " font-weight: 550;" class= "text-center"> Cubto recommends you to try... </h2> -->
+                    <h2 class=" text-center mt-2">
+                        Cubto recommends you to try...
+                    </h2>
+                </div>
+            </div>
+           
+            <div class = "container mt-3 my-2">
+                <div class = "p-5 mb-5 mt-2 border rounded-3" style= "background-color:white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    <h2 class="venue-title text-center"><b>Sarnies (Telok Ayer) </b></h2>     
+                </div>
+                
+
+                <div class = "row justify-content-center" style = "color:  rgb(228, 53, 85); font-weight: 400;">
+                    <div class="col-2">
+                        1,180 Reviews
+                    </div>
+
+                    <div class="col-1">
+                        <i class="fas fa-star"></i> 4.1
+                    
+                    </div>
+                </div>
+            </div>
+
+            
+        
+                <br>
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"  aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"  aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://danielfooddiary.com/wp-content/uploads/2019/03/entertainercafe.jpg" class="d-block mx-auto" width= "540" height = "350" >
+                      </div>
+                      <div class="carousel-item ">
+                        <img src="https://burpple.imgix.net/venue_images/dsc03417-jpg_6462_original" class="d-block mx-auto" width= "540" height = "350" >
+                      </div>
+                      <div class="carousel-item ">
+                        <img src="https://static.thehoneycombers.com/wp-content/uploads/sites/2/2016/11/Sarnies-1.jpg" class="d-block mx-auto" width= "540" height = "350" >
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            
+
+                
+                       
+           
+                    <!-- <div class="col-4">
+                        <i class="fas fa-angle-left fa-lg"></i>
+                        <img src="https://danielfooddiary.com/wp-content/uploads/2019/03/entertainercafe.jpg" class="img-rounded " width= "300" height = "250" />
+                    </div>
+
+                    <div class="col-4">
+                        <img src="https://burpple.imgix.net/venue_images/dsc03417-jpg_6462_original" class="lazy-load mx-auto d-block" width= "300" height = "250"  />
+                    </div>
+
+                    <div class="col-4">
+                        <img src="https://static.thehoneycombers.com/wp-content/uploads/sites/2/2016/11/Sarnies-1.jpg" class="lazy-load " width= "300" height = "250" />
+                        <i class="fas fa-angle-right fa-lg"></i>
+                    </div> -->
+
+            
+
+            <div class="col mt-5 text-center">
+                <h6 style = "color: rgb(121, 120, 120);" >Reviews from the Cubtos community</h6>
+                <p style = "font-style: italic; color: rgb(145, 141, 141);">@samxteo: "Amazing food and vibes!" <br> @johnathan58: "Great brunch spot for family and friends!" <br>@amanda19: "Great service, would definitely come back again!"</p> 
+                <br>
+                    <p>
+                        <button type= "button" class="btn btn-primary me-2" id = "myButton">Recommend me something else!</button>
+                        <script type="text/javascript">
+                            document.getElementById("myButton").onclick = function () {
+                                // location.href = "whatsnext.html";
+                                window.open("whatsnext.html", "_blank").focus()
+                            };
+                        </script>
+                        <!-- <button type= "button" class="btn btn-primary me-2">Add to Wishlist</button> -->
+                 
+                    </p>
+
+                </div>
+                
+
+         
+           
+            </div> 
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
