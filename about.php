@@ -4,22 +4,24 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Favourites</title>
+        <title>About Us</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="/css/styling.css" />
-        <link rel="stylesheet" href="css/components.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <style>
             body { /* this is for the background image */
                 background-image: url("Images/BackGround.png");
                 background-size: cover;
                 height: 100vh;
             }
+
+
         </style>
     </head>
 
@@ -105,94 +107,29 @@
         <div class="container">
             <div class="card shadow my-5">
                 <div class="card-body p-5">
-
-                    
                     <!-- Insert Content Here -->
-                    <h1>My Favourites</h1><br>
-
-                    <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row">
+                        <h4>
+                            Welcome to Cubto, your number one source for restaurant information! 
+                            <br><br><br>
+                            We're dedicated to giving you the very best food selections and helping you fill your tummy with good food! with a focus on restaurant recommendations, reviews and restaurant searching!
+                            <br><br><br>
+                            Founded in 2021, Cubto has come a long way from its beginnings in an online Covid-19 semester at home in Singapore, where a fated group of 4 students liked the idea of creating a website for foodies! We hope this website manages to help you find the food that you have been craving all along!
+                            <br><br><br>
+                            Sincerely,
+                            Yu Xiang, Celeste, Kezia and Paul - WAD2 TEAM 6
+                            <br><br><br>
+                        </h4>
+                        
                     </div>
-
-                    <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <img src="Images/family-pic.jpg" width=100%; height=auto>
                         </div>
+                        <div class="col-3"></div>
                     </div>
-
-                    <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                </div>
             </div>
         </div>
         <script
