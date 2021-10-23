@@ -1,5 +1,5 @@
 <?php
-include("ConnectionManager.php");
+require_once("ConnectionManager.php");
 // test
 
 class Account {

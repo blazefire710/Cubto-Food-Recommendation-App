@@ -11,9 +11,16 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="/css/components.css" />
-        <link rel="stylesheet" href="/css/styling.css" />
+        <link rel="stylesheet" href="css/components.css" />
+        <link rel="stylesheet" href="css/styling.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <style>
+            body { /* this is for the background image */
+                background-image: url("Images/BackGround.png");
+                background-size: cover;
+                height: 100vh;
+            }
+        </style>
     </head>
 
     <header>
@@ -22,11 +29,11 @@
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand"
+                <a class="navbar-brand" href="updated_explore.html"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="../Images/Logo photo.PNG"
+                        src="Images/Logo photo.PNG"
                 /></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
@@ -37,12 +44,10 @@
                         aria-label="Search"
                     />
                     <button class="btn" type="submit">🔍</button>
-                    <button type="button" class="btn btn-outline-primary me-2">
-                        Login
-                    </button>
-                    <button type="button" class="btn btn-outline-success me-2">
-                        Signup
-                    </button>
+
+                    <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
+
                 </form>
             </div>
         </nav>
@@ -58,9 +63,9 @@
         >
             <div class="container-fluid">
                 <div class="">
-                    <a class="navbar-brand" href="#">Explore</a>
-                    <a class="navbar-brand" href="#">What'sNext?</a>
-                    <a class="navbar-brand" href="#">About us</a>
+                    <a class="navbar-brand" href="updated_explore.html">Explore</a>
+                    <a class="navbar-brand" href="restaurant_details.php">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
                     <a
@@ -77,18 +82,18 @@
                         aria-labelledby="navbarDropdownMenuLink"
                     >
                         <li>
-                            <a class="dropdown-item" href="#">Favourites</a>
+                            <a class="dropdown-item" href="favourites.php">Favourites</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#"
+                            <a class="dropdown-item" href="bookinghistory.php"
                                 >Booking-History</a
                             >
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Log Out</a>
+                            <a class="dropdown-item" href="login.php">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -115,15 +120,65 @@
 
                         </div>
                         <div class="col-md-7">
-                            <h3>Overall Ratings</h3>
-                            <div id='overall-ratings'>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-gold fa-2x"></i>
-                                <i class="fas fa-star fa-2x"></i>
-                            </div>
+                            <h3 style="text-align:center">Overall Score: 5.0 <i class="fas fa-star gold"></i><br><br></h3> 
+
+                            <!-- removed the below part for now because its difficult to implement -->
+                            <!-- <div id='overall-ratings'> 
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                <i class="fas fa-star gold fa-2x"></i>
+                                5.0
+                            </div> -->
+                            <!-- Insert review cards here -->
+                            <div class="card border-danger mb-3" ">
+                                <div class="card-header">
+                                    <h2>
+                                        <img src="Images/default-user.png" width=80px height=auto style="margin-top:10px">
+                                        &nbsp;&nbsp; User 1 &nbsp;&nbsp;&nbsp; 5.0
+                                        <i class="fas fa-star gold"></i>
+                                    </h2> <!-- rmb to link this to reviews -->
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5>
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, rem vero expedita at quod sunt. Mollitia eum, ullam, exercitationem aperiam magnam repellat voluptatem libero voluptates fugiat similique, veritatis ad nesciunt.
+                                    </h5>
+                                </div>
+                            </div> 
+                            
+                            <div class="card border-danger mb-3" ">
+                                <div class="card-header">
+                                    <h2>User 1 &nbsp;&nbsp;&nbsp;&nbsp; 5.0 <i class="fas fa-star gold"></i></h2> <!-- rmb to link this to reviews -->
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5>
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, rem vero expedita at quod sunt. Mollitia eum, ullam, exercitationem aperiam magnam repellat voluptatem libero voluptates fugiat similique, veritatis ad nesciunt.
+                                    </h5>
+                                </div>
+                            </div> 
+
+                            <div class="card border-danger mb-3" ">
+                                <div class="card-header">
+                                    <h2>User 1 &nbsp;&nbsp;&nbsp;&nbsp; 5.0 <i class="fas fa-star gold"></i></h2> <!-- rmb to link this to reviews -->
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5>
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, rem vero expedita at quod sunt. Mollitia eum, ullam, exercitationem aperiam magnam repellat voluptatem libero voluptates fugiat similique, veritatis ad nesciunt.
+                                    </h5>
+                                </div>
+                            </div> 
+
+
+
+
+
                         </div>
+
+
 
 
 
