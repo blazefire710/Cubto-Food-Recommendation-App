@@ -1,25 +1,6 @@
 <?php
 require_once('ConnectionManager.php');
-// echo "hello";
 
-//     if(isset($_POST['signup'])) {
-
-//         $user_id = '';
-
-//         $first_name = $_POST['first_name'];
-//         $last_name = $_POST['last_name'];
-//         $password = $_POST['password'];
-//         $email = $_POST['email'];
-//         $username = $_POST['username'];
-//         $question = $_POST['question'];
-//         $answer = $_POST['answer'];
-
-//         $new = new AccountDAO();
-//         $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
-
-//         header("Location: Created_Account.html");
-//         exit();
-//     }
 if(isset($_POST['login'])){
         $password_input = $_POST['password'];
         $username = $_POST['username'];
@@ -31,6 +12,18 @@ if(isset($_POST['login'])){
         $result_login = $new -> verify_account($username,$password_input);
 
         var_dump($result_login);
+
+        if($result_login) {
+            session_start();
+            $_SESSION['login_details'] = $new->retrieve_all($username) ;
+            var_dump($_SESSION['login_details']);
+            header("Location: newExplorePage.html");
+            exit();
+        }
+        else{
+            // Code out Error Prompt
+            
+        }
 }
 
 ?>

@@ -17,7 +17,7 @@
         $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
 
         // here to be redirected.
-        header("Location: Created_Account.html");
+        header("Location: createdaccount.html");
         exit();
     }
 ?>
