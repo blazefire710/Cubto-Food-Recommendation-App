@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['login_details'])) {
+    header("Location: login.php");
+    exit();
+}
+else{
+    $data = $_SESSION['login_details'];
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
