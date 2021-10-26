@@ -20,8 +20,6 @@
                 background-size: cover;
                 height: 100vh;
             }
-
-
         </style>
     </head>
 
@@ -66,7 +64,7 @@
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                    <a class="navbar-brand" href="restaurant_details.php">What'sNext?</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
@@ -84,14 +82,11 @@
                         aria-labelledby="navbarDropdownMenuLink"
                     >
                         <li>
-                            <a class="dropdown-item" href="favourites.php">Favourites</a>
+                            <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="bookinghistory.php"
-                                >Booking-History</a
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
                             >
                         </li>
                         <li>

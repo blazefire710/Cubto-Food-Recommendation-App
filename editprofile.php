@@ -26,12 +26,10 @@
 
 
     </style>
-<body>
-
-
 
     <!-- Top Navigation Bar -->
     <header>
+
         <nav
             id="top-navbar"
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
@@ -73,6 +71,7 @@
                 <div class="">
                     <a class="navbar-brand" href="updated_explore.html">Explore</a>
                     <a class="navbar-brand" href="restaurantdetails.php">What'sNext?</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
@@ -90,14 +89,11 @@
                         aria-labelledby="navbarDropdownMenuLink"
                     >
                         <li>
-                            <a class="dropdown-item" href="favourites.php">Favourites</a>
-                        </li>
-                        <li>
                             <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="bookinghistory.php"
-                                >Booking-History</a
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
                             >
                         </li>
                         <li>
@@ -107,8 +103,10 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <!-- End of Top Navigation Bar  -->
+</header>
+
+<body>
+
     <!-- Start of Edit Page Content  -->
 
 
