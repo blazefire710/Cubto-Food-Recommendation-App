@@ -14,7 +14,7 @@ class AccountDAO {
   
       $servername = 'localhost';
       $root = 'root';
-      $db_pw = '';
+      $db_pw = 'root';
       $dbname = 'cubto';
         
         // Create connection
@@ -49,7 +49,7 @@ class AccountDAO {
   
       $servername = 'localhost';
       $root = 'root';
-      $db_pw = '';
+      $db_pw = 'root';
       $dbname = 'cubto';
         
         // Create connection

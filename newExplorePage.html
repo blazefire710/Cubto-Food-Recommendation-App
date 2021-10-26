@@ -106,7 +106,7 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col" v-for='restaurant of this.dataArr'>
                     <div class="card">
-                        <h5 class="card-title ps-3 pt-3">{{restaurant.name}}</h5>
+                        <h5 class="card-title ps-3 pt-3" v-bind:id='name'>{{restaurant.name}}</h5>
                         <div class='row row-cols-2'>
                             <h6 class=" card-title ps-4">{{reviewCount}} Reviews</h6>
                             <h6 class=" card-title ps-3 float-left">{{restaurant.rating}}⭐️</h6>
@@ -136,18 +136,18 @@
 
                                 <div class='row container carousel-inner' style='display: flex;'>
                                     
-                                        <div class='first col carousel-item active'> <!--v-for='text of this.newTextArr'-->
+                                        <div class='first col carousel-item active' style='padding-left: 50px; padding-right: 50px;' v-for='each of this.newTextArr'> <!--v-for='text of this.newTextArr'-->
                                             <div class="card ms-5" style="width: 200px;">
                                                 <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg" class="card-img-top" alt="..." style='height: 150px;'>
                                             </div>
                                             <div class="card mb-3 ms-5" style="width: 200px;">
                                                 <div class="card-body">
-                                                    <p class="card-text" style='font-size: 12px;'>{{firstReviewText}}</p>
+                                                    <p class="card-text" style='font-size: 12px;'>{{each.text}}</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class='second col carousel-item'>
+                                       <!-- <div class='second col carousel-item'>
                                             <div class="card ms-5" style="width: 200px;">
                                                 <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
                                                     class="card-img-top" alt="..." style='height: 150px;'>
@@ -157,9 +157,9 @@
                                                     <p class="card-text" style='font-size: 12px;'>{{secondReviewText}}</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class='third carousel-item'>
+                                        <!-- <div class='third carousel-item'>
                                             <div class="card ms-5" style="width: 200px;">
                                                 <img src="Images/32bdfbfc8dbe4aec72b41910946_original.jpeg"
                                                     class="card-img-top" alt="..." style='height: 150px;'>
@@ -173,7 +173,7 @@
                                                         up the bulk of the card's content.</p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>  -->
 
 
                                     
@@ -203,11 +203,13 @@
                     review: '',
                     reviewCount: 0,
                     rating: '',
-                    firstReviewText: '',
-                    secondReviewText: '',
+                    // firstReviewText: '',
+                    // secondReviewText: '',
                     numResult: 0,
                     searchQuery: '',
-                    //newTextArr : [],
+                    newTextArr : [],
+                    tags : [],
+                    cuisines : ''
                 }
             },
             created() {
@@ -226,26 +228,35 @@
 
                             //this.rating = restaurant.rating;
                             //console.log(rating);
-
-                            var reviewsArr = restaurant.reviews; //an array of 5 objects
+                            
+                            reviewsArr = restaurant.reviews; //an array of 5 objects
                             //console.log(reviewsArr);
 
-                            var newTextArr = [];
+                            this.newTextArr = [];
                             this.reviewCount = 0;
+                            
+                            for(let i = 0; i < 2; i++){
+                                this.newTextArr.push(reviewsArr[i]);
+                            }
+                            //console.log(this.newTextArr);
+                        //    for(each of this.newTextArr){
+                        //         console.log(each.text);
+                        //     } 
 
                             for (let each of reviewsArr) {
 
                                 //this.newTextArr.push(each.text);
-                                newTextArr.push(each.text);
+                                // newTextArr.push(each.text);
+                                // console.log(newTextArr);
 
-                                for (let i = 0; i < 2; i++) {
-                                    this.firstReviewText = newTextArr[0];
-                                    this.firstReviewText = this.firstReviewText.substring(0,100)
-                                    //console.log(this.firstReviewText);
-                                    this.secondReviewText = newTextArr[1];
-                                    this.secondReviewText = this.secondReviewText.substring(0,50)
-                                    //console.log(this.secondReviewText);
-                                }
+                                // for (let i = 0; i < 2; i++) {
+                                //     this.firstReviewText = newTextArr[0];
+                                //     this.firstReviewText = this.firstReviewText.substring(0,100)
+                                //     //console.log(this.firstReviewText);
+                                //     this.secondReviewText = newTextArr[1];
+                                //     //this.secondReviewText = this.secondReviewText.substring(0,50)
+                                //     //console.log(this.secondReviewText);
+                                // }
 
                                 //console.log(each.text);
                                 this.reviewCount += 1;
