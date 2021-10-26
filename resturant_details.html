@@ -176,12 +176,12 @@
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
-                        <p class="card-text">{{review.text}}</p>
+                        <p class="card-text" style='font-size: 14px;'>{{review.text}}</p>
                         <p class="card-text">Rating: {{review.rating}}/5</p>
                         <p class="card-text">
                           <small class="text-muted">{{review.authorName}}</small>
                           <br>
-                          <small class="text-muted" >Last updated on {{reviewDate}}</small>
+                          <small class="text-muted" >Last updated on {{review.time}}</small>
                         </p>
                       </div>
                     </div>
@@ -226,10 +226,13 @@
         },
         created() {
           //need to figure out how to get the name id from the explore page to here, to render the correct page
+          var arr = window.location.href.split('#');
+          var queryName = arr[1];
+          queryName = decodeURI(queryName);
+          
+          //var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=Alley on 25 at Andaz Singapore&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
 
-          var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=Alley on 25 at Andaz Singapore&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
-
-          // var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword='+ queryName +'&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+          var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword='+ queryName +'&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
           url = encodeURI(url);
 
           axios.get(url)
@@ -258,9 +261,10 @@
               for(var review of this.reviewsArr){
                 this.reviewProfileSrc = '';
                 this.reviewProfileSrc = review.profilePhoto;
+                //console.log(this.reviewProfileSrc);
 
-                this.reviewDate = review.time;
-                this.reviewDate = this.reviewDate.slice(0,10);
+                // this.reviewDate = review.time;
+                // this.reviewDate = this.reviewDate.slice(0,10);
                 //console.log(this.reviewDate);
               }
 
