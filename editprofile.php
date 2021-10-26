@@ -40,7 +40,9 @@ else{
 
     </style>
 
-<header>
+    <!-- Top Navigation Bar -->
+    <header>
+
         <nav
             id="top-navbar"
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
@@ -81,6 +83,7 @@ else{
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="updated_explore.html">Explore</a>
+                    <a class="navbar-brand" href="restaurantdetails.php">What'sNext?</a>
                     <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>

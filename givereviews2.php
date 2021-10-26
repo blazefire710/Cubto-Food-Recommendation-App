@@ -43,6 +43,7 @@
             .expstarrating > input:hover ~ label {  
                 color: #ffca08 ;  
                 } /*Set yellow color when star hover*/
+                
 
             .foodstarrating > input {display: none;}  /* Remove radio buttons */
 
@@ -236,7 +237,7 @@
                                 <br><br><h2>Cleanliness</h2> <br>
                                 <div class="cleanstarrating d-flex justify-content-around flex-row-reverse">
                                     <span class="large-font red">😢Bad</span>
-                                    <input type="radio" id="cleanstar5" name="rating" value="5" /><label for="star5" title="5 star"></label>
+                                    <input type="radio" id="cleanstar5" name="rating" value="5" /><label for="cleanstar5" title="5 star"></label>
                                     <input type="radio" id="cleanstar4" name="rating" value="4" /><label for="cleanstar4" title="4 star"></label>
                                     <input type="radio" id="cleanstar3" name="rating" value="3" /><label for="cleanstar3" title="3 star"></label>
                                     <input type="radio" id="cleanstar2" name="rating" value="2" /><label for="cleanstar2" title="2 star"></label>

@@ -14,11 +14,18 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <style>
-            body { /* this is for the background image */
-                background-image: url("Images/BackGround.png");
-                background-size: cover;
-                height: 100vh;
-            }
+        body {
+            background-image: url("Images/BackGround.png");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .nav-link {
+            color: black;
+            padding-top: 10px;
+        }
+          
     </style>
 </head>
 

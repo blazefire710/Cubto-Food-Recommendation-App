@@ -34,10 +34,11 @@
     <title>Document</title>
 
     <style>
-        body { /* this is for the background image */
+        body {
             background-image: url("Images/BackGround.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             background-size: cover;
-            height: 100vh;
         }
     </style>
 
@@ -71,9 +72,22 @@
                     <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
                     <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
 
-                </form>
-            </div>
-        </nav>
+    <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
+                    src="Images/Logo photo.PNG"></a>
+            <!-- insert icon here -->
+            <form class="d-flex w-75">
+                <input class="form-control" type="search" placeholder="Search Places" aria-label="Search"/>
+                <button class="btn" type="submit">
+                    🔍
+                </button>
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <button type="button" class="btn btn-outline-success me-2">Signup</button>
+
+            </form>
+        </div>
+    </nav>
 
         <nav
             id="bottom-navbar"
