@@ -51,12 +51,9 @@ class AccountDAO {
       $root = 'root';
       $db_pw = 'root';
       $dbname = 'cubto';
-        
         // Create connection
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 
@@ -85,7 +82,46 @@ class AccountDAO {
   
       return false;
     }
+
+  public function retrieve_all($username){
+    $sql = "SELECT * FROM user where username = :username";
+  
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if ($stmt->execute()) {
+    while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer']);
+    };
+    $user_id = $user->getuser_id();
+    $user_name = $user->getusername();
+    $password =$user->getpassword();
+    $email = $user->getemail();
+    $first_name = $user->getfirst_name();
+    $last_name = $user->getlast_name();
+    $question = $user-> question();
+    $answer = $user -> answer();
+
+    $stmt = null;
+    $conn = null;
+    
+    return [$user_id,$user_name,$password,$email,$first_name,$last_name,$question,$answer];
+  }
   
   }
+
+
+}
   
 ?>

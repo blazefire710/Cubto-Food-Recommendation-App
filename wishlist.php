@@ -1,19 +1,26 @@
+<?php
+if (!isset($_SESSION['login_details'])) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Favourites</title>
+        <title>Wishlist</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="/css/styling.css" />
-        <link rel="stylesheet" href="css/components.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <style>
             body { /* this is for the background image */
                 background-image: url("Images/BackGround.png");
@@ -64,7 +71,7 @@
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                    <a class="navbar-brand" href="restaurant_details.php">What'sNext?</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
@@ -82,14 +89,11 @@
                         aria-labelledby="navbarDropdownMenuLink"
                     >
                         <li>
-                            <a class="dropdown-item" href="favourites.php">Favourites</a>
+                            <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="edit_profile.php">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="bookinghistory.php"
-                                >Booking-History</a
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
                             >
                         </li>
                         <li>
@@ -108,7 +112,7 @@
 
                     
                     <!-- Insert Content Here -->
-                    <h1>My Favourites</h1><br>
+                    <h1>Booking History</h1><br>
 
                     <div class="card mb-3 ">
                         <div class="row g-0">
