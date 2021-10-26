@@ -64,7 +64,7 @@
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                    <a class="navbar-brand" href="restaurant_details.php">What'sNext?</a>
+                    <a class="navbar-brand" href="restaurantdetails.php">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">

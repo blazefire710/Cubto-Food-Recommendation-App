@@ -71,7 +71,7 @@ if(isset($_POST['login'])){
     <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
         <div class="container-fluid">
             <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
-                    src="../Images/Logo photo.PNG"></a>
+                    src="Images/Logo photo.PNG"></a>
             <!-- insert icon here -->
             <form class="d-flex w-75">
                 <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" />
