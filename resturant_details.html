@@ -342,29 +342,6 @@
       const vm = app.mount('#app');
     </script>
 
-    <!-- <script>
-      function initMap() {
-        // latitude = parseFloat(document.getElementById("longtitude").innerText).toFixed(6)
-        // longitude = parseFloat(document.getElementById("latitude").innerText).toFixed(6)
-        // console.log(latitude,longitude)
-        // The location of the restaurant
-        var coordinates = { lat: 1.2892953, lng: 103.8556476}; // this is chinese restaurant location
-        // var coordinates = {lat: latitude, lng: longitude};
-        // The map, centered at restaurant location
-        var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 26,
-            center: coordinates,
-
-        });
-        // The marker, positioned at the restaurant
-        var marker = new google.maps.Marker({
-            position: coordinates,
-            map: map,
-
-        });
-      }
-
-    </script> -->
 
     <!-- <script 
     defer
@@ -377,5 +354,11 @@
       crossorigin="anonymous"></script>
   </body>
 
+  <!-- <script 
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4&callback=initMap"
+></script>  -->
+<!-- old google map API, replaced with the other google map api -->
+<!-- don't remove this it is the google API link--> <!-- apparently this calls initMap() immediately-->
 
 </html>
