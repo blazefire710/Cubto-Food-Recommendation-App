@@ -70,7 +70,7 @@
 
     #mapImg {
       display: block;
-      width:90%;
+      width:100%;
       height:auto;
       margin: auto;
     }
@@ -149,26 +149,21 @@
           <div>
             <div class='row'>
               <div class='col'>
-                <h4 class='display-6 fs-4'>Location</h4>
-                <p class='mx-3'>insert google api here</p><br>
-                <!-- <div>Latitude: <span id="latitude">{{latitude}}</span></div>
-                <div>Longitude: <span id="longitude">{{longitude}}</span></div> -->
-                <!-- <input type="hidden" id="latitude" >{{latitude}}</input>
-                <input type="hidden" id="longitude">{{longitude}}</input> -->
-                <!-- <div id="map"></div> -->
+                <h6 class='mt-3 display-6 fs-3'>Nearest MRT: 
+                  <span class='lead fs-4'>{{mrt}} Station</span>
+                </h6><br>
+                <h6 class='mt-3 display-6 fs-3'>Address:
+                  <span class='lead fs-4'>{{streetName}}, {{block}}, {{buildingName}}, Singapore {{postalcode}}</span>
+                </h6><br>
+                <h6 class='mt-3 display-6 fs-3'>Opening Hours:
+                  <span class='lead fs-4' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
+                  <span class='lead fs-4' v-else>Hours are not available</span>
+                </h6>
+              </div>
+              <div class="col-md-7 col-sm-12">
+                <!-- <h4 class='display-6 fs-4'>Map</h4> -->
                 <img id="mapImg" v-bind:src="mapURL"> 
-                <p>{{mapURL}}</p>
-
-                <h6 class='mt-3 display-6 fs-4'>Nearest MRT: 
-                  <span class='lead fs-6'>{{mrt}} Station</span>
-                </h6>
-                <h6 class='mt-3 display-6 fs-4'>Address:
-                  <span class='lead fs-6'>{{streetName}}, {{block}}, {{buildingName}}, Singapore {{postalcode}}</span>
-                </h6>
-                <h6 class='mt-3 display-6 fs-4'>Opening Hours:
-                  <span class='lead fs-6' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
-                  <span class='lead fs-6' v-else>Hours are not available</span>
-                </h6>
+                <!-- <p>{{mapURL}}</p> --> <!--this was to check the url is working properly-->
               </div>
 
             </div>
@@ -305,7 +300,7 @@
               this.mapURL += "https://maps.googleapis.com/maps/api/staticmap?center="
 
               this.mapURL += this.latitude + "," + this.longitude
-              this.mapURL += "&zoom=20&size=1000x400&maptype=hybrid&markers=color:red%7C%7C"
+              this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C"
               this.mapURL += this.latitude + "," + this.longitude
               this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4"
               console.log(this.mapURL)
@@ -343,12 +338,6 @@
               console.log(error.message)
             })
         },
-
-
-        mounted() {
-          
-        }
-
       })
       const vm = app.mount('#app');
     </script>
