@@ -11,19 +11,22 @@ if(isset($_POST['login'])){
         $new = new AccountDAO();
         $result_login = $new -> verify_account($username,$password_input);
 
-        var_dump($result_login);
+        // var_dump($result_login);
 
         if($result_login) {
             session_start();
             $_SESSION['login_details'] = $new->retrieve_all($username) ;
-            var_dump($_SESSION['login_details']);
-            header("Location: newExplorePage.html");
+            // var_dump($_SESSION['login_details']);
+            header("Location: v3.explorePage.php");
             exit();
         }
         else{
             // Code out Error Prompt
-            
+            $message = "Login is unsuccessful!";
         }
+}
+else{
+    $message = "hello";
 }
 
 ?>
@@ -186,13 +189,8 @@ if(isset($_POST['login'])){
                         <input type="password" class="form-control" id="password" name ="password">
                     </div>
 
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" style='font-size: 12px;' for="gridCheck">
-                                Remember me
-                            </label>
-                        </div>
+                    <div class="col-12" class="bg-warning">
+                        <? echo $message; ?>
                     </div>
                     <div class="col-12 mb-4 p-0">
                         <div class='container text-center' style='display:flex; justify-content: space-between;'>
