@@ -16,14 +16,44 @@
     <style>
         body {
             background-image: url("Images/BackGround.png");
-            background-attachment: fixed;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             background-size: cover;
+
         }
 
         .nav-link {
             color: black;
             padding-top: 10px;
+        }
+
+        .btn-outline-info {
+            color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+        }
+
+        h5 {
+            color: rgb(238, 125, 144);
+            margin-left: 20px;
+        }
+
+        .tag-btn {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+            margin: 0px 20px 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
         }
           
     </style>
@@ -51,8 +81,8 @@
                 />
                 <button class="btn" type="submit">🔍</button>
 
-                <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
+                <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
 
             </form>
         </div>
@@ -116,17 +146,14 @@
 
                 <form class="row g-3 w-75 mx-auto mt-1">
                     <div class="col-12">
-                        <label for="inputAddress2" class="form-label">Please Enter Your Email:</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                        <label for="username" class="form-label">Please Enter Your Username:</label>
+                        <input type="text" class="form-control" id="username">
 
-                        <div style='font-size: 12px; text-align: end;'>
-                            <a href='#'>Send me an email</a>
-                        </div>
                     </div>
 
                     <div class="col-12">
-                        <label for="secret_question" class="form-label" id='secret_question'>What is your secret
-                            questionaire:</label>
+                        <label for="secret_question" class="form-label" id='secret_question'>What Is Your Secret
+                            Questionaire:</label>
                         <select class="form-select" aria-label="Default select example">
                             <option value="1" selected>What is your favourite color?</option>
                             <option value="2">What is your occupation?</option>
@@ -134,27 +161,23 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <label for="secret_answer" class="form-label">What is your answer:</label>
+                        <label for="secret_answer" class="form-label">What Is Your Answer:</label>
                         <input type="text" class="form-control" id="secret_answer">
                     </div>
-
-                    <div class='col-12 text-center mt-5 pb-4' style='border-bottom: 1px solid rgb(193, 189, 189);'>
-                        <button class="btn btn-outline-success w-100" type="button">Continue</button>
+                    <div class='col-12'>
+                        <label for="inputAddress2" class="form-label">Please Enter Your New Password:</label>
+                        <input type="text" class="form-control" id="inputAddress2">
+                    </div>
+                    <div class='col-12'>
+                        <label for="inputAddress2" class="form-label">Please Confirm Your  Password:</label>
+                        <input type="text" class="form-control" id="inputAddress2">
                     </div>
 
-                    <div class='col-12 text-center mt-4'>
-                        <button class="btn btn-success w-100 disabled" type="button">Continue with Gmail</button>
+                    <div class='col-12 text-center mt-4 pb-4' style='border-bottom: 1px solid rgb(193, 189, 189);'>
+                        <button class="btn btn-outline-info w-100" type="button">Continue</button>
                     </div>
 
-                    <div class='col-12 text-center mb-4'>
-                        <button class="btn btn-primary w-100" type="button">Continue with Facebook</button>
-                    </div>
-
-                    <div class='col-12 text-center mb-4'>
-                        <div style='font-size: 12px; text-align: center;'>
-                            <a href='#'>Help!</a>
-                        </div>
-                    </div>
+                    
 
                 </form>
 
