@@ -32,7 +32,7 @@
       background-attachment: fixed;
       background-size: cover;
     }
-  
+
     .nav-link {
       color: black;
       padding-top: 10px;
@@ -147,10 +147,11 @@
                 <h6 class='mt-3 display-6 fs-4'>Address:
                   <span class='lead fs-6'>{{streetName}}, {{block}}, {{buildingName}}, Singapore {{postalcode}}</span>
                 </h6>
-                
 
-                <h6 class='mt-3 display-6 fs-4'>Opening Hours: 
-                  <span class='lead fs-6'>{{openTime}}am - {{closeTime}}pm</span>
+
+                <h6 class='mt-3 display-6 fs-4'>Opening Hours:
+                  <span class='lead fs-6' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
+                  <span class='lead fs-6' v-else>Hours are not available</span>
                 </h6>
               </div>
 
@@ -166,13 +167,13 @@
             <!--cards-->
 
             <div class='row' style='margin-left: 10px;'>
-              
+
               <div class='col-6' v-for='review of this.reviewsArr'>
                 <div class="card mb-3" style="max-width: 540px;">
                   <div class="row g-0">
                     <div class="col-md-4 pt-3 text-center">
-                      <img v-bind:src='reviewProfileSrc' class="img-fluid"
-                        alt="..." style='border-radius: 100px; height: 80px;' >
+                        <img v-bind:src='review.profilePhoto' class="img-fluid" alt="..."
+                          style='border-radius: 100px; height: 80px;'>
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
@@ -181,7 +182,7 @@
                         <p class="card-text">
                           <small class="text-muted">{{review.authorName}}</small>
                           <br>
-                          <small class="text-muted" >Last updated on {{review.time}}</small>
+                          <small class="text-muted">Last updated on {{review.time}}</small>
                         </p>
                       </div>
                     </div>
@@ -203,25 +204,26 @@
             dataArr: [],
             name: '',
             reviewCount: 0,
-            reviewsArr : [],
+            reviewsArr: [],
             rating: '',
             streetName: '',
             block: '',
-            postalcode : '',
-            buildingName : '',
+            postalcode: '',
+            buildingName: '',
             searchQuery: '',
             tags: [],
             cuisines: '',
             typeImg: '',
             mrt: '',
-            businessHour : [],
-            openTime : '',
-            closeTime : '',
-            authorName : '',
-            reviewRating : '',
-            reviewText : '',
-            reviewDate : '',
-            reviewProfileSrc : '',
+            businessHour: [],
+            openTime: '',
+            closeTime: '',
+            authorName: '',
+            reviewRating: '',
+            reviewText: '',
+            reviewDate: '',
+            reviewProfileSrc: '',
+            haveHour: false,
           }
         },
         created() {
@@ -229,10 +231,10 @@
           var arr = window.location.href.split('#');
           var queryName = arr[1];
           queryName = decodeURI(queryName);
-          
+
           //var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=Alley on 25 at Andaz Singapore&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
 
-          var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword='+ queryName +'&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+          var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
           url = encodeURI(url);
 
           axios.get(url)
@@ -251,22 +253,28 @@
               this.postalcode = restaurant.address.postalCode;
 
               this.businessHour = restaurant.businessHour;
-              //console.log(this.businessHour);
-              this.openTime = this.businessHour[0].openTime;
-              this.closeTime = this.businessHour[0].closeTime;
+              if (this.businessHour.length == 0) {
+                //console.log(this.businessHour);
+                haveHour = false;
+              }
+              else {
+                haveHour = true;
+                // this.openTime = this.businessHour[0].openTime;
+                // this.closeTime = this.businessHour[0].closeTime;
+              }
 
               this.reviewsArr = restaurant.reviews; //an array of 5 objects
               //console.log(this.reviewsArr);
 
-              for(var review of this.reviewsArr){
-                this.reviewProfileSrc = '';
-                this.reviewProfileSrc = review.profilePhoto;
-                //console.log(this.reviewProfileSrc);
+              // for(var review of this.reviewsArr){
+              //   this.reviewProfileSrc = '';
+              //   this.reviewProfileSrc = review.profilePhoto;
+              //   //console.log(this.reviewProfileSrc);
 
-                // this.reviewDate = review.time;
-                // this.reviewDate = this.reviewDate.slice(0,10);
-                //console.log(this.reviewDate);
-              }
+              //   // this.reviewDate = review.time;
+              //   // this.reviewDate = this.reviewDate.slice(0,10);
+              //   //console.log(this.reviewDate);
+              // }
 
 
               var type = '';

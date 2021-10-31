@@ -5,7 +5,7 @@
             /* Set the size of the div element that contains the map */
             #map {
                 height: 400px; /* The height is 400 pixels */
-                width: 100%; /* The width is the width of the web page */
+                width: 50%; /* The width is the width of the web page */
             }
         </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -16,8 +16,9 @@
         <input type='text' id='searchQuery'>
         <input type='submit' onclick='data()'>
         <h3>Google Maps API</h3>
+        <div>Latitude: <span id="latitude"></span></div>
         <div>Longitude: <span id="longitude"></span></div>
-        <div>Latitude: <span id="Latitude"></span></div>
+        <div>Nearest MRT Station: <span id="nearestMrtStation"></span></div>
 
         <!--The div element for the map -->
         <div id="map"></div>
@@ -61,72 +62,15 @@
                 .then(response => {
                     //console.log(response.data);
                     var dataArr = response.data.data;
-
-                    // for(var restaurant of dataArr){    // if we wanna do a loop, but for simplicity's sake im just using the first result
-                    // }
-
-                    // Math.floor(Math.random() * 10);
                     var restaurant = dataArr[0]
-                    // ADDRESS DATA
-                    postalCode= restaurant.address.postalCode;
-                    block = restaurant.address.block;
-                    buildingName = restaurant.address.buildingName;
-                    floorNumber = restaurant.address.floorNumber;
-                    streetName = restaurant.address.streetName;
-                    unitNumber = restaurant.address.unitNumber;
-                    openTime = restaurant.businessHour[0].openTime;
-                    closeTime = restaurant.businessHour[0].closeTime;
-                    primaryContactNo = restaurant.contact.primaryContactNo
-                    secondaryContactNo = restaurant.contact.secondaryContactNo
-
-                    // REVIEW DATA
-                    reviewauthorName = restaurant.reviews[0].authorName
-                    reviewprofilePhoto = restaurant.reviews[0].profilePhoto
-                    reviewrating = restaurant.reviews[0].rating
-                    reviewtext = restaurant.reviews[0].text
-                    reviewtime = restaurant.reviews[0].time
-                    reviewtime = restaurant.reviews[0].time.slice(0,10)
-                    reviewdate = restaurant.reviews[0].time.slice(11,-1)
-                    reviewdatetime = restaurant.reviews[0].time.slice(0,10) + "   " + restaurant.reviews[0].time.slice(11,-1)
-
-                    // RESTAURANT DESCRIPTION DATA
-                    name = restaurant.name
-                    description = restaurant.body;
-                    officialWebsite = restaurant.officialWebsite
-                    officialEmail = restaurant.officialEmail
-                    rating = restaurant.rating
-                    temporarilyClosed = restaurant.temporarilyClosed
 
                     // Location Information
                     longitude = restaurant.location.longitude
                     latitude = restaurant.location.latitude
                     nearestMrtStation = restaurant.nearestMrtStation
-
-                    console.log("postalCode: ",postalCode)
-                    console.log("block: ",block)
-                    console.log("buildingName: ", buildingName)
-                    console.log("floorNumber: ",floorNumber)
-                    console.log("streetName: ",streetName)
-                    console.log("unitNumber: ",unitNumber)
-                    console.log("openTime: ", openTime)
-                    console.log("closeTime: ", closeTime)
-                    console.log("primaryContactNo: ", primaryContactNo)
-                    console.log("secondaryContactNo: ", secondaryContactNo)
-
-                    console.log("review1authorName: ", reviewauthorName)
-                    console.log("review1profilePhoto: ", reviewprofilePhoto)
-                    console.log("review1rating: ", reviewrating)
-                    console.log("review1text: ", reviewtext)
-                    console.log("review1time: ", reviewtime)
-                    console.log("review1date: ", reviewdate)
-                    console.log("review1datetime: ", reviewdatetime)
-
-                    console.log("name: ", name)
-                    console.log("description: ",description)
-                    console.log("officialWebsite: ", officialWebsite)
-                    console.log("officialEmail: ", officialEmail)
-                    console.log("rating: ", rating)
-                    console.log("temporarilyClosed: ", temporarilyClosed)
+                    document.getElementById("longitude").innerText = longitude
+                    document.getElementById("latitude").innerText = latitude
+                    document.getElementById("nearestMrtStation").innerText = nearestMrtStation
 
                     console.log("longtitude: ", longitude)
                     console.log("latitude: ", latitude)
@@ -136,33 +80,39 @@
                 .catch(error => {
                     console.log(error.message)
                 })
+
         }
         </script>
 
-        <script>
+        <!-- <script>
+
+            latitude = parseFloat(document.getElementById("longtitude").innerText).toFixed(6)
+            longitude = parseFloat(document.getElementById("latitude").innerText).toFixed(6)
             function initMap() {
-                // The location of SCIS at SMU
-                latitude = document.getElementById("longtitude")
-                longitude = document.getElementById("latitude")
+                // The location of the restaurant
+                // var coordinates = { lat: 1.2892953, lng: 103.8556476}; //this is chinese restaurant location
                 // var coordinates = { lat: 1.297538, lng: 103.849558 };
+
                 var coordinates = {lat: latitude, lng: longitude};
+
                 
-                // The map, centered at SCIS
+                // The map, centered at restaurant location
                 var map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 26,
                     center: coordinates,
                 });
-                // The marker, positioned at SCIS
+                // The marker, positioned at the restaurant
                 var marker = new google.maps.Marker({
                     position: coordinates,
                     map: map,
                 });
             }
-        </script>
+        </script> -->
 
-        <script
+        <script 
             defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4&callback=initMap"
-        ></script>
+        ></script> <!-- don't remove this it is the google API link--> <!-- apparently this calls initMap() immediately-->
+
     </body>
 </html>

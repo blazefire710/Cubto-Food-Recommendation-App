@@ -57,83 +57,113 @@ if(isset($_POST['login'])){
             color: black;
             padding-top: 10px;
         }
+
+        .btn-outline-info {
+            color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+        }
+
+        h5 {
+            color: rgb(238, 125, 144);
+            margin-left: 20px;
+        }
+
+        .tag-btn {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+            margin: 0px 20px 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <header>
-    <nav
-        id="top-navbar"
-        class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-    >
-        <div class="container-fluid">
-            <a class="navbar-brand" href="updated_explore.html"
-                ><img
-                    id="logo"
-                    style="width: 150px; height: auto"
-                    src="Images/Logo photo.PNG"
-            /></a>
-            <!-- insert icon here -->
-            <form class="d-flex w-75">
-                <input
-                    class="form-control"
-                    type="search"
-                    placeholder="Search Places"
-                    aria-label="Search"
-                />
-                <button class="btn" type="submit">🔍</button>
+        <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="updated_explore.html"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"
+                /></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                    />
+                    <button class="btn" type="submit">🔍</button>
 
-                <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
+                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
 
-            </form>
-        </div>
-    </nav>
-
-    <nav
-        id="bottom-navbar"
-        class="
-            navbar navbar-expand-lg navbar-light
-            bg-light
-            pb-2
-            border-bottom border-dark
-        "
-    >
-        <div class="container-fluid">
-            <div class="">
-                <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                <a class="navbar-brand" href="about.php">About us</a>
+                </form>
             </div>
-            <div class="nav-item dropdown">
-                <a
-                    class="nav-link dropdown-toggle text-dark"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    >Guest
-                </a>
-                <ul
-                    class="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                >
-                    <li>
-                        <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="wishlist.php"
-                            >Wishlist</a
-                        >
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="login.php">Log Out</a>
-                    </li>
-                </ul>
+        </nav>
+
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            "
+        >
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="updated_explore.html">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        >Guest
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="login.php">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+
 
 <body>
 
@@ -166,10 +196,12 @@ if(isset($_POST['login'])){
                     </div>
                     <div class="col-12 mb-4 p-0">
                         <div class='container text-center' style='display:flex; justify-content: space-between;'>
-                            <button type="submit" class="btn btn-outline-primary w-50 me-2" name='login'>Login</button>
+                            <button type="submit" class="btn btn-outline-info w-100 me-2" name='login'>Login</button>
                         
-                            <button type="submit" class="btn btn-outline-primary w-50"  ><a href="signup.php">Sign Up</a></button>
                         </div>
+                    </div>
+                    <div class='text-center'>
+                        <a href="forgetpassword.php" style='color: rgb(238, 125, 144);'>Forget Password!</a>
                     </div>
 
 
