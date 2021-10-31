@@ -5,8 +5,8 @@ if(isset($_POST['login'])){
         $password_input = $_POST['password'];
         $username = $_POST['username'];
 
-        echo  $password_input;
-        echo $username;
+        // echo  $password_input;
+        // echo $username;
         
         $new = new AccountDAO();
         $result_login = $new -> verify_account($username,$password_input);
