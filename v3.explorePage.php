@@ -70,8 +70,8 @@
                         src="../Images/Logo photo.PNG"></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
-                    <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" />
-                    <button class="btn" type="submit">
+                    <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" v-model='queryName' v-on:change='isQuery()'/>
+                    <button class="btn" type="submit" v-on:click='isQuery()' >
                         🔍
                     </button>
                     <button type="button" class="btn btn-outline-info me-2">Login</button>
@@ -141,6 +141,8 @@
                                 <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
 
                                 <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                
+                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
                             </div>
                             <div>
                                 <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
@@ -182,7 +184,8 @@
                     searchQuery: '',
                     tags: [],
                     cuisines: '',
-                    typeImg: ''
+                    typeImg: '',
+                    queryName : '',
                 }
             },
             created() {
@@ -191,6 +194,68 @@
                 var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=all&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
 
                 axios.get(url)
+                    .then(response => {
+                        //console.log(response.data);
+                        this.dataArr = response.data.data;
+
+                        for (var restaurant of this.dataArr) {
+                            //this.name = restaurant.name;
+                            //console.log(name);
+
+                            //this.rating = restaurant.rating;
+                            //console.log(rating);
+                            // var reviewsArr = [];
+                            reviewsArr = restaurant.reviews; //an array of 5 objects
+                            //console.log(reviewsArr);
+
+                            //this.newTextArr = [];
+                            // this.tags = [];
+                            // this.tags = restaurant.tags;
+                            //console.log(this.tags);
+                            // this.cuisines = [];
+                            // this.cuisines = restaurant.cuisine;
+                            //console.log(this.cuisines);
+
+                            var type = '';
+                            type = restaurant.type;
+                            //console.log(type);
+
+                            this.reviewCount = 0;
+
+                            // if(type == 'Restaurants'){
+                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg';
+                               
+                            // }
+                            // if(type == 'Cafe'){
+                            //     this.typeImg = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
+                            // }
+                            // if(type == 'Hawker Centres'){
+                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
+                            // }
+
+
+                            for (let each of reviewsArr) {
+
+                                this.reviewCount += 1;
+                            }
+                            
+                            this.numResult += 1;
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+            },
+            methods: {
+                isQuery() {
+                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+                    url = encodeURI(url);
+
+                    //console.log(url);
+                    //console.log(this.queryName);
+
+                    axios.get(url)
                     .then(response => {
                         console.log(response.data);
                         this.dataArr = response.data.data;
@@ -226,69 +291,9 @@
                             // if(type == 'Cafe'){
                             //     this.typeImg = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
                             // }
-                            if(type == 'Hawker Centres'){
-                                this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
-                            }
-
-
-                            for (let each of reviewsArr) {
-
-                                this.reviewCount += 1;
-                            }
-                            
-                            this.numResult += 1;
-                        }
-
-                    })
-                    .catch(error => {
-                        console.log(error.message)
-                    })
-            },
-            methods: {
-                isQuery() {
-                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.searchQuery + '&language=en apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
-
-                    console.log(this.searchQuery);
-
-                    axios.get(url)
-                    .then(response => {
-                        console.log(response.data);
-                        this.dataArr = response.data.data;
-
-                        for (var restaurant of this.dataArr) {
-                            //this.name = restaurant.name;
-                            //console.log(name);
-
-                            //this.rating = restaurant.rating;
-                            //console.log(rating);
-                            var reviewsArr = [];
-                            reviewsArr = restaurant.reviews; //an array of 5 objects
-                            //console.log(reviewsArr);
-
-                            //this.newTextArr = [];
-                            this.tags = [];
-                            this.tags = restaurant.tags;
-                            //console.log(this.tags);
-                            this.cuisines = [];
-                            this.cuisines = restaurant.cuisine;
-                            //console.log(this.cuisines);
-
-                            var type = '';
-                            type = restaurant.type;
-                            console.log(type);
-
-                            this.reviewCount = 0;
-
-                            if(type == 'Restaurants'){
-                                this.typeImg = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg';
-                               
-                            }
-                            if(type == 'Cafe'){
-                                this.typeImg = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
-                            }
-                            if(type == 'Hawker Centres'){
-                                this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
-                            }
+                            // if(type == 'Hawker Centres'){
+                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
+                            // }
 
 
                             for (let each of reviewsArr) {
