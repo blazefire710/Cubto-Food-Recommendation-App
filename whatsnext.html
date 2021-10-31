@@ -159,7 +159,13 @@
             <h3 class= "text-center mt-5">Our trusty randomizer helps you decide</h3>
             <h3 class = "text-center">your next eating destination!</h3>
             <div class="col-md-12 text-center">
-                <button type="button" class="btn-lg btn-primary mt-3">Just tell me what to eat now!</button>
+                <button type="button" class="btn-lg btn-primary mt-3" id="result">Just tell me what to eat now!</button>
+                <script type="text/javascript">
+                    document.getElementById("result").onclick = function () {
+                        // location.href = "whatsnext.html";
+                        window.open("results.html", "_blank").focus()
+                    };
+                </script>
             </div>
 
             <!-- <hr style="height:2px; width:100%; border-width:0;"> -->
@@ -172,9 +178,9 @@
                 </div>
             
             <br><br><br>
-            <div class="row justify-content-center ">
-                <div class= "col-2 ms-2 ">
-                    <h6>Budget ($/pax)</h6>
+            <div class="row ">
+                <div class= "col-2 ms-2 mt-2 ">
+                    <h6>Cuisine</h6>
                 </div>
 
                 <!-- <div class = "col">
@@ -182,7 +188,7 @@
                     <input type="range" min="0" max="100"/>
                 </form>
                 </div> -->  
-                <div class = "col-5">
+                <!-- <div class = "col-5">
                     <div class="slidecontainer">
                         <input type="range" min="1" max="300" class="slider" id="myRange">
                         <p>$<span id="demo"></span></p>
@@ -198,16 +204,29 @@
                       }
                       </script>
 
+                </div> -->
+                <div class = "col-5 mb-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <small class= "text-secondary ">Cuisine</small></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item">Central</a></li>
+                        <li><a class="dropdown-item">East</a></li>
+                        <li><a class="dropdown-item">West</a></li>
+                        <li><a class="dropdown-item">North</a></li>
+                        <li><a class="dropdown-item">South</a></li>
+                        </ul>
                 </div>
+            </div>
             
                 
-            </div>
+           
 
 
         <br>
        
-                <div class="row justify-content-center ">
-                    <div class= "col-2 ms-2">
+                <div class="row ">
+                    <div class= "col-2 ms-2 mt-2">
+                        
                         <h6>Location</h6>
                     </div>
 
@@ -226,7 +245,7 @@
 
 
                 <br><br>
-
+<!-- 
                     <div class="row justify-content-center ">
                         <div class= "col-2 ms-2">
                             <h6>Rating</h6>
@@ -248,29 +267,20 @@
                               }
                               </script>
         
-                        </div>
+                        </div> -->
+                        <br>
+                        <div class= "row text-center">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-primary mt-3 ">Help me find such a place!</button>
+                            </div>
         
                     </div>
 
                     <br>
-
-                <div class="form-check form-switch ">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">On Promotion?</label>
-                </div>
-                    <!-- <label class="form-check-label" for="flexCheckDefault">
-                        <h6 class= "text-center" >On Promotion?</h6>
-                    </label>
-
-                    <input class="form-check-input" type="checkbox" id="flexCheckDefault">
-                </div> -->
                     
-                    <div class= "row text-center">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary mt-3 ">Help me find such a place!</button>
-                    </div>
+                    
                 </div>
-                    <br> <br>
+                   
 
            
         <script
