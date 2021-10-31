@@ -3,19 +3,68 @@
 
     if(isset($_POST['signup'])) {
 
-        $user_id = '';
+        // -----------------------------------------------------------------------------------------------------------
+        $image = $_FILES['profile_page'];
+        $fileName = $_FILES['profile_page']['name'];
+        $fileTmpName = $_FILES['profile_page']['tmp_name'];
+        $fileSize = $_FILES['profile_page']['size'];
+        $fileError = $_FILES['profile_page']['error'];
+        $fileType = $_FILES['profile_page']['type'];
 
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+
+        $fileExt = explode('.',$fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        $allowed = ['jpg','jpeg','png'];
+
+        // if the person upload a file ---------------------------------------------------------------------------------
+        if (in_array($fileActualExt,$allowed)){
+            if($fileError == 0) {
+                if($fileSize < 50000000){
+                    $fileNameNew = uniqid('',true) . "." . $fileActualExt;
+                    // var_dump($fileNameNew);
+                    $fileDestination = "uploads/" . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                }else{
+                    $message = "Your file is too big";
+                }
+            }
+            else{
+                $message = "There was an error uploading your file!";
+            }
+        }
+        else{
+            $message= "You cannot upload files of this type!";
+        }
+        // --------------------------------------------------------------------------------------------------------------
+        // In the order of DataBase:
+        $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $username = $_POST['username'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
+        $gender = $_POST['gender'];
+        $birthday =$_POST['birthday'];
+        $profile_image = $fileNameNew;
+        $bio = $_POST['bio'];
 
+
+        // var_dump($username);
+        // var_dump($password);
+        // var_dump($email);
+        // var_dump($first_name);
+        // var_dump($last_name);
+        // var_dump($gender);
+        // var_dump($birthday);
+        // var_dump($question);
+        // var_dump($answer);
+        // var_dump($profile_image);
+        // var_dump($bio);
+        // --------------------------------------------------------------------------------------------------------------
+        
         $new = new AccountDAO();
-        $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
-
+        $executed = $new -> signup($username, $password, $email, $first_name, $last_name, $question, $answer,$gender,$birthday, $profile_image, $bio);
         // here to be redirected.
         header("Location: createdaccount.html");
         exit();
@@ -133,10 +182,7 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Sign Up</h3>
 
-
-                {{first_name}}
-
-                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST">
+                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST" enctype="multipart/form-data">
                     <div class="col-md-6">
                         <label for="fname" class="form-label">First Name:</label>
                         <input type="text" class="form-control" id="fname" name= "first_name" v-model="first_name">
@@ -187,18 +233,36 @@
                         <input type="text" class="form-control" id="secret_answer" name="answer">
                     </div>
                     <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" style='font-size: 12px;' for="gridCheck">
-                                I agree with the terms and condition...
-                            </label>
+                        <label for="secret_answer" class="form-label">Enter your Bio:</label>
+                        <input type="text" class="form-control" id="secret_answer" name="bio">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="birthday" class="form-label">Date of Birth:</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" aria-label="Default select example" name="gender">
+                            <option selected>Prefer not to say</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <div class= "mb-3">
+                            <div>Upload a profile image</div>
+                            <input type="file" class="form-control" id="inputGroupFile01" name="profile_page">
                         </div>
                     </div>
+
                     <div class="col-12 mb-4">
                         <button type="submit" class="btn btn-primary" name = "signup">Sign Up</button>
                     </div>
                 </form>
-
             </div>
             <div class='col-2'></div>
         </div>
