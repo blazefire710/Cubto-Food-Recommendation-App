@@ -14,102 +14,12 @@
         <link rel="stylesheet" href="/css/styling.css" />
         <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             body { /* this is for the background image */
                 background-image: url("Images/BackGround.png");
                 background-size: cover;
                 height: 100vh;
             }
-
-            .expstarrating > input {display: none;}  /* Remove radio buttons */
-
-            .expstarrating > label:before { 
-                content: "\f005"; /* Star */
-                margin: 2px;
-                font-size: 2em;
-                font-family: FontAwesome;
-                display: inline-block; 
-            }
-
-            .expstarrating > label {
-                color: #222222; /* Star color when not clicked */
-            }
-
-            .expstarrating > input:checked ~ label { 
-                color: #ffca08 ; 
-            } /* Set yellow color when star checked */
-
-            .expstarrating > input:hover ~ label {  
-                color: #ffca08 ;  
-                } /*Set yellow color when star hover*/
-                
-
-            .foodstarrating > input {display: none;}  /* Remove radio buttons */
-
-            .foodstarrating > label:before { 
-                content: "\f005"; /* Star */
-                margin: 2px;
-                font-size: 2em;
-                font-family: FontAwesome;
-                display: inline-block; 
-            }
-
-            .foodstarrating > label {
-                color: #222222; /* Star color when not clicked */
-            }
-
-            .foodstarrating > input:checked ~ label { 
-                color: #ffca08 ; 
-            } /* Set yellow color when star checked */
-
-            .foodstarrating > input:hover ~ label {  
-                color: #ffca08 ;  
-                } /*Set yellow color when star hover*/
-
-            .cleanstarrating > input {display: none;}  /* Remove radio buttons */
-
-            .cleanstarrating > label:before { 
-                content: "\f005"; /* Star */
-                margin: 2px;
-                font-size: 2em;
-                font-family: FontAwesome;
-                display: inline-block; 
-            }
-
-            .cleanstarrating > label {
-                color: #222222; /* Star color when not clicked */
-            }
-
-            .cleanstarrating > input:checked ~ label { 
-                color: #ffca08 ; 
-            } /* Set yellow color when star checked */
-
-            .cleanstarrating > input:hover ~ label {  
-                color: #ffca08 ;  
-                } /*Set yellow color when star hover*/
-            
-            .servicestarrating > input {display: none;}  /* Remove radio buttons */
-
-            .servicestarrating > label:before { 
-                content: "\f005"; /* Star */
-                margin: 2px;
-                font-size: 2em;
-                font-family: FontAwesome;
-                display: inline-block; 
-            }
-
-            .servicestarrating > label {
-                color: #222222; /* Star color when not clicked */
-            }
-
-            .servicestarrating > input:checked ~ label { 
-                color: #ffca08 ; 
-            } /* Set yellow color when star checked */
-
-            .servicestarrating > input:hover ~ label {  
-                color: #ffca08 ;  
-                } /*Set yellow color when star hover*/
         </style>
     </head>
 
@@ -215,44 +125,44 @@
                             <!-- Insert Rating Form Here -->
                             <form action="">
                                 <h2>Your Experience</h2><br>
-                                <div class="expstarrating d-flex justify-content-around flex-row-reverse">
-                                <span class="large-font green">Good 😊</span>
-                                    <input type="radio" id="expstar5" name="expstar5" value="5" /><label for="expstar5" title="5 star"></label>
-                                    <input type="radio" id="expstar4" name="expstar4" value="4" /><label for="expstar4" title="4 star"></label>
-                                    <input type="radio" id="expstar3" name="expstar3" value="3" /><label for="expstar3" title="3 star"></label>
-                                    <input type="radio" id="expstar2" name="expstar2" value="2" /><label for="expstar2" title="2 star"></label>
-                                    <input type="radio" id="expstar1" name="expstar1" value="1" /><label for="expstar1" title="1 star"></label>
-                                <span class="large-font red">😢Bad</span>
+                                <div class="d-flex justify-content-around">
+                                    <span class="large-font red">😢Bad</span>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Food Experience</h2><br>
-                                <div class="foodstarrating d-flex justify-content-around flex-row-reverse">
-                                    <span class="large-font green">Good 😊</span>
-                                    <input type="radio" id="foodstar5" name="foodstar5" value="5" /><label for="foodstar5" title="5 star"></label>
-                                    <input type="radio" id="foodstar4" name="foodstar4" value="4" /><label for="foodstar4" title="4 star"></label>
-                                    <input type="radio" id="foodstar3" name="foodstar3" value="3" /><label for="foodstar3" title="3 star"></label>
-                                    <input type="radio" id="foodstar2" name="foodstar2" value="2" /><label for="foodstar2" title="2 star"></label>
-                                    <input type="radio" id="foodstar1" name="foodstar1" value="1" /><label for="foodstar1" title="1 star"></label>
+                                <div class="d-flex justify-content-around">
                                     <span class="large-font red">😢Bad</span>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Cleanliness</h2> <br>
-                                <div class="cleanstarrating d-flex justify-content-around flex-row-reverse">
-                                    <span class="large-font green">Good 😊</span>
-                                    <input type="radio" id="cleanstar5" name="cleanstar5" value="5" /><label for="cleanstar5" title="5 star"></label>
-                                    <input type="radio" id="cleanstar4" name="cleanstar4" value="4" /><label for="cleanstar4" title="4 star"></label>
-                                    <input type="radio" id="cleanstar3" name="cleanstar3" value="3" /><label for="cleanstar3" title="3 star"></label>
-                                    <input type="radio" id="cleanstar2" name="cleanstar2" value="2" /><label for="cleanstar2" title="2 star"></label>
-                                    <input type="radio" id="cleanstar1" name="cleanstar1" value="1" /><label for="cleanstar1" title="1 star"></label>
+                                <div class="d-flex justify-content-around">
                                     <span class="large-font red">😢Bad</span>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
                                 <br><br><h2>Customer Service</h2><br>
-                                <div class="servicestarrating d-flex justify-content-around flex-row-reverse">
-                                    <span class="large-font green">Good 😊</span>
-                                    <input type="radio" id="servicestar5" name="servicestar5" value="5" /><label for="servicestar5" title="5 star"></label>
-                                    <input type="radio" id="servicestar4" name="servicestar4" value="4" /><label for="servicestar4" title="4 star"></label>
-                                    <input type="radio" id="servicestar3" name="servicestar3" value="3" /><label for="servicestar3" title="3 star"></label>
-                                    <input type="radio" id="servicestar2" name="servicestar2" value="2" /><label for="servicestar2" title="2 star"></label>
-                                    <input type="radio" id="servicestar1" name="servicestar1" value="1" /><label for="servicestar1" title="1 star"></label>
+                                <div class="d-flex justify-content-around">
                                     <span class="large-font red">😢Bad</span>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <input type=radio></input>
+                                    <span class="large-font green">Good 😊</span>
                                 </div>
 
                                 <br><label for="exampleFormControlTextarea1" class="form-label"><h2>Additional Comments</h2></label>
