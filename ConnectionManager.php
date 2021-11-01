@@ -126,7 +126,35 @@ class AccountDAO {
     
     return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
   }
+  }
+
+  public function existing_account($username){
+    $sql = "SELECT * FROM user where username = :username";
   
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt = null;
+      $conn = null;
+      return false;
+    }
   }
 
 

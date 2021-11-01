@@ -104,7 +104,7 @@
                 <div class="card-body p-5">
                     <!-- Insert Content Here -->
                     <div class="row">
-                        <h4>
+                        <h5>
                             Welcome to Cubto, your number one source for restaurant information! 
                             <br><br><br>
                             We're dedicated to giving you the very best food selections and helping you fill your tummy with good food! with a focus on restaurant recommendations, reviews and restaurant searching!
@@ -114,7 +114,7 @@
                             Sincerely,
                             Yu Xiang, Celeste, Kezia and Paul - WAD2 TEAM 6
                             <br><br><br>
-                        </h4>
+                        </h5>
                         
                     </div>
                     <div class="row">
