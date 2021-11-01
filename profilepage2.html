@@ -751,15 +751,6 @@ textarea.form-control {
   float: none;
 }
 
-@media (max-width: 767.98px) {
-
-  .navbar-expand-md>.container,
-  .navbar-expand-md>.container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, .95);
 }
@@ -1261,22 +1252,6 @@ a.text-white:focus {
   color: #adb5bd;
 }
 
-textarea[resize='none'] {
-  resize: none !important;
-}
-
-textarea[resize='both'] {
-  resize: both !important;
-}
-
-textarea[resize='vertical'] {
-  resize: vertical !important;
-}
-
-textarea[resize='horizontal'] {
-  resize: horizontal !important;
-}
-
 .form-control-alternative {
   transition: box-shadow .15s ease;
   border: 0;
@@ -1416,77 +1391,6 @@ textarea[resize='horizontal'] {
   transition: all .15s ease;
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
-  .mask {
-    transition: none;
-  }
-}
-
-.nav-link {
-  color: #525f7f;
-}
-
-.nav-link:hover {
-  color: #5e72e4;
-}
-
-.nav-link i.ni {
-  position: relative;
-  top: 2px;
-}
-
-.navbar-search .input-group {
-  border: 2px solid;
-  border-radius: 2rem;
-  background-color: transparent;
-}
-
-.navbar-search .input-group .input-group-text {
-  padding-left: 1rem;
-  background-color: transparent;
-}
-
-.navbar-search .form-control {
-  width: 270px;
-  background-color: transparent;
-}
-
-.navbar-search-dark .input-group {
-  border-color: rgba(255, 255, 255, .6);
-}
-
-.navbar-search-dark .input-group-text {
-  color: rgba(255, 255, 255, .6);
-}
-
-.navbar-search-dark .form-control {
-  color: rgba(255, 255, 255, .9);
-}
-
-.navbar-search-dark .form-control:-ms-input-placeholder {
-  color: rgba(255, 255, 255, .6);
-}
-
-.navbar-search-dark .form-control::-ms-input-placeholder {
-  color: rgba(255, 255, 255, .6);
-}
-
-.navbar-search-dark .form-control::placeholder {
-  color: rgba(255, 255, 255, .6);
-}
-
-.navbar-search-dark .focused .input-group {
-  border-color: rgba(255, 255, 255, .9);
-}
-
-.progress {
-  overflow: hidden;
-  height: 8px;
-  margin-bottom: 1rem;
-  border-radius: .25rem;
-  background-color: #e9ecef;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
-}
 
 p {
   font-size: 1rem;
@@ -1501,7 +1405,7 @@ p {
 .heading {
   font-size: .95rem;
   font-weight: 600;
-  letter-spacing: .025em;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
 }
 
@@ -1516,10 +1420,6 @@ p {
 .display-2 span {
   font-weight: 300;
   display: block;
-}
-
-#navbar .navbar {
-  margin-bottom: 20px;
 }
 
 body {
@@ -1667,14 +1567,6 @@ body {
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                    <!-- <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comments</span>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -1766,27 +1658,6 @@ body {
                   </div>
                 </div>
             </div>
-                  <!-- <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="Singapore">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="input-country">State</label>
-                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="Singapore">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="651234">
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
                
               </form>
             </div>
