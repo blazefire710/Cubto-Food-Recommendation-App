@@ -20,56 +20,10 @@
     </head>
 
     <style>
-        :root {
-  --blue: #5e72e4;
-  --indigo: #5603ad;
-  --purple: #8965e0;
-  --pink: #f3a4b5;
-  --red: #f5365c;
-  --orange: #fb6340;
-  --yellow: #ffd600;
-  --green: #2dce89;
-  --teal: #11cdef;
-  --cyan: #2bffc6;
-  --white: #fff;
-  --gray: #8898aa;
-  --gray-dark: #32325d;
-  --light: #ced4da;
-  --lighter: #e9ecef;
-  --primary: #5e72e4;
-  --secondary: #f7fafc;
-  --success: #2dce89;
-  --info: #11cdef;
-  --warning: #fb6340;
-  --danger: #f5365c;
-  --light: #adb5bd;
-  --dark: #212529;
-  --default: #172b4d;
-  --white: #fff;
-  --neutral: #fff;
-  --darker: black;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: Open Sans, sans-serif;
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 html {
   font-family: sans-serif;
   line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 @-ms-viewport {
@@ -125,14 +79,6 @@ address {
 ul {
   margin-top: 0;
   margin-bottom: 1rem;
-}
-
-ul ul {
-  margin-bottom: 0;
-}
-
-dfn {
-  font-style: italic;
 }
 
 strong {
@@ -216,21 +162,6 @@ button {
   text-transform: none;
 }
 
-button,
-html [type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  padding: 0;
-  border-style: none;
-}
-
 input[type='radio'],
 input[type='checkbox'] {
   box-sizing: border-box;
@@ -268,21 +199,6 @@ progress {
 [type='number']::-webkit-inner-spin-button,
 [type='number']::-webkit-outer-spin-button {
   height: auto;
-}
-
-[type='search'] {
-  outline-offset: -2px;
-  -webkit-appearance: none;
-}
-
-[type='search']::-webkit-search-cancel-button,
-[type='search']::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-::-webkit-file-upload-button {
-  font: inherit;
-  -webkit-appearance: button;
 }
 
 [hidden] {
@@ -359,29 +275,6 @@ code {
   padding-left: 15px;
 }
 
-/* @media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-} */
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
 
 .container-fluid {
   width: 100%;
@@ -562,8 +455,6 @@ textarea.form-control {
   flex-flow: row wrap;
   align-items: center;
 }
-
-
 
 .btn {
   font-size: 1rem;
@@ -1815,7 +1706,7 @@ body {
                   <h3 class="mb-0">My account</h3>
                 </div>
                 <div class="col-4 text-right">
-                <a href="editprofile.php" class="btn btn-info" id="edit">Edit profile</a>
+                <a href="#" class="btn btn-info" id="edit">Edit profile</a>
                 <script type="text/javascript">
                     document.getElementById("edit").onclick = function () {
                         window.open("editprofile.php", "_blank").focus()
@@ -1830,15 +1721,21 @@ body {
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
-                      <div class="form-group focused">
+                      <!-- <div class="form-group focused"> -->
                         <label class="form-control-label" for="input-username">Username</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="john58">
-                      </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">@</div>
+                            </div>
+                            <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="    john58" readonly>
+                        </div>
                     </div>
+                    <!-- </div> -->
+        
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="john.58@gmail.com">
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="john.58@gmail.com" readonly>
                       </div>
                     </div>
                   </div>
@@ -1846,13 +1743,13 @@ body {
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="John">
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="John" readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Tan">
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Tan" readonly>
                       </div>
                     </div>
                   </div>
@@ -1861,14 +1758,14 @@ body {
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-gender">Gender</label>
-                        <input id="input-gender" class="form-control form-control-alternative" placeholder="Gender" value="Male" type="text">
+                        <input id="input-gender" class="form-control form-control-alternative" placeholder="Gender" value="Male" type="text" readonly>
                       </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group focused">
                           <label class="form-control-label" for="input-gender">Birthday</label>
-                          <input id="input-gender" class="form-control form-control-alternative" placeholder="DD/MM/YYYY" value="" type="text">
+                          <input id="input-gender" class="form-control form-control-alternative" placeholder="DD/MM/YYYY" value="" type="text" readonly >
 
 
                   </div>
