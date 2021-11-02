@@ -1,5 +1,14 @@
 <?php
+session_start();
+if (isset($_SESSION['login_details'])){
+    $key = 1;
+    $login_details = $_SESSION['login_details'];
+    $username = $login_details[0];
 
+}
+else {
+    $key = 0;
+}
 
 ?>
 <!DOCTYPE html>
