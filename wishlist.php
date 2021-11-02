@@ -292,6 +292,7 @@ var_dump($wishlists); // works
                 customer_service = wish[6]
                 cleanliness = wish[7]
                 description = wish[8]
+                extraremark = wish[9]
                 
                 // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
 
@@ -303,6 +304,9 @@ var_dump($wishlists); // works
                 }
                 else if (type == 'Hawker Centres') {
                     imageSrc = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
+                }
+                else {
+                    imageSrc = 'Images/sarnies.jpg'
                 }
 
                 wishlistdata3.innerHTML += `
@@ -320,14 +324,16 @@ var_dump($wishlists); // works
                                         ${name}
                                     </h2><br>
                                     <h4 class="card-text">
-                                        ${address}
-                                    </h4> 
+                                        ${description}
+                                    </h4><br>
                                     <h5 class="card-text">
-
+                                        ${address}
                                     </h5>
                                     <br>
                                     <div class="card-text d-flex">
-                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Cuisine: ${type}</p>
+                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Type: ${type} <br> 
+                                        
+                                        ${My Remarks: ${extraremark}</p>
                                     </div> 
                                 </div>
                             </div>
