@@ -248,17 +248,18 @@ var_dump($wishlists); // works
                 name = wish[0]
                 ratings = wish[1]
                 address = wish[2]
-                category = wish[3]
+                type = wish[3]
                 experience = wish[4]
                 food = wish[5]
                 customer_service = wish[6]
                 cleanliness = wish[7]
+                description = wish[8]
 
                 wishlistdata2.innerHTML += `
                     <h1>${name}</h1>
                     <h5>${address}</h5>
                     <h6>${ratings} Stars</h6>
-                    <h6>Category: ${category}</h6>
+                    <h6>Type: ${type}</h6>
                     `
 
                 if (experience != null) {
@@ -290,8 +291,10 @@ var_dump($wishlists); // works
                 food = wish[5]
                 customer_service = wish[6]
                 cleanliness = wish[7]
-                // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
+                description = wish[8]
                 
+                // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
+
                 if (type == 'Restaurants') {
                     imageSrc = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'
                 }
@@ -319,9 +322,12 @@ var_dump($wishlists); // works
                                     <h4 class="card-text">
                                         ${address}
                                     </h4> 
+                                    <h5 class="card-text">
+
+                                    </h5>
                                     <br>
                                     <div class="card-text d-flex">
-                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Cuisine: ${category}</p>
+                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Cuisine: ${type}</p>
                                     </div> 
                                 </div>
                             </div>
