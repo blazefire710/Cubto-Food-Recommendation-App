@@ -1,22 +1,5 @@
 <?php
     require_once('ConnectionManager.php');
-
-    if(isset($POST['forgetpassword'])){
-
-        $username = $_POST['username'];
-        $user_question = $_POST['question'];
-        $user_answer = $_POST['answer'];
-
-        $new = new AccountDAO();
-        $executed = $new -> verify_qna($username, $question, $answer);
-
-        // here to be redirected.
-        if($executed){
-            echo('hello');
-            header("Location: editPassword.php");
-            exit();
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -158,15 +141,14 @@
 
     <!--main content-->
     <div class='container' id='app'>
-       
         <div class='col-2'></div>
         <div class='container mt-5 col-8' style='background-color: rgb(250, 250, 250);'>
            
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Forget Password</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-1" name='forgetpassword'>
-                    <div class="col-12">
+                <form class="row g-3 w-75 mx-auto mt-1">
+                    <!-- <div class="col-12">
                         <label for="username" class="form-label">Please Enter Your Username:</label>
                         <input type="text" class="form-control" id="username" name='username'>
 
@@ -184,15 +166,15 @@
                     <div class="col-12">
                         <label for="secret_answer" class="form-label">What Is Your Answer:</label>
                         <input type="text" class="form-control" id="secret_answer" name='answer'>
-                    </div>
-                    <!-- <div class='col-12'>
-                        <label for="inputAddress2" class="form-label">Please Enter Your New Password:</label>
-                        <input type="text" class="form-control" id="inputAddress2">
+                    </div> -->
+                    <div class='col-12'>
+                        <label for="password" class="form-label">Please Enter Your New Password:</label>
+                        <input type="text" class="form-control" id="password">
                     </div>
                     <div class='col-12'>
-                        <label for="inputAddress2" class="form-label">Please Confirm Your  Password:</label>
-                        <input type="text" class="form-control" id="inputAddress2">
-                    </div> -->
+                        <label for="confirmPassword" class="form-label">Please Confirm Your Password:</label>
+                        <input type="text" class="form-control" id="confirmPassword">
+                    </div>
 
                     <div class='col-12 text-center mt-4 pb-4' style='border-bottom: 1px solid rgb(193, 189, 189);'>
                         <button class="btn btn-outline-info w-100" type="button">Continue</button>
