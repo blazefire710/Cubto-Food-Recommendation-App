@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--Vue-->
     <script src="https://unpkg.com/vue@next"></script>
-    <script type='text/javascript' src='queryName.js'></script>
 
 <style>
     body {
@@ -121,32 +120,32 @@
                 <div class="col">
                     <div class="card">
                         <!--should link to the restaurant details page-->
-                        <a :href=' "resturant_details.html#" + chosenRest.name'> 
+                        <a :href=' "resturant_details.html#" + result.name'> 
                             <h5 class="card-title pt-3" v-bind:id='name'>
-                                {{chosenRest.name}}
-                                {{test}}
+                                {{result.name}}
+
                             </h5>
                         </a>
                         <div>
                             <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
                                 {{reviewCount}} Reviews</h6>
-                            <h6 class="card-title " style='display: inline;'>{{chosenRest.rating}}⭐️</h6>
+                            <h6 class="card-title " style='display: inline;'>{{result.rating}}⭐️</h6>
 
                         </div>
 
                         <div class="card-body">
                             <div class='text-center'>
-                                <img v-if='chosenRest.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+                                <img v-if='result.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
 
-                                <img v-else-if='chosenRest.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+                                <img v-else-if='result.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
 
-                                <img v-else-if='chosenRest.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                <img v-else-if='result.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
                                 
                                 <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
                             </div>
                             <div>
-                                <p v-if='chosenRest.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
-                                    <b>Cuisine:</b> {{chosenRest.cuisine}}
+                                <p v-if='result.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
+                                    <b>Cuisine:</b> {{result.cuisine}}
                                 </p>
                                 <p v-else style='margin-left: 20px; margin-top: 20px;'>
                                     <b>Cuisine: -</b>
@@ -154,17 +153,15 @@
                             </div>
                             <div>
                                 <!--resturant tags-->
-                                <button type="button" class="tag-btn" disabled v-for='tag of chosenRest.tags'>{{tag}}</button>
+                                <button type="button" class="tag-btn" disabled v-for='tag of result.tags'>{{tag}}</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-    </div>
-    </div>
+ </div>
 
     <script>
         const app = Vue.createApp({
@@ -182,7 +179,8 @@
                     typeImg: '',
                     queryName : '',
                     chosenRest: '',
-                    test="test",
+                    test:"test",
+                    result: '',
                 }
 
             },
@@ -198,39 +196,32 @@
                         // this.dataArr = response.data.data; //array -> randomise from here
                         // const chosenNumber = Math.floor(Math.random() * this.dataArr.length);
                         // var chosenRest = this.dataArr[chosenNumber]; 
-                        this.choose()
 
-                        for (var restaurant of this.dataArr) {
-                            if ((restaurant.name) == chosenRest){
-                                reviewsArr = chosenRest.reviews;
-                                console.log("randomized restaurant is found")
+                        this.dataArr = response.data.data; //array -> randomise from here
 
-                                var type = '';
-                                type = chosenRest.type;
+                        let result = this.choose();
+                        console.log(result);
+                        this.result = result;
 
-                                this.reviewCount = 0;
+                        this.name = result.name;
+                        // this.review = result.review;
+                        this.rating = result.rating;
+                        this.cuisines = result.cuisine;
+                        this.tags = result.tags;
+                    
 
-                                for (let each of reviewsArr) {
-
-                                    this.reviewCount += 1;
-                                    }
-
-                                    this.numResult += 1;
-                                    }
-
-                            }})
-
-            
+                    })
                     .catch(error => {
                         console.log(error.message)
                     })
             },
 
-            methods() {
+            methods: {
                         choose(){
-                            this.dataArr = response.data.data; //array -> randomise from here
+                            // this.dataArr = response.data.data; //array -> randomise from here
                             const chosenNumber = Math.floor(Math.random() * this.dataArr.length);
                             var chosenRest = this.dataArr[chosenNumber]; 
+                            return chosenRest;
                         } 
                     },
         })
