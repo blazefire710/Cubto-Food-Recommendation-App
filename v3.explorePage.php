@@ -87,9 +87,9 @@
                 pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
             <div class="container-fluid">
                 <div class="">
-                    <a class="navbar-brand" href="#">Explore</a>
-                    <a class="navbar-brand" href="#">What'sNext?</a>
-                    <a class="navbar-brand" href="#">About us</a>
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"

@@ -212,14 +212,6 @@
 
                         <div class="col-md-6">
                             <!-- Insert Rating Form Here -->
-<<<<<<< Updated upstream
-                            <form action=""> <!-- For Yuxiang to add to database-->
-                            <h3 class='lead text-center fs-3'>Your Experience</h3> <br>
-=======
-                            <!-- Update the Database  -->
-                            <form action="">
-                                <h2>Your Experience</h2><br>
->>>>>>> Stashed changes
                                 <div class="expstarrating d-flex justify-content-around flex-row-reverse">
                                 <!-- <span class="large-font green">Good 😊</span> -->
                                     <img src="images/emojigood.png" style="height:50px">
