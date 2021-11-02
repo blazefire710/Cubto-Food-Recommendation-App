@@ -22,7 +22,6 @@ if(isset($_POST['login'])){
         }
         else{
             $key = 1;
-
         }
 }
 else{
