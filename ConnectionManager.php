@@ -1,4 +1,3 @@
-Yx, [2 Nov 2021 at 4:10:23 PM]:
 <?php 
 //   
 require_once("Account.php");
@@ -220,7 +219,6 @@ if ($stmt->execute()) {
     $result = [];
 
     while ($row = $stmt->fetch()) {
-      
       $restaurant_name = $row['restaurant_name'];
       $ratings = $row['ratings'];
       $address = $row['restaurant_address'];
