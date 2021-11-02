@@ -92,12 +92,13 @@ else{
 </head>
 
 <header>
+    <div>
         <nav
             id="top-navbar"
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
+                <a class="navbar-brand" href="v3.explorePage.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
@@ -136,6 +137,7 @@ else{
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
+
                     <a
                         class="nav-link dropdown-toggle text-dark"
                         href="#"
@@ -145,6 +147,7 @@ else{
                         aria-expanded="false"
                         >Guest
                     </a>
+                    
                     <ul
                         class="dropdown-menu"
                         aria-labelledby="navbarDropdownMenuLink"
@@ -157,13 +160,11 @@ else{
                                 >Wishlist</a
                             >
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="login.php">Log Out</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+    </div>
     </header>
 
 

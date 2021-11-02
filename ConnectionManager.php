@@ -106,7 +106,7 @@ class AccountDAO {
 
     if ($stmt->execute()) {
     while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-      $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
+      $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
     $user_name = $user->getusername();
     $password =$user->getpassword();
