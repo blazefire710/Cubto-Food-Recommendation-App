@@ -223,7 +223,7 @@ class AccountDAO {
       $restaurant_name = $row['restaurant_name'];
       $ratings = $row['ratings'];
       $address = $row['restaurant_address'];
-      $category = $row['restaurant_category'];
+      $type = $row['restaurant_type'];
       $experience = $row['your_experience'];
       $food = $row['food_experience'];
       $customer_service = $row['customer_service'];
