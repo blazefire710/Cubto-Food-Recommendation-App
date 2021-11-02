@@ -27,7 +27,6 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--Vue-->
     <script src="https://unpkg.com/vue@next"></script>
-    <script type='text/javascript' src='queryName.js'></script>
 
     <style>
         body {
@@ -218,10 +217,11 @@ else {
             },
             methods: {
                 isQuery() {
+                    console.log(this.queryName);
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                     url = encodeURI(url);
 
-                    //console.log(url);
+                    // console.log(url);
                     //console.log(this.queryName);
 
                     axios.get(url)
@@ -306,8 +306,10 @@ else {
                         type="search"
                         placeholder="Search Places"
                         aria-label="Search"
+                        v-model="queryName"
+                        v-on:change="isQuery()"
                     />
-                    <button class="btn" type="submit">🔍</button>
+                    <button class="btn" type="submit" v-on:'isQuery()'>🔍</button>
 
                     <a href="login.php" class="btn btn-outline-info me-2">Login</a>
                     <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
@@ -360,7 +362,7 @@ else {
     }
     else{
         var username = '<?= $username ?>';
-        console.log(username);
+        // console.log(username);
         document.getElementById('navbar').innerHTML = `
         <nav
             id="top-navbar"
@@ -380,8 +382,10 @@ else {
                         type="search"
                         placeholder="Search Places"
                         aria-label="Search"
+                        v-model="queryName"
+                        v-on:change="isQuery()"
                     />
-                    <button class="btn" type="submit">🔍</button>
+                    <button class="btn" type="submit" v-on:click='isQuery()'>🔍</button>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
