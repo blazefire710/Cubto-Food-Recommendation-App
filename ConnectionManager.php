@@ -7,14 +7,14 @@ class AccountDAO {
     // This method checks to see if an account with $username exists in the database 'account' table.
     // If it exists, it returns an Account object.
     // Else, it returns null.
-    public function signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer) {
+    public function signup($username, $password, $email, $first_name, $last_name, $question, $answer,$gender,$birthday,$profile_image, $bio) {
       // skeleton SQL
-      $sql = "insert into User(user_id,username,password,email,first_name, last_name, question, answer) 
-      values (:user_id, :username, :password, :email, :first_name, :last_name, :question, :answer);";
+      $sql = "insert into User(username,password,email,first_name, last_name, question, answer, gender,birthday, profile_image, bio) 
+      values ( :username, :password, :email, :first_name, :last_name, :question, :answer , :gender , :birthday , :profile_image , :bio);";
   
       $servername = 'localhost';
       $root = 'root';
-      $db_pw = 'root';
+      $db_pw = '';
       $dbname = 'cubto';
         
         // Create connection
@@ -24,7 +24,6 @@ class AccountDAO {
       $password_hashed = password_hash($password, PASSWORD_DEFAULT);
   
       $stmt = $conn->prepare($sql);
-      $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
       $stmt->bindParam(':username', $username, PDO::PARAM_STR);
       $stmt->bindParam(':password', $password_hashed, PDO::PARAM_STR);
       $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -32,6 +31,11 @@ class AccountDAO {
       $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
       $stmt->bindParam(':question', $question, PDO::PARAM_STR);
       $stmt->bindParam(':answer', $answer, PDO::PARAM_STR);
+      $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+      $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+      $stmt->bindParam(':profile_image', $profile_image, PDO::PARAM_STR);
+      $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
+
 
       $stmt->setFetchMode(PDO::FETCH_ASSOC);
       $stmt->execute();
@@ -49,7 +53,7 @@ class AccountDAO {
   
       $servername = 'localhost';
       $root = 'root';
-      $db_pw = 'root';
+      $db_pw = '';
       $dbname = 'cubto';
         // Create connection
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
@@ -62,7 +66,7 @@ class AccountDAO {
       
       if ($stmt->execute()) {
         while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-          $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer']);
+          $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
         }
 
         if (isset($user)){
@@ -102,23 +106,55 @@ class AccountDAO {
 
     if ($stmt->execute()) {
     while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-      $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer']);
+      $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
-    $user_id = $user->getuser_id();
     $user_name = $user->getusername();
     $password =$user->getpassword();
     $email = $user->getemail();
     $first_name = $user->getfirst_name();
     $last_name = $user->getlast_name();
-    $question = $user-> question();
-    $answer = $user -> answer();
+    $question = $user-> getQuestion();
+    $answer = $user -> getAnswer();
+    $gender = $user->getGender();
+    $birthday = $user -> getBirthday();
+    $profile_image = $user -> getProfile_image();
+    $bio = $user -> getBio();
+
 
     $stmt = null;
     $conn = null;
     
-    return [$user_id,$user_name,$password,$email,$first_name,$last_name,$question,$answer];
+    return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
   }
+  }
+
+  public function existing_account($username){
+    $sql = "SELECT * FROM user where username = :username";
   
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt = null;
+      $conn = null;
+      return false;
+    }
   }
 
   public function verify_qna($username, $user_question, $user_answer){

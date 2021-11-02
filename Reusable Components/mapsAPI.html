@@ -19,6 +19,15 @@
         <div>Latitude: <span id="latitude"></span></div>
         <div>Longitude: <span id="longitude"></span></div>
         <div>Nearest MRT Station: <span id="nearestMrtStation"></span></div>
+        <div>Testing Static Map API</div>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=5&size=800x800&maptype=hybrid&markers=color:red%7C%7C40.714728,-73.998672&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4">
+
+        
+
+
+
+
+
 
         <!--The div element for the map -->
         <div id="map"></div>
@@ -80,26 +89,26 @@
                 .catch(error => {
                     console.log(error.message)
                 })
-
         }
         </script>
 
-        <!-- <script>
+        <script>
 
-            latitude = parseFloat(document.getElementById("longtitude").innerText).toFixed(6)
-            longitude = parseFloat(document.getElementById("latitude").innerText).toFixed(6)
+            // latitude = parseFloat(document.getElementById("longtitude").innerText)
+            // longitude = parseFloat(document.getElementById("latitude").innerText)
             function initMap() {
                 // The location of the restaurant
                 // var coordinates = { lat: 1.2892953, lng: 103.8556476}; //this is chinese restaurant location
-                // var coordinates = { lat: 1.297538, lng: 103.849558 };
+                var coordinates = { lat: 1.297538, lng: 103.849558 };
 
-                var coordinates = {lat: latitude, lng: longitude};
+                // var coordinates = {lat: latitude, lng: longitude};
 
                 
                 // The map, centered at restaurant location
                 var map = new google.maps.Map(document.getElementById("map"), {
                     zoom: 26,
                     center: coordinates,
+                    
                 });
                 // The marker, positioned at the restaurant
                 var marker = new google.maps.Marker({
@@ -107,7 +116,7 @@
                     map: map,
                 });
             }
-        </script> -->
+        </script>
 
         <script 
             defer

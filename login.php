@@ -5,25 +5,27 @@ if(isset($_POST['login'])){
         $password_input = $_POST['password'];
         $username = $_POST['username'];
 
-        echo  $password_input;
-        echo $username;
+        // echo  $password_input;
+        // echo $username;
         
         $new = new AccountDAO();
         $result_login = $new -> verify_account($username,$password_input);
 
-        var_dump($result_login);
+        // var_dump($result_login);
 
         if($result_login) {
             session_start();
             $_SESSION['login_details'] = $new->retrieve_all($username) ;
-            var_dump($_SESSION['login_details']);
-            header("Location: newExplorePage.html");
+            // var_dump($_SESSION['login_details']);
+            header("Location: v3.explorePage.php");
             exit();
         }
         else{
-            // Code out Error Prompt
-            
+            $key = 1;
         }
+}
+else{
+    $key = 0;
 }
 
 ?>
@@ -90,12 +92,13 @@ if(isset($_POST['login'])){
 </head>
 
 <header>
+    <div>
         <nav
             id="top-navbar"
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
+                <a class="navbar-brand" href="v3.explorePage.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
@@ -129,11 +132,12 @@ if(isset($_POST['login'])){
         >
             <div class="container-fluid">
                 <div class="">
-                    <a class="navbar-brand" href="updated_explore.html">Explore</a>
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
                     <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
+
                     <a
                         class="nav-link dropdown-toggle text-dark"
                         href="#"
@@ -143,6 +147,7 @@ if(isset($_POST['login'])){
                         aria-expanded="false"
                         >Guest
                     </a>
+                    
                     <ul
                         class="dropdown-menu"
                         aria-labelledby="navbarDropdownMenuLink"
@@ -155,13 +160,11 @@ if(isset($_POST['login'])){
                                 >Wishlist</a
                             >
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="login.php">Log Out</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+    </div>
     </header>
 
 
@@ -186,13 +189,8 @@ if(isset($_POST['login'])){
                         <input type="password" class="form-control" id="password" name ="password">
                     </div>
 
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" style='font-size: 12px;' for="gridCheck">
-                                Remember me
-                            </label>
-                        </div>
+                    <div class="col-12" id="error">
+                        
                     </div>
                     <div class="col-12 mb-4 p-0">
                         <div class='container text-center' style='display:flex; justify-content: space-between;'>
@@ -219,12 +217,29 @@ if(isset($_POST['login'])){
         </div>
         <div class='col-2'></div>
     </div>
+    
+    <script>
+        var key = '<?=$key?>';
+        console.log(key);
 
-    <scipt>
-    <!-- function redirect() {
-            location.replace("signup.php")
-        } -->
-    </scipt>
+        if (key == 1){
+            document.getElementById("error").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </symbol>
+                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </symbol>
+                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </symbol></svg>
+                <div class="alert alert-danger d-flex align-items-center" 
+                role="alert"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                <use xlink:href="#exclamation-triangle-fill"/></svg><div>
+                Login is not successful!
+                </div></div>`;
+        }
+    </script>
 
 
 

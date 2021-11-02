@@ -1,24 +1,86 @@
 <?php 
     require_once('ConnectionManager.php');
 
+    $existing_error = '1';
+
     if(isset($_POST['signup'])) {
 
-        $user_id = '';
+        // (If username already exist.)
+        $username = $_POST['username'];
+        $new = new AccountDAO();
+        $existing_acc = $new -> existing_account($username);
 
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        if ($existing_acc){
+            $existing_error = '2';
+        }
+
+        else{
+        // -----------------------------------------------------------------------------------------------------------
+        $image = $_FILES['profile_page'];
+        $fileName = $_FILES['profile_page']['name'];
+        $fileTmpName = $_FILES['profile_page']['tmp_name'];
+        $fileSize = $_FILES['profile_page']['size'];
+        $fileError = $_FILES['profile_page']['error'];
+        $fileType = $_FILES['profile_page']['type'];
+
+
+        $fileExt = explode('.',$fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        $allowed = ['jpg','jpeg','png'];
+
+        // if the person upload a file ---------------------------------------------------------------------------------
+        if (in_array($fileActualExt,$allowed)){
+            if($fileError == 0) {
+                if($fileSize < 50000000){
+                    $fileNameNew = uniqid('',true) . "." . $fileActualExt;
+                    // var_dump($fileNameNew);
+                    $fileDestination = "uploads/" . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                }else{
+                    $message = "Your file is too big";
+                }
+            }
+            else{
+                $message = "There was an error uploading your file!";
+            }
+        }
+        else{
+            $message= "You cannot upload files of this type!";
+        }
+        // --------------------------------------------------------------------------------------------------------------
+        // In the order of DataBase:
+        $username = $_POST['username'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $username = $_POST['username'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
+        $gender = $_POST['gender'];
+        $birthday =$_POST['birthday'];
+        $profile_image = $fileNameNew;
+        $bio = $_POST['bio'];
 
+
+        // var_dump($username);
+        // var_dump($password);
+        // var_dump($email);
+        // var_dump($first_name);
+        // var_dump($last_name);
+        // var_dump($gender);
+        // var_dump($birthday);
+        // var_dump($question);
+        // var_dump($answer);
+        // var_dump($profile_image);
+        // var_dump($bio);
+        // --------------------------------------------------------------------------------------------------------------
+        
         $new = new AccountDAO();
-        $executed = $new -> signup($user_id, $username, $password, $email, $first_name, $last_name, $question, $answer);
-
+        $executed = $new -> signup($username, $password, $email, $first_name, $last_name, $question, $answer,$gender,$birthday, $profile_image, $bio);
         // here to be redirected.
         header("Location: createdaccount.html");
         exit();
+        }
     }
 ?>
 
@@ -133,13 +195,10 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Sign Up</h3>
 
-
-                {{first_name}}
-
-                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST">
-                    <div class="col-md-6">
+                <form class="row g-3 w-75 mx-auto mt-4" name="signup" method="POST" enctype="multipart/form-data" >
+                    <div class="col-md-6 has-validation">
                         <label for="fname" class="form-label">First Name:</label>
-                        <input type="text" class="form-control" id="fname" name= "first_name" v-model="first_name">
+                        <input type="text" class="form-control" id="fname" name= "first_name">
                     </div>
                     <div class="col-md-6">
                         <label for="lname" class="form-label">Last Name:</label>
@@ -153,6 +212,7 @@
                         <label for="inputAddress2" class="form-label">Username:</label>
                         <input type="text" class="form-control" id="inputAddress2"
                             placeholder="Must be at least 5 characters" name = "username">
+                        <div v-if="false">Username already existed!</div>
                     </div>
                     <div class="col-12">
                         <label for="password" class="form-label">Password:</label>
@@ -160,19 +220,25 @@
                             placeholder="Must be at least 6 characters with a upper and lowercase.." 
                             name = "password" v-model="password">
                         <div style="font-size:small; color:red; ">
-                            <p v-if="password_status == false">{{check_password}}</p>
-                            <p v-if="password_status == true" style="color:green;font-size:small">Password is strong!</p>
+                        {{check_password}}
+                            <p v-if="password_status == 1">Password must be longer than 5 characters</p>
+                            <p v-if="password_status == 2" style="color:orange;font-size:small">Password is moderately strong</p>
+                            <p v-if="password_status == 3" style="color:green;font-size:small">Password is strong!</p>
                         </div>
                         
                     </div>
                     <div class="col-12">
                         <label for="confirm_password" class="form-label">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confirm_password" v-model="confirmed_password_input">
+                        <input type="password" class="form-control" id="confirm_password" v-model="confirm_password_input">
                         <div>
-                            <!-- <p v-if="password_confirmed_status == false" style="font-size:small; color:red;">{{confirmed_password}}{{message}}</p>
-                            <p v-if="password_confirmed_status == true">{{message}}</p> -->
+                            {{confirmed_password}}
+                            <p v-if="password_confirmed_status == 2" style="font-size:small; color:red;">Password do not match!</p>
+                            <p v-if="password_confirmed_status == 1" style="color:green;font-size:small;">Password match!</p>
+                            <p v-if="password_confirmed_status == 3" style="color:red;font-size:small;">Confirmed Password cannot be empty!</p>
+                            
                         </div>
                     </div>
+
                     <div class="col-12">
                         <label for="secret_question" class="form-label" id='secret_question' >Select your secret
                             questionaire:</label>
@@ -187,18 +253,36 @@
                         <input type="text" class="form-control" id="secret_answer" name="answer">
                     </div>
                     <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" style='font-size: 12px;' for="gridCheck">
-                                I agree with the terms and condition...
-                            </label>
+                        <label for="bio" class="form-label">Enter your Bio:</label>
+                        <input type="text" class="form-control" id="bio" name="bio">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="birthday" class="form-label">Date of Birth:</label>
+                        <input type="date" class="form-control" id="birthday" name="birthday">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select class="form-select" aria-label="Default select example" name="gender">
+                            <option selected>Prefer not to say</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <div class= "mb-3">
+                            <div>Upload a profile image</div>
+                            <input type="file" class="form-control" id="inputGroupFile01" name="profile_page">
                         </div>
                     </div>
+
                     <div class="col-12 mb-4">
                         <button type="submit" class="btn btn-primary" name = "signup">Sign Up</button>
                     </div>
                 </form>
-
             </div>
             <div class='col-2'></div>
         </div>
@@ -224,30 +308,43 @@
 
             computed: {
                 check_password() {
-
-                    string = "";
                     if (this.password.length < 5) {
-                        string += "Password must be longer than 5 characters."
-                        this.password_status = false;
+                        this.password_status = 1;
                     }
-
                     else if (this.password.length >= 5 && this.password.length <= 10){
-                        string += "Password is moderately strong\n"
-                        this.password_status = false;
-
+                        this.password_status = 2;
                     }
                     else{
-                        this.password_status = true;
+                        this.password_status = 3;
                     }
-                    return string;
                 },
 
                 confirmed_password() {
-
+                    if(this.password == this.confirm_password_input && this.confirm_password_input.length > 0){
+                        console.log(this.password);
+                        console.log(this.confirm_password_input);
+                        this.password_confirmed_status = 1;
+                    }
+                    else if(this.confirm_password_input.length == 0){
+                        this.password_confirmed_status = 3;
+                    }
+                    else if(this.password != this.confirm_password_input){
+                        this.password_confirmed_status = 2;
+                    }
                 }
+
+
             }
         })
         app.mount("#app")
+
+    </script>
+
+    <script>
+        var existing_error = '<?=$existing_error?>';
+        if (existing_error == "2"){
+            alert("username already existed");
+        }
     </script>
 
     <!--bootstrap JS-->

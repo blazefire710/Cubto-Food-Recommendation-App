@@ -1,3 +1,17 @@
+<?php 
+session_start();
+if (isset($_SESSION['login_details'])){
+    $key = 1;
+    $login_details = $_SESSION['login_details'];
+    $username = $login_details[0];
+
+}
+else {
+    $key = 0;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,55 +77,10 @@
 
 <body>
     <div id='app'>
-        <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
-            style='border-bottom: 1px solid rgb(193, 190, 190);'>
-            <div class="container-fluid">
-                <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
-                        src="../Images/Logo photo.PNG"></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" v-model='queryName' v-on:change='isQuery()'/>
-                    <button class="btn" type="submit" v-on:click='isQuery()' >
-                        🔍
-                    </button>
-                    <button type="button" class="btn btn-outline-info me-2">Login</button>
-                    <button type="button" class="btn btn-outline-info me-2">Signup</button>
+        <!-- Insert Nav Bar here -->
+        <div id="navbar">
 
-                </form>
-            </div>
-        </nav>
-
-        <nav id="bottom-navbar" class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="#">Explore</a>
-                    <a class="navbar-brand" href="#">What'sNext?</a>
-                    <a class="navbar-brand" href="#">About us</a>
-                </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Guest
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="#">Favourites</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Booking-History</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        </div>
 
         <!--main content-->
 
@@ -314,7 +283,159 @@
         const vm = app.mount('#app');
 
     </script>
-    
+    <script>
+    var key = '<?=$key?>';
+
+    if (key == 0){
+        document.getElementById('navbar').innerHTML = `
+        <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="updated_explore.html"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"
+                /></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                    />
+                    <button class="btn" type="submit">🔍</button>
+
+                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+
+                </form>
+            </div>
+        </nav>
+
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            "
+        >
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        > Guest
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="editprofile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>`;
+    }
+    else{
+        var username = '<?= $username ?>';
+        console.log(username);
+        document.getElementById('navbar').innerHTML = `
+        <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="updated_explore.html"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"
+                /></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                    />
+                    <button class="btn" type="submit">🔍</button>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                </form>
+            </div>
+        </nav>
+
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            "
+        >
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        > Hi, ${username}
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="editprofile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="login.php">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>`
+    }
+    </script>
+
 
 
     <!--bootstrap JS-->
