@@ -127,7 +127,10 @@ if ($stmt->execute()) {
     
     return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
     }
-  
+  }
+  public function existing_account($username){
+
+    $sql = "select * from user where username= :username";
     $servername = 'localhost';
     $root = 'root';
     $db_pw = '';
@@ -155,6 +158,7 @@ if ($stmt->execute()) {
   }
 
   public function verify_qna($username, $user_question, $user_answer){
+
     $sql = "SELECT * FROM user where username = :username";
 
     $servername = 'localhost';
@@ -235,6 +239,41 @@ if ($stmt->execute()) {
 
     return $result;
   }
+
+  public function change_password($username,$password_input){
+    $sql = "update User set password= :password where username = :username";
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $password_hashed = password_hash($password_input,PASSWORD_DEFAULT);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':password', $password_hashed, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($stmt->execute()){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt =null;
+      $conn = null;
+      return false;
+    }
+
+
+  }
+
+
 }
 
 
