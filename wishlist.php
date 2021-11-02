@@ -285,12 +285,22 @@ var_dump($wishlists); // works
                 name = wish[0]
                 ratings = wish[1]
                 address = wish[2]
-                category = wish[3]
+                type = wish[3]
                 experience = wish[4]
                 food = wish[5]
                 customer_service = wish[6]
                 cleanliness = wish[7]
-                imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
+                // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
+                
+                if (type == 'Restaurants') {
+                    imageSrc = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'
+                }
+                else if (type == 'Cafe') {
+                    imageSrc = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
+                }
+                else if (type == 'Hawker Centres') {
+                    imageSrc = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
+                }
 
                 wishlistdata3.innerHTML += `
                     <div class="card mb-3 ">

@@ -51,7 +51,6 @@ class Account {
   public function getAnswer(){
     return $this->answer;
   }
-
   public function getGender(){
     return $this->gender;
   }
@@ -71,7 +70,7 @@ class wishlist{
   private $restaurant_name;
   private $ratings;
   private $restaurant_address;
-  private $restaurant_category;
+  private $restaurant_type;
   private $restaurant_comment;
   private $restaurant_description;
   private $your_experience;
@@ -79,13 +78,13 @@ class wishlist{
   private $customer_service;
   private $cleanliness;
   
-  public function __construct($username,$restaurant_name,$ratings,$restaurant_address,$restaurant_category,$restaurant_comment,$restaurant_description,$your_experience,$food_experience,$customer_service,$cleanliness)
+  public function __construct($username,$restaurant_name,$ratings,$restaurant_address,$restaurant_type,$restaurant_comment,$restaurant_description,$your_experience,$food_experience,$customer_service,$cleanliness)
   {
     $this->username = $username;
     $this->restaurant_name = $restaurant_name;
     $this->ratings = $ratings;
     $this->restaurant_address = $restaurant_address;
-    $this->restaurant_categoryt = $restaurant_category;
+    $this->restaurant_type = $restaurant_type;
     $this->restaurant_comment = $restaurant_comment;
     $this->restaurant_description = $restaurant_description;
     $this->your_experience = $your_experience;
@@ -105,8 +104,8 @@ class wishlist{
   public function getRestaurant_address(){
     return $this->restaurant_address;
   }
-  public function getRestaurant_category(){
-    return $this->restaurant_category;
+  public function getRestaurant_type(){
+    return $this->restaurant_type;
   }
   public function getYour_experience(){
     return $this->your_experience;
@@ -120,11 +119,9 @@ class wishlist{
   public function getRestaurant_comment(){
     return $this->restaurant_comment;
   }
-
   public function getRestaurant_description() {
     return $this->restaurant_description;
   }
-  
   public function getCleanliness(){
     return $this->cleanliness;
   }

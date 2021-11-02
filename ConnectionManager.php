@@ -104,7 +104,7 @@ class AccountDAO {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
 
-    if ($stmt->execute()) {
+if ($stmt->execute()) {
     while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
@@ -219,17 +219,16 @@ class AccountDAO {
     $result = [];
 
     while ($row = $stmt->fetch()) {
-      
       $restaurant_name = $row['restaurant_name'];
       $ratings = $row['ratings'];
       $address = $row['restaurant_address'];
-      $category = $row['restaurant_category'];
+      $type = $row['restaurant_type'];
       $experience = $row['your_experience'];
       $food = $row['food_experience'];
       $customer_service = $row['customer_service'];
       $cleanliness = $row['cleanliness'];
       
-      $result[] = [$restaurant_name, $ratings, $address, $category, $experience, $food, $customer_service, $cleanliness];
+      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness];
     }
 
     return $result;
