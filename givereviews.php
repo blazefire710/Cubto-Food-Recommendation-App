@@ -204,7 +204,7 @@
                                 <div class="card-body">
                                     <h2 class='lead text-center fs-3'>Restaurant Name</h2><br>
                                     <br><br>
-                                    <h5 class='lead text-center fs-4'>Description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio soluta tempora nisi laboriosam quod placeat blanditiis. Officia, in sunt odit reprehenderit corrupti eligendi dignissimos earum tempore nam iusto ex asperiores!</h5>
+                                    <!-- <h5 class='lead text-center fs-4'>Description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio soluta tempora nisi laboriosam quod placeat blanditiis. Officia, in sunt odit reprehenderit corrupti eligendi dignissimos earum tempore nam iusto ex asperiores!</h5> -->
                                 </div>
                             </div>
                         </div>
@@ -212,6 +212,10 @@
 
                         <div class="col-md-6">
                             <!-- Insert Rating Form Here -->
+                            <form action=""> <!-- For Yuxiang to add to database-->
+                            <h3 class='lead text-center fs-3'>Your Experience</h3>
+                            <h3 class='lead text-center fs-5'>How was it like eating here?</h3>
+
                                 <div class="expstarrating d-flex justify-content-around flex-row-reverse">
                                 <!-- <span class="large-font green">Good 😊</span> -->
                                     <img src="images/emojigood.png" style="height:50px">
@@ -224,7 +228,8 @@
                                     <img src="images/emojibad.png" style="height:50px">
 
                                 </div>
-                                <br><h3 class='lead text-center fs-3'>Food</h3> <br>
+                                <br><h3 class='lead text-center fs-3'>Food</h3>
+                                <h3 class='lead text-center fs-5'>How delicious was the food?</h3>
                                 <div class="foodstarrating d-flex justify-content-around flex-row-reverse">
                                     <!-- <span class="large-font green">Good 😊</span> -->
                                     <img src="images/emojigood.png" style="height:50px"> 
@@ -237,7 +242,8 @@
                                     <img src="images/emojibad.png" style="height:50px">
 
                                 </div>
-                                <br><h3 class='lead text-center fs-3'>Cleanliness</h3> <br>
+                                <br><h3 class='lead text-center fs-3'>Cleanliness</h3>
+                                <h3 class='lead text-center fs-5'>Was the restaurant hygienic and clean?</h3>
                                 <div class="cleanstarrating d-flex justify-content-around flex-row-reverse">
                                     <!-- <span class="large-font green">Good 😊</span> -->
                                     <img src="images/emojigood.png" style="height:50px"> 
@@ -249,7 +255,8 @@
                                     <!-- <span class="large-font red">😢Bad</span> -->
                                     <img src="images/emojibad.png" style="height:50px">
                                 </div>
-                                <br><h3 class='lead text-center fs-3'>Customer Service</h3> <br>
+                                <br><h3 class='lead text-center fs-3'>Customer Service</h3>
+                                <h3 class='lead text-center fs-5'>Did you experience any customer service issues?</h3>
                                 <div class="servicestarrating d-flex justify-content-around flex-row-reverse">
                                     <!-- <span class="large-font green">Good 😊</span>-->
                                     <img src="images/emojigood.png" style="height:50px"> 
@@ -263,7 +270,7 @@
                                 </div>
 
                                 <br><h2 class="lead text-center fs-3" >Additional Comments</h2>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="150" placeholder="Max 150 characters"></textarea>
                                 
                                 <div class="row justify-content-center mt-4"> <!-- this is to center the button-->
                                     <div class="col-3">

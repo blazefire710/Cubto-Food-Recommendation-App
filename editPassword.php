@@ -1,5 +1,35 @@
 <?php
     require_once('ConnectionManager.php');
+    session_start();
+
+    if(isset($_SESSION['username_fix'])){
+        if(isset($_POST['submit'])){
+
+            $username = $_SESSION['username_fix'];
+            $password_input = $_POST['password'];
+
+            $new = new AccountDAO();
+
+            $execute = $new -> change_password($username,$password_input);
+
+            if($execute){
+                header("Location: successpassword.html");
+                exit();
+            }
+
+            else{
+                $key = 1;
+            }
+
+
+        }
+
+    }
+    else{
+        header("Location: login.php");
+        exit();
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -147,37 +177,22 @@
                 <h1 class='text-center display-4 pt-5'>Cubto</h1>
                 <h3 class='lead text-center fs-3'>Forget Password</h3>
 
-                <form class="row g-3 w-75 mx-auto mt-1">
-                    <!-- <div class="col-12">
-                        <label for="username" class="form-label">Please Enter Your Username:</label>
-                        <input type="text" class="form-control" id="username" name='username'>
-
-                    </div>
-
-                    <div class="col-12">
-                        <label for="secret_question" class="form-label" >What Is Your Secret
-                            Questionaire:</label>
-                        <select class="form-select" aria-label="Default select example" id='secret_question' name='question'>
-                            <option value="1" selected>What is your favourite color?</option>
-                            <option value="2">What is your occupation?</option>
-                            <option value="3">What is your favourite day of the week?</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label for="secret_answer" class="form-label">What Is Your Answer:</label>
-                        <input type="text" class="form-control" id="secret_answer" name='answer'>
-                    </div> -->
+                <form class="row g-3 w-75 mx-auto mt-1" method="POST">
                     <div class='col-12'>
                         <label for="password" class="form-label">Please Enter Your New Password:</label>
-                        <input type="text" class="form-control" id="password">
+                        <input type="text" class="form-control" id="password" name="password">
                     </div>
                     <div class='col-12'>
                         <label for="confirmPassword" class="form-label">Please Confirm Your Password:</label>
-                        <input type="text" class="form-control" id="confirmPassword">
+                        <input type="text" class="form-control" id="confirmPassword" name="confirm_password">
                     </div>
 
+                    
+
+                    
+
                     <div class='col-12 text-center mt-4 pb-4' style='border-bottom: 1px solid rgb(193, 189, 189);'>
-                        <button class="btn btn-outline-info w-100" type="button">Continue</button>
+                        <button class="btn btn-outline-info w-100" type="submit" name="submit">Continue</button>
                     </div>
 
                     

@@ -117,7 +117,7 @@ var_dump($wishlists); // works
 
 
     <body>
-        <div class="container">
+        <div class="container" id='app'>
             <div class="card shadow my-5">
                 <div class="card-body p-5">
 
@@ -125,36 +125,8 @@ var_dump($wishlists); // works
                     <!-- Insert Content Here -->
                     <h1><span id='username'>XXX</span>Wishlist</h1><br>
 
-                    <div id="wishlistdata"></div>
-                    <br><div id="wishlistdata2"></div>
-                    <br><div id="wishlistdata3"></div>
+                    <div id="wishlistdata">{{wishlists}} {{test}}</div>
 
-                    <!-- <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card mb-3 ">
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
@@ -181,6 +153,7 @@ var_dump($wishlists); // works
                             </div>
                         </div>
                     </div>
+
                     <div class="card mb-3 ">
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
@@ -206,11 +179,39 @@ var_dump($wishlists); // works
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
+                    <div class="card mb-3 ">
+                        <div class="row g-0">
+                            <div class="col-md-4 restaurant-card">
+                                <img
+                                    src="Images/sarnies.jpg"
+                                    class="img-fluid mh-100"
+                                    alt="..."
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h2 class="card-title">Restaurant Name Here</h2>
+                                    <br>
+                                    <h4 class="card-text">
+                                        Restaurant Address Here
+                                        ABC Street Block 53
+                                    </h4> 
+                                    <br>
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text">500 reviews &nbsp</p>
+                                        <p class="pink-text">4.6 stars</p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
             </div>
         </div>
-
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -218,27 +219,24 @@ var_dump($wishlists); // works
         ></script> 
 
 
-        <script> //ok so passing of single variables like this is fine
+        <!-- <script> //ok so passing of single variables like this is fine
             var username = '<?= $username ?>';
             console.log('username: ', username);
             displayUsername = username.charAt(0).toUpperCase() + username.slice(1);
             document.getElementById('username').innerText = displayUsername + "'s ";
         </script>
 
-        <!-- <script> //apparently i can do this, but the problem is that i can't loop thru this from php
+        <script> //apparently i can do this, but the problem is that i can't loop thru this from php
             var wishlist11 = '<?= $wishlists[0][0] ?>';
             console.log('wishlist1: ', wishlist11);
-
-            var exampleArr = [4,3,5,6,3]
-            console.log(exampleArr)
-        </script> -->
+        </script>
 
         <script> //holy !!! this works
             var wishlists = <?php echo json_encode($wishlists); ?>;
             console.log(wishlists);
 
-            // wishlistdata = document.getElementById("wishlistdata");
-            // wishlistdata.innerText = `${wishlists}`
+            wishlistdata = document.getElementById("wishlistdata");
+            wishlistdata.innerText = `${wishlists}`
         </script>
 
         <script>
@@ -277,9 +275,9 @@ var_dump($wishlists); // works
                     `
                 }
             }
-        </script>
+        </script> -->
 
-        <script>
+        <!-- <script>
             wishlistdata3 = document.getElementById("wishlistdata3")
             for (wish of wishlists) {
                 name = wish[0]
@@ -290,15 +288,15 @@ var_dump($wishlists); // works
                 food = wish[5]
                 customer_service = wish[6]
                 cleanliness = wish[7]
-                imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
 
                 wishlistdata3.innerHTML += `
                     <div class="card mb-3 ">
                         <div class="row g-0">
                             <div class="col-md-4 restaurant-card">
                                 <img
-                                    src='${imageSrc}'
+                                    src="Images/sarnies.jpg"
                                     class="img-fluid mh-100"
+                                    alt="..."
                                 />
                             </div>
                             <div class="col-md-8">
@@ -311,15 +309,87 @@ var_dump($wishlists); // works
                                     </h4> 
                                     <br>
                                     <div class="card-text d-flex">
-                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Cuisine: ${category}</p>
+                                        <p class="pink-text"> ⭐❌❌❌❌ Stars </p>
                                     </div> 
                                 </div>
                             </div>
                         </div>
                     </div>
                     `
+                    
+                if (parseFloat(ratings) < 2) {
+                    wishlistdata3.innerHTML += `
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text"> ⭐❌❌❌❌ Stars </p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                } else if (parseFloat(ratings) < 3) {
+                    wishlistdata3.innerHTML += `
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text"> ⭐⭐❌❌❌ Stars </p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                } else if (parseFloat(ratings) < 4) {
+                    wishlistdata3.innerHTML += `
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text"> ⭐⭐⭐❌❌ Stars </p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                } else if (parseFloat(ratings) < 4.5) {
+                    wishlistdata3.innerHTML += `
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text"> ⭐⭐⭐⭐❌ Stars </p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                } else {
+                    wishlistdata3.innerHTML += `
+                                    <div class="card-text d-flex">
+                                        <p class="pink-text"> ⭐⭐⭐⭐⭐ Stars </p>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+                console.log("wishlistdata3", wishlistdata3)
             }
-        </script>
+        </script> -->
 
+    <script>
+        const app = Vue.createApp({
+            data() {
+            return {
+                wishlists = <?php echo json_encode($wishlists); ?>,
+                test = "aslkhfakjldsfklajfsdh",
+            }
+            },
+            methods () {
+
+            },
+            created() {
+
+            },
+        })
+        const vm = app.mount('#app');
+    </script>
+
+    <script src="https://unpkg.com/vue@next"></script>
     </body>
 </html>
