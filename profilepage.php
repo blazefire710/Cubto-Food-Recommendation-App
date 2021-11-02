@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>About Us</title>
+        <title>Profile Page</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -98,35 +98,19 @@
         </nav>
     </header>
 
+
+
     <body>
-        <div class="container">
-            <div class="card shadow my-5">
+    <div class="container">
+        <div class="card shadow my-5">
                 <div class="card-body p-5">
-                    <!-- Insert Content Here -->
+                    <!-- INSERT YOUR PAGE CONTENT HERE -->
                     <div class="row">
-                        <h5>
-                            Welcome to Cubto, your number one source for restaurant information! 
-                            <br><br><br>
-                            We're dedicated to giving you the very best food selections and helping you fill your tummy with good food! with a focus on restaurant recommendations, reviews and restaurant searching!
-                            <br><br><br>
-                            Founded in 2021, Cubto has come a long way from its beginnings in an online Covid-19 semester at home in Singapore, where a fated group of 4 students liked the idea of creating a website for foodies! We hope this website manages to help you find the food that you have been craving all along!
-                            <br><br><br>
-                            Sincerely,
-                            Yu Xiang, Celeste, Kezia and Paul - WAD2 TEAM 6
-                            <br><br><br>
-                        </h5>
-                        
+
                     </div>
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <img src="Images/family-pic.jpg" width=100%; height=auto>
-                        </div>
-                        <div class="col-3"></div>
-                    </div>
-                </div>
-            </div>
+
         </div>
+    </div>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

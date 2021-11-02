@@ -106,7 +106,7 @@ class AccountDAO {
 
     if ($stmt->execute()) {
     while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-      $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
+      $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
     $user_name = $user->getusername();
     $answer = $user -> getAnswer();
@@ -128,6 +128,76 @@ class AccountDAO {
     return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
     }
   
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt = null;
+      $conn = null;
+      return false;
+    }
+  }
+
+  public function verify_qna($username, $user_question, $user_answer){
+    $sql = "SELECT * FROM user where username = :username";
+
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if ($stmt->execute()) {
+      while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
+    };
+  }
+    
+  if(isset($user)){
+    $database_question = $user->getQuestion();
+    $database_answer = $user -> getAnswer();
+    
+    if($database_question == $user_question && $database_answer == $user_answer){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt =null;
+      $conn = null;
+      return false;
+    }
+  }
+  else {
+    $stmt =null;
+    $conn = null;
+    return false;
+  }
+
   }
 
   public function retrieve_all_wishlist($username) {
@@ -165,5 +235,7 @@ class AccountDAO {
     return $result;
   }
 }
+
+
   
 ?>
