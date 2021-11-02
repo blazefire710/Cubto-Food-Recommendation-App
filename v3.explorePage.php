@@ -91,7 +91,7 @@ else {
                 <div class="col" v-for='restaurant of this.dataArr'>
                     <div class="card">
                         <!--should link to the restaurant details page-->
-                        <a :href=' "resturant_details.html#" + restaurant.name'> 
+                        <a :href=' "resturant_details.php#" + restaurant.name'> 
                             <h5 class="card-title pt-3" v-bind:id='name'>
                                 {{restaurant.name}}
                             </h5>
@@ -293,7 +293,7 @@ else {
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
+                <a class="navbar-brand" href="v3.explorePage.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
