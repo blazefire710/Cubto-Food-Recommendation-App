@@ -159,11 +159,11 @@
             <h3 class= "text-center mt-5">Our trusty randomizer helps you decide</h3>
             <h3 class = "text-center">your next eating destination!</h3>
             <div class="col-md-12 text-center">
-                <button type="button" class="btn-lg btn-primary mt-3" id="result">Just tell me what to eat now!</button>
+                <button type="button" class="btn-lg btn-primary mt-3" id="Randresult" v-on:click='rand()'>Just tell me what to eat now!</button>
                 <script type="text/javascript">
-                    document.getElementById("result").onclick = function () {
+                    document.getElementById("Randresult").onclick = function () {
                         // location.href = "whatsnext.html";
-                        window.open("results.html", "_blank").focus()
+                        window.open("results2.html", "_blank").focus()
                     };
                 </script>
             </div>
@@ -217,10 +217,6 @@
                         </ul>
                 </div>
             </div>
-            
-                
-           
-
 
         <br>
        
@@ -276,9 +272,7 @@
         
                     </div>
 
-                    <br>
-                    
-                    
+                    <br>           
                 </div>
                    
 
@@ -288,5 +282,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"
     ></script>
+
+    <script src="results2.html"></script>
 </body>
 </html>
