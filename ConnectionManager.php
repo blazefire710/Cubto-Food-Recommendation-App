@@ -109,27 +109,61 @@ class AccountDAO {
       $user = new Account($row['user_id'],$row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
     $user_name = $user->getusername();
-    $password =$user->getpassword();
-    $email = $user->getemail();
-    $first_name = $user->getfirst_name();
-    $last_name = $user->getlast_name();
-    $question = $user-> getQuestion();
     $answer = $user -> getAnswer();
     $gender = $user->getGender();
     $birthday = $user -> getBirthday();
     $profile_image = $user -> getProfile_image();
     $bio = $user -> getBio();
+    
+    $password = $user -> getpassword();
+    $email = $user -> getemail();
+    $first_name = $user -> getfirst_name();
+    $last_name = $user -> getlast_name();
+    $question = $user -> getQuestion();
 
 
     $stmt = null;
     $conn = null;
     
     return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
-  }
+    }
   
   }
 
+  public function retrieve_all_wishlist($username) {
+    $sql = "SELECT * FROM wishlist where username = :username";
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+    // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
 
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    $result = [];
+
+    while ($row = $stmt->fetch()) {
+      
+      $restaurant_name = $row['restaurant_name'];
+      $ratings = $row['ratings'];
+      $address = $row['restaurant_address'];
+      $category = $row['restaurant_category'];
+      $experience = $row['your_experience'];
+      $food = $row['food_experience'];
+      $customer_service = $row['customer_service'];
+      $cleanliness = $row['cleanliness'];
+      
+      $result[] = [$restaurant_name, $ratings, $address, $category, $experience, $food, $customer_service, $cleanliness];
+    }
+
+    return $result;
+  }
 }
   
 ?>
