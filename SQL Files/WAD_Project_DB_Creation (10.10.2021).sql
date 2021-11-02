@@ -13,7 +13,7 @@ question varchar(50),
 answer varchar(100),
 gender varchar(20),
 birthday date, 
-profile_image longblob,
+profile_image varchar(100),
 bio varchar(100),
 
 Constraint user_pk1 PRIMARY KEY (username)
