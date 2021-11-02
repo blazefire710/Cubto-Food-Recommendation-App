@@ -1,3 +1,4 @@
+Yx, [2 Nov 2021 at 4:10:23 PM]:
 <?php 
 //   
 require_once("Account.php");
@@ -104,7 +105,7 @@ class AccountDAO {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
 
-    if ($stmt->execute()) {
+if ($stmt->execute()) {
     while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
     };
