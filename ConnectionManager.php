@@ -229,7 +229,7 @@ class AccountDAO {
       $customer_service = $row['customer_service'];
       $cleanliness = $row['cleanliness'];
       
-      $result[] = [$restaurant_name, $ratings, $address, $category, $experience, $food, $customer_service, $cleanliness];
+      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness];
     }
 
     return $result;
