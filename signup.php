@@ -1,87 +1,87 @@
 <?php 
-    // require_once('ConnectionManager.php');
+    require_once('ConnectionManager.php');
 
-    // $existing_error = '1';
+    $existing_error = '1';
 
-    // if(isset($_POST['signup'])) {
+    if(isset($_POST['signup'])) {
 
-    //     // (If username already exist.)
-    //     $username = $_POST['username'];
-    //     $new = new AccountDAO();
-    //     $existing_acc = $new -> existing_account($username);
+        // (If username already exist.)
+        $username = $_POST['username'];
+        $new = new AccountDAO();
+        $existing_acc = $new -> existing_account($username);
 
-    //     if ($existing_acc){
-    //         $existing_error = '2';
-    //     }
+        if ($existing_acc){
+            $existing_error = '2';
+        }
 
-    //     else{
-    //     // -----------------------------------------------------------------------------------------------------------
-    //     $image = $_FILES['profile_page'];
-    //     $fileName = $_FILES['profile_page']['name'];
-    //     $fileTmpName = $_FILES['profile_page']['tmp_name'];
-    //     $fileSize = $_FILES['profile_page']['size'];
-    //     $fileError = $_FILES['profile_page']['error'];
-    //     $fileType = $_FILES['profile_page']['type'];
-
-
-    //     $fileExt = explode('.',$fileName);
-    //     $fileActualExt = strtolower(end($fileExt));
-    //     $allowed = ['jpg','jpeg','png'];
-
-    //     // if the person upload a file ---------------------------------------------------------------------------------
-    //     if (in_array($fileActualExt,$allowed)){
-    //         if($fileError == 0) {
-    //             if($fileSize < 50000000){
-    //                 $fileNameNew = uniqid('',true) . "." . $fileActualExt;
-    //                 // var_dump($fileNameNew);
-    //                 $fileDestination = "uploads/" . $fileNameNew;
-    //                 move_uploaded_file($fileTmpName, $fileDestination);
-    //             }else{
-    //                 $message = "Your file is too big";
-    //             }
-    //         }
-    //         else{
-    //             $message = "There was an error uploading your file!";
-    //         }
-    //     }
-    //     else{
-    //         $message= "You cannot upload files of this type!";
-    //     }
-    //     // --------------------------------------------------------------------------------------------------------------
-    //     // In the order of DataBase:
-    //     $username = $_POST['username'];
-    //     $password = $_POST['password'];
-    //     $email = $_POST['email'];
-    //     $first_name = $_POST['first_name'];
-    //     $last_name = $_POST['last_name'];
-    //     $question = $_POST['question'];
-    //     $answer = $_POST['answer'];
-    //     $gender = $_POST['gender'];
-    //     $birthday =$_POST['birthday'];
-    //     $profile_image = $fileNameNew;
-    //     $bio = $_POST['bio'];
+        else{
+        // -----------------------------------------------------------------------------------------------------------
+        $image = $_FILES['profile_page'];
+        $fileName = $_FILES['profile_page']['name'];
+        $fileTmpName = $_FILES['profile_page']['tmp_name'];
+        $fileSize = $_FILES['profile_page']['size'];
+        $fileError = $_FILES['profile_page']['error'];
+        $fileType = $_FILES['profile_page']['type'];
 
 
-    //     // var_dump($username);
-    //     // var_dump($password);
-    //     // var_dump($email);
-    //     // var_dump($first_name);
-    //     // var_dump($last_name);
-    //     // var_dump($gender);
-    //     // var_dump($birthday);
-    //     // var_dump($question);
-    //     // var_dump($answer);
-    //     // var_dump($profile_image);
-    //     // var_dump($bio);
-    //     // --------------------------------------------------------------------------------------------------------------
+        $fileExt = explode('.',$fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        $allowed = ['jpg','jpeg','png'];
+
+        // if the person upload a file ---------------------------------------------------------------------------------
+        if (in_array($fileActualExt,$allowed)){
+            if($fileError == 0) {
+                if($fileSize < 50000000){
+                    $fileNameNew = uniqid('',true) . "." . $fileActualExt;
+                    // var_dump($fileNameNew);
+                    $fileDestination = "uploads/" . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                }else{
+                    $message = "Your file is too big";
+                }
+            }
+            else{
+                $message = "There was an error uploading your file!";
+            }
+        }
+        else{
+            $message= "You cannot upload files of this type!";
+        }
+        // --------------------------------------------------------------------------------------------------------------
+        // In the order of DataBase:
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $question = $_POST['question'];
+        $answer = $_POST['answer'];
+        $gender = $_POST['gender'];
+        $birthday =$_POST['birthday'];
+        $profile_image = $fileNameNew;
+        $bio = $_POST['bio'];
+
+
+        // var_dump($username);
+        // var_dump($password);
+        // var_dump($email);
+        // var_dump($first_name);
+        // var_dump($last_name);
+        // var_dump($gender);
+        // var_dump($birthday);
+        // var_dump($question);
+        // var_dump($answer);
+        // var_dump($profile_image);
+        // var_dump($bio);
+        // --------------------------------------------------------------------------------------------------------------
         
-    //     $new = new AccountDAO();
-    //     $executed = $new -> signup($username, $password, $email, $first_name, $last_name, $question, $answer,$gender,$birthday, $profile_image, $bio);
-    //     // here to be redirected.
-    //     header("Location: createdaccount.html");
-    //     exit();
-    //     }
-    // }
+        $new = new AccountDAO();
+        $executed = $new -> signup($username, $password, $email, $first_name, $last_name, $question, $answer,$gender,$birthday, $profile_image, $bio);
+        // here to be redirected.
+        header("Location: createdaccount.html");
+        exit();
+        }
+    }
 ?>
 
 
@@ -250,10 +250,12 @@
                             <option value="What is your occupation?">What is your occupation?</option>
                             <option value="What is your favourite day of the week?">What is your favourite day of the week?</option>
                         </select>
+                        <span v-if='!(check_question)' style='color:red; font-size:small'>Please choose a question</span>
                     </div>
                     <div class="col-12">
                         <label for="secret_answer" class="form-label">What is your answer:</label>
                         <input type="text" class="form-control" id="secret_answer" name="answer" v-model='answer'>
+                        <span v-if='!(check_answer)' style='color:red; font-size:small'>Please give an answer</span>
                     </div>
                     <div class="col-12">
                         <label for="bio" class="form-label">Enter your Bio:</label>
@@ -263,6 +265,7 @@
                     <div class="col-12">
                         <label for="birthday" class="form-label">Date of Birth:</label>
                         <input type="date" class="form-control" id="birthday" name="birthday" v-model='birthday'>
+                        <span v-if='!(check_birthday)' style='color:red; font-size:small'>Please enter your birthday</span>
                     </div>
 
                     <div class="col-12">
@@ -273,6 +276,7 @@
                             <option value="Female">Female</option>
                             <option value="Others">Others</option>
                         </select>
+                        <span v-if='!(check_gender)' style='color:red; font-size:small'>Please choose 1 of the above</span>
                     </div>
 
                     <div class="col-12">
@@ -283,7 +287,7 @@
                     </div>
 
                     <div class="col-12 mb-4">
-                        <button type="submit" class="btn btn-primary" name = "signup" v-if='check_firstname && check_lastname && check_username && check_email && check_password' v-on:click='checkForm()'>Sign Up</button>
+                        <button type="submit" class="btn btn-primary" name = "signup" v-if='check_firstname && check_lastname && check_username && check_email && check_password && check_confirm_password && check_question && check_answer && check_birthday && check_gender' v-on:click='checkForm()'>Sign Up</button>
                         <button type="submit" class="btn btn-primary" name = "signup" v-else disabled>Sign Up</button>
                     </div>
                 </form>
@@ -315,6 +319,10 @@
                 have_username : false,
                 have_email : false,
                 have_password : false,
+                have_confirm_password : false,
+                have_question : false,
+                have_answer : false,
+                have_birthday : false,
             }
 
             },
@@ -374,7 +382,37 @@
                         this.have_password = true;
                         return this.have_password;
                     }
-                }
+                },
+                check_confirm_password(){
+                    if(this.confirm_password_input === this.password){
+                        this.have_confirm_password = true;
+                        return this.have_confirm_password;
+                    }
+                },
+                check_question(){
+                    if(this.question != ''){
+                        this.have_question = true;
+                        return this.have_question;
+                    }
+                },
+                check_answer(){
+                    if(this.answer != ''){
+                        this.have_answer = true;
+                        return this.have_answer;
+                    }
+                },
+                check_birthday(){
+                    if(this.birthday != ''){
+                        this.have_birthday = true;
+                        return this.have_birthday;
+                    }
+                },
+                check_gender(){
+                    if(this.gender != ''){
+                        this.have_gender = true;
+                        return this.have_gender;
+                    }
+                },
 
 
             },
@@ -388,13 +426,13 @@
         app.mount("#app")
 
     </script>
-<!-- 
+
     <script>
         var existing_error = '<?=$existing_error?>';
         if (existing_error == "2"){
             alert("username already existed");
         }
-    </script> -->
+    </script>
 
     <!--bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
