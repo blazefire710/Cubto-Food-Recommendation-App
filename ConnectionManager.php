@@ -1,4 +1,3 @@
-Yx, [2 Nov 2021 at 4:10:23 PM]:
 <?php 
 //   
 require_once("Account.php");
@@ -128,7 +127,10 @@ if ($stmt->execute()) {
     
     return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
     }
-  
+  }
+  public function existing_account($username){
+
+    $sql = "select * from user where username= :username";
     $servername = 'localhost';
     $root = 'root';
     $db_pw = '';
@@ -156,6 +158,7 @@ if ($stmt->execute()) {
   }
 
   public function verify_qna($username, $user_question, $user_answer){
+
     $sql = "SELECT * FROM user where username = :username";
 
     $servername = 'localhost';
@@ -220,7 +223,6 @@ if ($stmt->execute()) {
     $result = [];
 
     while ($row = $stmt->fetch()) {
-      
       $restaurant_name = $row['restaurant_name'];
       $ratings = $row['ratings'];
       $address = $row['restaurant_address'];
@@ -229,12 +231,48 @@ if ($stmt->execute()) {
       $food = $row['food_experience'];
       $customer_service = $row['customer_service'];
       $cleanliness = $row['cleanliness'];
+      $description = $row['restaurant_description'];
       
-      $result[] = [$restaurant_name, $ratings, $address, $category, $experience, $food, $customer_service, $cleanliness];
+      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness, $description];
     }
 
     return $result;
   }
+
+  public function change_password($username,$password_input){
+    $sql = "update User set password= :password where username = :username";
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $password_hashed = password_hash($password_input,PASSWORD_DEFAULT);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':password', $password_hashed, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($stmt->execute()){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt =null;
+      $conn = null;
+      return false;
+    }
+
+
+  }
+
+
 }
 
 
