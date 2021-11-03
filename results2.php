@@ -56,6 +56,20 @@
     a {
         text-decoration: none;
     }
+
+    .btn-primary, .btn-primary:active, .btn-primary:focus {
+    color: rgb(253, 250, 250);
+    background-color: rgb(247, 104, 130) !important;
+    border-color:  rgb(247, 104, 130)!important;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    width: 250px;
+    height: 50px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+}
 </style>
 </head>
 
@@ -116,7 +130,7 @@
         <div class='container mt-4'>
             <!--cards-->
 
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                 <div class="col">
                     <div class="card">
                         <!--should link to the restaurant details page-->
@@ -229,6 +243,18 @@
         const vm = app.mount('#app');
 
     </script>
+
+<div class= "row text-center">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary mt-3 " id="rand">Randomise again!</button>
+        <script type="text/javascript">
+                    document.getElementById("rand").onclick = function () {
+
+                        window.open("whatsnext.php", "_blank").focus()
+                    };
+                </script>
+    </div>
+</div>
     
 
 

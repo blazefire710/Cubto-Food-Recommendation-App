@@ -163,7 +163,7 @@
                 <script type="text/javascript">
                     document.getElementById("Randresult").onclick = function () {
                         // location.href = "whatsnext.html";
-                        window.open("results2.html", "_blank").focus()
+                        window.open("results2.php", "_blank").focus()
                     };
                 </script>
             </div>
