@@ -129,7 +129,7 @@ var_dump($wishlists); // works
 
                     
                     <!-- Insert Content Here -->
-                    <h1><span id='username'></span>Wishlist</h1><br>
+                    <h1 class='text-center fs-1'><span id='username'></span>Wishlist</h1>
 
                     <div id="wishlistdata"></div>
                     <br><div id="wishlistdata2"></div>
