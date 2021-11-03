@@ -232,8 +232,9 @@ if ($stmt->execute()) {
       $customer_service = $row['customer_service'];
       $cleanliness = $row['cleanliness'];
       $description = $row['restaurant_description'];
+      $extraremark = $row['restaurant_comment'];
       
-      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness, $description];
+      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness, $description, $extraremark];
     }
 
     return $result;
