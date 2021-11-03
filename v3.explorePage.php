@@ -231,6 +231,10 @@ else {
                     cuisines: '',
                     typeImg: '',
                     queryName : '',
+                    //newly added 
+                    username : '',
+                    key : '',
+                    hasQuery : false,
                 }
             },
             computed : {
@@ -261,33 +265,12 @@ else {
                             //console.log(rating);
                             // var reviewsArr = [];
                             reviewsArr = restaurant.reviews; //an array of 5 objects
-                            //console.log(reviewsArr);
-
-                            //this.newTextArr = [];
-                            // this.tags = [];
-                            // this.tags = restaurant.tags;
-                            //console.log(this.tags);
-                            // this.cuisines = [];
-                            // this.cuisines = restaurant.cuisine;
-                            //console.log(this.cuisines);
 
                             var type = '';
                             type = restaurant.type;
                             //console.log(type);
 
                             this.reviewCount = 0;
-
-                            // if(type == 'Restaurants'){
-                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg';
-                               
-                            // }
-                            // if(type == 'Cafe'){
-                            //     this.typeImg = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
-                            // }
-                            // if(type == 'Hawker Centres'){
-                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
-                            // }
-
 
                             for (let each of reviewsArr) {
 
@@ -319,22 +302,9 @@ else {
                         console.log(this.dataArr);
 
                         for (var restaurant of this.dataArr) {
-                            //this.name = restaurant.name;
-                            //console.log(name);
-
-                            //this.rating = restaurant.rating;
-                            //console.log(rating);
-                            // var reviewsArr = [];
+                     
                             reviewsArr = restaurant.reviews; //an array of 5 objects
-                            //console.log(reviewsArr);
-
-                            //this.newTextArr = [];
-                            // this.tags = [];
-                            // this.tags = restaurant.tags;
-                            //console.log(this.tags);
-                            // this.cuisines = [];
-                            // this.cuisines = restaurant.cuisine;
-                            //console.log(this.cuisines);
+                           
 
                             var type = '';
                             type = restaurant.type;
@@ -342,24 +312,13 @@ else {
 
                             this.reviewCount = 0;
 
-                            // if(type == 'Restaurants'){
-                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg';
-                               
-                            // }
-                            // if(type == 'Cafe'){
-                            //     this.typeImg = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
-                            // }
-                            // if(type == 'Hawker Centres'){
-                            //     this.typeImg = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
-                            // }
-
-
                             for (let each of reviewsArr) {
 
                                 this.reviewCount += 1;
                             }
                             
                             this.numResult += 1;
+                            this.hasQuery = true;
                         }
 
                     })
