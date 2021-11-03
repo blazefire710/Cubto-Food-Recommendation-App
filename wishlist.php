@@ -37,6 +37,12 @@ var_dump($wishlists); // works
                 background-size: cover;
                 height: 100vh;
             }
+
+            #restaurantImg {
+                /* max-height: 260px; */
+                height: 260px;
+                width: 396px;
+            }
         </style>
     </head>
 
@@ -123,7 +129,7 @@ var_dump($wishlists); // works
 
                     
                     <!-- Insert Content Here -->
-                    <h1><span id='username'>XXX</span>Wishlist</h1><br>
+                    <h1 class='text-center fs-1'><span id='username'></span>Wishlist</h1>
 
                     <div id="wishlistdata"></div>
                     <br><div id="wishlistdata2"></div>
@@ -220,7 +226,7 @@ var_dump($wishlists); // works
 
         <script> //ok so passing of single variables like this is fine
             var username = '<?= $username ?>';
-            console.log('username: ', username);
+            // console.log('username: ', username);
             displayUsername = username.charAt(0).toUpperCase() + username.slice(1);
             document.getElementById('username').innerText = displayUsername + "'s ";
         </script>
@@ -233,9 +239,9 @@ var_dump($wishlists); // works
             console.log(exampleArr)
         </script> -->
 
-        <script> //holy !!! this works
+        <script> //this is how to 'import' php variables to javascript variables
             var wishlists = <?php echo json_encode($wishlists); ?>;
-            console.log(wishlists);
+            // console.log(wishlists);
 
             // wishlistdata = document.getElementById("wishlistdata");
             // wishlistdata.innerText = `${wishlists}`
@@ -255,28 +261,29 @@ var_dump($wishlists); // works
                 cleanliness = wish[7]
                 description = wish[8]
 
-                wishlistdata2.innerHTML += `
-                    <h1>${name}</h1>
-                    <h5>${address}</h5>
-                    <h6>${ratings} Stars</h6>
-                    <h6>Type: ${type}</h6>
-                    `
+                // wishlistdata2.innerHTML += `
+                //     <h1>${name}</h1>
+                //     <h5>${address}</h5>
+                //     <h6>${ratings} Stars</h6>
+                //     <h6>Type: ${type}</h6>
+                //     `
 
-                if (experience != null) {
-                    wishlistdata2.innerHTML += `
-                        Your Ratings: 
-                            Experience: ${experience}/5
-                            Food: ${food}/5
-                            Customer Service: ${customer_service}/5
-                            Cleanliness: ${cleanliness}/5
-                        `
-                }
-                else {
-                    wishlistdata2.innerHTML += `
-                        You haven't reviewed this restaurant :(
-                        <a class="btn btn-danger" href="#" role="button">Leave a Review!</a>
-                    `
-                }
+                // if (experience != null) {
+                //     wishlistdata2.innerHTML += `
+                //         Your Ratings: 
+                //             Experience: ${experience}/5
+                //             Food: ${food}/5
+                //             Customer Service: ${customer_service}/5
+                //             Cleanliness: ${cleanliness}/5
+                //         `
+                // }
+                // else {
+                //     wishlistdata2.innerHTML += `
+                //         You haven't reviewed this restaurant :(
+                //         <a class="btn btn-danger" href="#" role="button">Leave a Review!</a>
+                //     `
+                // }
+
             }
         </script>
 
@@ -288,11 +295,11 @@ var_dump($wishlists); // works
                 address = wish[2]
                 type = wish[3]
                 experience = wish[4]
-                food = wish[5]
-                customer_service = wish[6]
-                cleanliness = wish[7]
+                // food = wish[5]
+                // customer_service = wish[6]
+                // cleanliness = wish[7]
                 description = wish[8]
-                extraremark = wish[9]
+                // extraremark = wish[9]
                 
                 // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
 
@@ -315,26 +322,34 @@ var_dump($wishlists); // works
                             <div class="col-md-4 restaurant-card">
                                 <img
                                     src='${imageSrc}'
-                                    class="img-fluid mh-100"
+                                    class="img-fluid"
+                                    id='restaurantImg'
                                 />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h2 class="card-title">
+                                    <h2 class="card-title lead text-center fs-3 fw-bold">
                                         ${name}
                                     </h2><br>
-                                    <h4 class="card-text">
+                                    <h4 class="card-text lead text-center fs-4">
                                         ${description}
                                     </h4><br>
-                                    <h5 class="card-text">
-                                        ${address}
-                                    </h5>
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text"> Overall Ratings: ${ratings}⭐  &nbsp;&nbsp;&nbsp; Type: ${type} <br> 
-                                        
-                                        ${My Remarks: ${extraremark}</p>
-                                    </div> 
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <h5 class="card-text lead text-center fs-5">
+                                                ${address}
+                                            </h5>
+                                            <br>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="card-text d-flex">
+                                                <p class="pink-text lead text-center fs-5"> Overall Ratings: ${ratings}/5⭐ 
+                                            </div> 
+                                        </div>
+                                        <div class="col-3 lead text-center fs-5">
+                                            Type: ${type}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

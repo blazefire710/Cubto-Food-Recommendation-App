@@ -250,10 +250,12 @@
                             <option value="What is your occupation?">What is your occupation?</option>
                             <option value="What is your favourite day of the week?">What is your favourite day of the week?</option>
                         </select>
+                        <span v-if='!(check_question)' style='color:red; font-size:small'>Please choose a question</span>
                     </div>
                     <div class="col-12">
                         <label for="secret_answer" class="form-label">What is your answer:</label>
                         <input type="text" class="form-control" id="secret_answer" name="answer" v-model='answer'>
+                        <span v-if='!(check_answer)' style='color:red; font-size:small'>Please give an answer</span>
                     </div>
                     <div class="col-12">
                         <label for="bio" class="form-label">Enter your Bio:</label>
@@ -263,6 +265,7 @@
                     <div class="col-12">
                         <label for="birthday" class="form-label">Date of Birth:</label>
                         <input type="date" class="form-control" id="birthday" name="birthday" v-model='birthday'>
+                        <span v-if='!(check_birthday)' style='color:red; font-size:small'>Please enter your birthday</span>
                     </div>
 
                     <div class="col-12">
@@ -273,6 +276,7 @@
                             <option value="Female">Female</option>
                             <option value="Others">Others</option>
                         </select>
+                        <span v-if='!(check_gender)' style='color:red; font-size:small'>Please choose 1 of the above</span>
                     </div>
 
                     <div class="col-12">
@@ -283,7 +287,7 @@
                     </div>
 
                     <div class="col-12 mb-4">
-                        <button type="submit" class="btn btn-primary" name = "signup" v-if='check_firstname && check_lastname && check_username && check_email && check_password' v-on:click='checkForm()'>Sign Up</button>
+                        <button type="submit" class="btn btn-primary" name = "signup" v-if='check_firstname && check_lastname && check_username && check_email && check_password && check_confirm_password && check_question && check_answer && check_birthday && check_gender' v-on:click='checkForm()'>Sign Up</button>
                         <button type="submit" class="btn btn-primary" name = "signup" v-else disabled>Sign Up</button>
                     </div>
                 </form>
@@ -315,6 +319,10 @@
                 have_username : false,
                 have_email : false,
                 have_password : false,
+                have_confirm_password : false,
+                have_question : false,
+                have_answer : false,
+                have_birthday : false,
             }
 
             },
@@ -374,7 +382,37 @@
                         this.have_password = true;
                         return this.have_password;
                     }
-                }
+                },
+                check_confirm_password(){
+                    if(this.confirm_password_input === this.password){
+                        this.have_confirm_password = true;
+                        return this.have_confirm_password;
+                    }
+                },
+                check_question(){
+                    if(this.question != ''){
+                        this.have_question = true;
+                        return this.have_question;
+                    }
+                },
+                check_answer(){
+                    if(this.answer != ''){
+                        this.have_answer = true;
+                        return this.have_answer;
+                    }
+                },
+                check_birthday(){
+                    if(this.birthday != ''){
+                        this.have_birthday = true;
+                        return this.have_birthday;
+                    }
+                },
+                check_gender(){
+                    if(this.gender != ''){
+                        this.have_gender = true;
+                        return this.have_gender;
+                    }
+                },
 
 
             },

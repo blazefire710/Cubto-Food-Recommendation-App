@@ -240,6 +240,37 @@ if ($stmt->execute()) {
     return $result;
   }
 
+  public function add_to_wishlist($username, $restaurant_name, $ratings, $restaurant_address, $restaurant_description) {
+    // skeleton SQL
+    $sql = "insert into wishlist(username,restaurant_name,ratings,restaurant_address,restaurant_description,restaurant_type) 
+    values (:username,:restaurant_name,:ratings,:restaurant_address,:restaurant_description,:restaurant_type);";
+
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
+    $stmt->bindParam(':ratings', $ratings, PDO::PARAM_INT);
+    $stmt->bindParam(':restaurant_address', $restaurant_address, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_description', $restaurant_description, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_type', $restaurant_type, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    $stmt = null;
+    $conn = null;
+
+    return null;
+  }
+
   public function change_password($username,$password_input){
     $sql = "update User set password= :password where username = :username";
     $servername = 'localhost';

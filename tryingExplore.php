@@ -1,15 +1,9 @@
 <?php 
-session_start();
-if (isset($_SESSION['login_details'])){
-    $key = 1;
-    $login_details = $_SESSION['login_details'];
-    $username = $login_details[0];
-    $hi = '';
-}
-else {
-    $key = 0;
-}
+// $key_true = 1;
+// $key_false = 0; 
+// $username = 'celeste'; 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +20,8 @@ else {
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
+
+
 
     <style>
         body {
@@ -231,16 +227,9 @@ else {
                     cuisines: '',
                     typeImg: '',
                     queryName : '',
-                }
-            },
-            computed : {
-                isUser(){
-                    this.key = '<?=$key?>';
-                    if(this.key == 1){
-                        this.username = '<?= $username ?>'; 
-                        return true;
-                    }
-                    return false;
+                //newly added 
+                    username : '',
+                    key : ''
                 }
             },
             created() {
@@ -301,6 +290,26 @@ else {
                     .catch(error => {
                         console.log(error.message)
                     })
+            },
+            computed:{
+
+                // isUser(){
+                //     this.key = '<?=$key_true?>';
+                //     if(this.key == 1){
+                //         this.username = '<?= $username ?>'; 
+                //         return true;
+                //     }
+                //     return false;
+                // }
+                isUser(){
+                    this.key = '<?=$key?>';
+                    if(this.key == 1){
+                        this.username = '<?= $username ?>'; 
+                        return true;
+                    }
+                    return false;
+                }
+                
             },
 
             methods: {
@@ -373,6 +382,12 @@ else {
 
     </script>
 
+    <!-- <script>
+        var key = '<?=$key?>'; //this returns either 0(false) or 1(true)
+        var username = '<?= $username ?>'; 
+        console.log(key);
+
+    </script> -->
 
 
 
