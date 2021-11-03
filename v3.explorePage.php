@@ -88,8 +88,7 @@ else {
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
+                        src="Images/Logo photo.PNG"/></a>
                 <!-- insert icon here -->
                 <form class="d-flex w-75">
                     <input
@@ -98,8 +97,7 @@ else {
                         placeholder="Search Places"
                         aria-label="Search"
                         v-model='queryName'
-                        v-on:change.prevent='isQuery()'
-                    />
+                        v-on:change.prevent='isQuery()'/>
                     <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
 
                     <a href="login.php" class="btn btn-outline-info me-2">Login</a>
@@ -116,8 +114,7 @@ else {
                 bg-light
                 pb-2
                 border-bottom border-dark
-            "
-        >
+            ">
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
@@ -132,19 +129,26 @@ else {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        > Guest
+                        v-if='isUser'> Hi, {{username}}
+                    </a>
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        v-else> Guest
                     </a>
                     <ul
                         class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
+                        aria-labelledby="navbarDropdownMenuLink">
                         <li>
                             <a class="dropdown-item" href="editprofile.php">Profile</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
+                                >Wishlist</a>
                         </li>
                     </ul>
                 </div>
@@ -229,6 +233,16 @@ else {
                     cuisines: '',
                     typeImg: '',
                     queryName : '',
+                }
+            },
+            computed : {
+                isUser(){
+                    this.key = '<?=$key?>';
+                    if(this.key == 1){
+                        this.username = '<?= $username ?>'; 
+                        return true;
+                    }
+                    return false;
                 }
             },
             created() {
@@ -358,13 +372,6 @@ else {
             }
         })
         const vm = app.mount('#app');
-
-    </script>
-
-    <script>
-        var key = '<?=$key?>'; //this returns either 0(false) or 1(true)
-        var username = '<?= $username ?>'; 
-        console.log(key);
 
     </script>
 
