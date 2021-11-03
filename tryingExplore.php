@@ -1,6 +1,7 @@
 <?php 
-$key_true = 1;
-$key_false = 0; 
+// $key_true = 1;
+// $key_false = 0; 
+// $username = 'celeste'; 
 ?>
 
 <!DOCTYPE html>
@@ -122,7 +123,7 @@ $key_false = 0;
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        v-if='isUser'> Hi, {{key}}
+                        v-if='isUser'> Hi, {{username}}
                     </a>
                     <a
                         class="nav-link dropdown-toggle text-dark"
@@ -227,7 +228,7 @@ $key_false = 0;
                     typeImg: '',
                     queryName : '',
                 //newly added 
-                    user : false,
+                    username : '',
                     key : ''
                 }
             },
@@ -292,11 +293,21 @@ $key_false = 0;
             },
             computed:{
 
+                // isUser(){
+                //     this.key = '<?=$key_true?>';
+                //     if(this.key == 1){
+                //         this.username = '<?= $username ?>'; 
+                //         return true;
+                //     }
+                //     return false;
+                // }
                 isUser(){
-                    this.key = '<?=$key_true?>';
+                    this.key = '<?=$key?>';
                     if(this.key == 1){
+                        this.username = '<?= $username ?>'; 
                         return true;
                     }
+                    return false;
                 }
                 
             },
