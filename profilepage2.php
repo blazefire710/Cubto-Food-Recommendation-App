@@ -809,7 +809,7 @@ p {
       <!-- Header container -->
       <div class="container-fluid align-items-center">
         <div class="row">
-          <div class="col-lg-8 col-md-10">
+          <div class="col-lg-8 col-md-10"> 
             <h1 class="display-2 text-white">Hello John!</h1>
             <p class="text-white mt-0 mb-5">Welcome to Cubto! This is your profile page. </p>
           </div>
