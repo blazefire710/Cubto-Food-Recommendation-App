@@ -27,8 +27,6 @@ else {
 </head>
 <body>
 
-
-
     <style>
         body {
             background-image: url("Images/BackGround.png");
@@ -374,6 +372,7 @@ else {
         const vm = app.mount('#app');
 
     </script>
+
 
 
 
