@@ -10,16 +10,13 @@ else {
     $key = 0;
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore</title>
+    <title>Document</title>
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -27,7 +24,10 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--Vue-->
     <script src="https://unpkg.com/vue@next"></script>
-    <script type='text/javascript' src='queryName.js'></script>
+</head>
+<body>
+
+
 
     <style>
         body {
@@ -79,7 +79,77 @@ else {
     <div id='app'>
         <!-- Insert Nav Bar here -->
         <div id="navbar">
+        <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="v3.explorePage.php"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"
+                /></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                        v-model='queryName'
+                        v-on:change.prevent='isQuery()'
+                    />
+                    <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
 
+                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+
+                </form>
+            </div>
+        </nav>
+
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            "
+        >
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        > Guest
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="editprofile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
         </div>
 
         <!--main content-->
@@ -88,7 +158,7 @@ else {
             <!--cards-->
 
             <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col" v-for='restaurant of this.dataArr'>
+                <div class="col" v-for='restaurant of dataArr'>
                     <div class="card">
                         <!--should link to the restaurant details page-->
                         <a :href=' "resturant_details.php#" + restaurant.name'> 
@@ -139,6 +209,10 @@ else {
     </div>
     </div>
     </div>
+
+        
+</body>
+</html>
 
     <script>
         const app = Vue.createApp({
@@ -216,18 +290,21 @@ else {
                         console.log(error.message)
                     })
             },
+
             methods: {
                 isQuery() {
+                    
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                     url = encodeURI(url);
 
-                    //console.log(url);
-                    //console.log(this.queryName);
+                    console.log(url);
+                    console.log(this.queryName);
 
                     axios.get(url)
                     .then(response => {
                         console.log(response.data);
                         this.dataArr = response.data.data;
+                        console.log(this.dataArr);
 
                         for (var restaurant of this.dataArr) {
                             //this.name = restaurant.name;
@@ -283,157 +360,12 @@ else {
         const vm = app.mount('#app');
 
     </script>
+
     <script>
-    var key = '<?=$key?>';
+        var key = '<?=$key?>'; //this returns either 0(false) or 1(true)
+        var username = '<?= $username ?>'; 
+        console.log(key);
 
-    if (key == 0){
-        document.getElementById('navbar').innerHTML = `
-        <nav
-            id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="v3.explorePage.php"
-                    ><img
-                        id="logo"
-                        style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
-
-                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
-
-                </form>
-            </div>
-        </nav>
-
-        <nav
-            id="bottom-navbar"
-            class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2
-                border-bottom border-dark
-            "
-        >
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
-                </div>
-                <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        > Guest
-                    </a>
-                    <ul
-                        class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="editprofile.php">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>`;
-    }
-    else{
-        var username = '<?= $username ?>';
-        console.log(username);
-        document.getElementById('navbar').innerHTML = `
-        <nav
-            id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
-                    ><img
-                        id="logo"
-                        style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                </form>
-            </div>
-        </nav>
-
-        <nav
-            id="bottom-navbar"
-            class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2
-                border-bottom border-dark
-            "
-        >
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
-                </div>
-                <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        > Hi, ${username}
-                    </a>
-                    <ul
-                        class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="editprofile.php">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="login.php">Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>`
-    }
     </script>
 
 
