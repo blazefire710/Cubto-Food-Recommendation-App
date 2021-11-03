@@ -252,7 +252,7 @@
     </script>
 
 <div class= "col mt-1 text-center">
-    <button type="button" class="btn btn-primary mt-3 " id="rand" onclick= "refreshPage()">Randomise again!</button>
+    <button type="button" class="btn btn-primary mt-3 mb-3 " id="rand" onclick= "refreshPage()">Randomise again!</button>
     <script type="text/javascript">
         function refreshPage(){
             window.location.reload();
