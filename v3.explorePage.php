@@ -4,7 +4,7 @@ if (isset($_SESSION['login_details'])){
     $key = 1;
     $login_details = $_SESSION['login_details'];
     $username = $login_details[0];
-
+    $hi = '';
 }
 else {
     $key = 0;
