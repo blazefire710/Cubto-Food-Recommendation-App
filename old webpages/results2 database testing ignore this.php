@@ -64,13 +64,12 @@
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
     width: 250px;
     height: 50px;
-}
+    }
 
 .btn-primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 15px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
 }
-
 </style>
 </head>
 
@@ -135,7 +134,7 @@
                 <div class="col">
                     <div class="card">
                         <!--should link to the restaurant details page-->
-                        <a :href=' "resturant_details.php#" + result.name'> 
+                        <a :href=' "resturant_details.html#" + result.name'> 
                             <h5 class="card-title pt-3" v-bind:id='name'>
                                 {{result.name}}
 
@@ -217,19 +216,13 @@
                         let result = this.choose();
                         console.log(result);
                         this.result = result;
+
                         this.name = result.name;
                         // this.review = result.review;
                         this.rating = result.rating;
                         this.cuisines = result.cuisine;
                         this.tags = result.tags;
-                       
-                        var reviewsArr = [];
-                        reviewsArr = result.reviews;
-
-                        for (let each of reviewsArr) {
-
-                            this.reviewCount += 1;
-                            }
+                    
 
                     })
                     .catch(error => {
@@ -251,21 +244,21 @@
 
     </script>
 
-<div class= "col mt-1 text-center">
-    <button type="button" class="btn btn-primary mt-3 mb-3 " id="rand" onclick= "refreshPage()">Randomise again!</button>
-    <script type="text/javascript">
-        function refreshPage(){
-            window.location.reload();
-            } 
-    </script>
-    <!-- <button type="button" class="btn btn-primary mt-3 " id="wishlist" onclick= "wishlist()">Wishlist!</button>
-    <script type="text/javascript">
-        function wishlist(){ //change to add_to_wishlist 
-            document.getElementById("wishlist").onclick = function () {
-                        // location.href = "whatsnext.html";
-                window.open("wishlist.php", "_blank").focus()
-            } }
-    </script> -->
+<div class= "row text-center">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary mt-3 " id="rand">Randomise again!</button>
+        <button type="button" class="btn btn-primary mt-3 " id="addwishlist">Add to Wishlist!</button>
+
+        <script type="text/javascript">
+                    document.getElementById("rand").onclick = function () {
+
+                        window.open("results2 database testing ignore this.php", "_blank").focus()
+                    };
+        </script>
+
+
+
+    </div>
 </div>
     
 

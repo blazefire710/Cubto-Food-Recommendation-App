@@ -4,7 +4,6 @@ if (isset($_SESSION['login_details'])){
     $key = 1;
     $login_details = $_SESSION['login_details'];
     $username = $login_details[0];
-    $hi = '';
 }
 else {
     $key = 0;
@@ -116,7 +115,7 @@ else {
             <div class="container-fluid">
                 <div class="">
                     <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
                     <a class="navbar-brand" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
