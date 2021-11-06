@@ -20,6 +20,49 @@
                 background-size: cover;
                 height: 100vh;
             }
+        
+        body {
+            background-image: url("Images/BackGround.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+        .nav-link {
+            color: black;
+            padding-top: 10px;
+        }
+
+        .btn-outline-info {
+            color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+        }
+
+        .btn-outline-info:hover {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+        }
+
+        h5 {
+            color: rgb(238, 125, 144);
+            margin-left: 20px;
+        }
+
+        .tag-btn {
+            background-color: rgb(238, 125, 144);
+            border: 1px solid rgb(238, 125, 144);
+            color: white;
+            margin: 0px 20px 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    
         </style>
     </head>
 
@@ -93,18 +136,101 @@
             <!-- ANOTHER V-ELSE HERE -->
             <div class="container">
                 <div class="card shadow my-5">
-                    <div class="card-body p-5" style="background-image: url(https://dutzu.com/wp-content/uploads/2020/02/Food-photography-DSC04326-Edit-Copy.jpg); background-size: cover; background-position: center top;opacity:0.5;">
+                    <div class=" card-body p-5" style="background-image: url(https://img.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg?size=626&ext=jpg); background-size: cover; background-position: center top;opacity:1;">
                     <!-- INSERT YOUR PAGE CONTENT HERE -->
-                        <div style="opacity:1;">
-                            <h1 class="fw-light text-center">
-                                Profile Page
+                        <div style="margin-bottom:50px">
+                            <h1 class="fw-light text-center mb-6">
+                                My Account
                             </h1>
-                            <p class="lead">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quos modi magnam dolorum iure numquam eum nam officia dolore sequi. Numquam architecto placeat illo possimus facere saepe eos labore magni?
-                            </p>
-                            <p class="font-monospace">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum enim maiores quo quaerat, sit perferendis? Ad numquam ipsam autem fugiat aliquid animi est! Cupiditate iure officiis laboriosam unde mollitia explicabo.</p>
-                            <div class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit commodi obcaecati nisi corrupti, earum quia itaque eius maxime perferendis beatae sit iste optio eveniet, voluptas, voluptates consequuntur praesentium pariatur accusantium.</div>
+                        </div>          
+
+                        <div class="row my-6">
+
+
+                            <div class=" order-sm-last col-md-2" >
+                                <div class="row ">
+                                    <div class="col-1"></div>
+                                    <div class="col-10"><img src="Images/family-pic.jpg" alt="" class="img-fluid" style="border-radius:50%"></div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <div class="row" style="margin-top:30px;">
+                                    <div class=" col rounded-3" style="background-color: #FFE6EE">
+                                        <div style="text-align:center; margin-top:30px">About me</div>
+                                        <hr>
+                                        <div class="rounded m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quos deleniti mollitia ex sint voluptatum non temporibus voluptatem dolorum quam illo maxime in eveniet praesentium quo at, nemo quidem rerum.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1 order-2"></div>
+
+                            <div class="col-md-9 col-md-9 bg-white rounded-3">
+                                <div class="d-flex justify-content-between" style="margin-top:20px">
+                                    <div class="fs-4">John's Account</div>
+                                    <div><button type="button" class="btn btn-outline-info me-2">Edit Profile</button></div>
+                                </div>
+                                <hr>
+                                <div class="bg-light rounded-3 m-2">
+                                    <div class="fw-light fs-6" style="color:grey; text-align:center">User information</div>
+                                    
+                                    <!-- 1st Row -->
+                                    <div class="row m-2">
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">Username</label>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3">@</span>
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Htreborn" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">Email</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="example@gmail.com" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 2nd Row  -->
+                                    <div class="row m-2">
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">First Name</label>
+                                            <div class="input-group mb-3">
+                                                
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="John" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">Last Name</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Tan" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 3rd Row  -->
+                                    <div class="row m-2 mb-4">
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">Gender</label>
+                                            <div class="input-group mb-3">
+                                                
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Male" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="basic-url" class="form-label">Birthday</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="24/03/1999" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
+                            
+
+
+                        
                 </div>
             </div>
         </div>
