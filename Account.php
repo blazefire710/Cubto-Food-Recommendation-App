@@ -65,7 +65,7 @@ class Account {
   }
 }
 
-class Wish{
+class Wishlist{
   private $username;
   private $restaurant_name;
   private $ratings;
