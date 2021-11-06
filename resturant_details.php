@@ -123,6 +123,7 @@ else {
                 </h6><br>
                 <h6 class='mt-3 display-6 fs-3'>Address:
                   <span class='lead fs-4'>{{streetName}}, {{block}}, {{buildingName}}, Singapore {{postalcode}}</span>
+                  <br><span class='lead fs-4'>{{address}}</span>
                 </h6><br>
                 <h6 class='mt-3 display-6 fs-3'>Opening Hours:
                   <span class='lead fs-4' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
@@ -205,6 +206,12 @@ else {
             reviewProfileSrc: '',
             haveHour: false,
             mapURL: '',
+            description: '',
+          }
+        },
+        computed: {
+          address() {
+            return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode
           }
         },
         methods () {
@@ -249,6 +256,8 @@ else {
               this.buildingName = restaurant.address.buildingName;
               this.block = restaurant.address.block;
               this.postalcode = restaurant.address.postalCode;
+              this.description = restaurant.body;
+              // console.log(this.description)
               
               this.businessHour = restaurant.businessHour;
               if (this.businessHour.length == 0) {
