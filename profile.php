@@ -150,14 +150,14 @@
                             <div class=" order-sm-last col-md-2" >
                                 <div class="row ">
                                     <div class="col-1"></div>
-                                    <div class="col-10"><img src="Images/family-pic.jpg" alt="" class="img-fluid" style="border-radius:50%"></div>
+                                    <div class="col-10 align-content-center"><img src="Images/family-pic.jpg" alt="" class="img-fluid" style="border-radius: 50%;width:300px;height:150px;object-fit:cover;"></div>
                                     <div class="col-1"></div>
                                 </div>
                                 <div class="row" style="margin-top:30px;">
                                     <div class=" col rounded-3" style="background-color: #FFE6EE">
                                         <div style="text-align:center; margin-top:30px">About me</div>
                                         <hr>
-                                        <div class="rounded m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quos deleniti mollitia ex sint voluptatum non temporibus voluptatem dolorum quam illo maxime in eveniet praesentium quo at, nemo quidem rerum.</div>
+                                        <div class="rounded m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quos deleniti mollitia ex sint vo</div>
                                     </div>
                                 </div>
                             </div>
