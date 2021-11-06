@@ -9,10 +9,10 @@ if (isset($_SESSION['login_details'])){
 else {
     $key = 0;
 }
-$key_true = 1;
-$key_false = 0; 
-$username = 'celeste'; 
-$hi = '';
+// $key_true = 1;
+// $key_false = 0; 
+// $username = 'celeste'; 
+// $hi = '';
 ?>
 
 <!DOCTYPE html>
