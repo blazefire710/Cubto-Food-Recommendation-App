@@ -28,8 +28,8 @@ $hi = '';
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="/css/components.css" />
-        <link rel="stylesheet" href="/css/styling.css" />
+        <!-- <link rel="stylesheet" href="/css/components.css" />
+        <link rel="stylesheet" href="/css/styling.css" /> -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
         <!--bootstrap css-->
@@ -52,9 +52,9 @@ $hi = '';
 
             .nav-link {
                 color: black;
-                padding-top: 10px;
+                padding-top: 10px;  
             }
-
+            
             .btn-outline-info {
                 color: rgb(238, 125, 144);
                 border: 1px solid rgb(238, 125, 144);
@@ -83,17 +83,22 @@ $hi = '';
             a {
                 text-decoration: none;
             }
+
+            .navbar-brand:hover{
+                color: rgb(238, 125, 144);
+                
+            }
+
     </style>
     </head>
         
     <body>
         <div id='app'>
-        <div id="navbar">
+        <div id="navbar" >
             <!-- Insert Navbar here -->
             <nav
             id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="v3.explorePage.php"
                     ><img
@@ -173,7 +178,7 @@ $hi = '';
     <div class='container mt-4' v-if='hasQuery'>
             <!--cards-->
 
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
                 <div class="col" v-for='restaurant of dataArr'>
                     <div class="card">
                         <!--should link to the restaurant details page-->
@@ -218,37 +223,80 @@ $hi = '';
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
        
         <!--about us page content-->
-        <div class="container" v-else>
-            <div class="card shadow my-5">
-                <div class="card-body p-5">
-                    <!-- Insert Content Here -->
-                    <div class="row">
-                        <h5>
-                            Welcome to Cubto, your number one source for restaurant information! 
-                            <br><br><br>
-                            We're dedicated to giving you the very best food selections and helping you fill your tummy with good food! with a focus on restaurant recommendations, reviews and restaurant searching!
-                            <br><br><br>
-                            Founded in 2021, Cubto has come a long way from its beginnings in an online Covid-19 semester at home in Singapore, where a fated group of 4 students liked the idea of creating a website for foodies! We hope this website manages to help you find the food that you have been craving all along!
-                            <br><br><br>
-                            Sincerely,
-                            Yu Xiang, Celeste, Kezia and Paul - WAD2 TEAM 6
-                            <br><br><br>
-                        </h5>
-                        
-                    </div>
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <img src="Images/family-pic.jpg" width=100%; height=auto>
-                        </div>
-                        <div class="col-3"></div>
+    <div class="container mt-3" v-else>
+            <div class='p-5 mb-4 rounded' id='content' style=' background-color:white'>
+                <div class='container-fluid py-5'>
+                    <h4 class='display-3 fw-bold'> Never stop enjoying food.</h4>
+                    <br>
+                    <h6 class='display-5 fw-bold'> About Cubto</h6>
+                    <p class='col-md-8 fs-5 mt-5'>
+                        Cubto aspires to be your number one source for restaurant information! We're dedicated to giving you the very best food selections and helping you fill your tummy with good food! with a focus on restaurant recommendations, reviews and restaurant searching!
+                        <br><br><br>
+                        Founded in 2021, Cubto has come a long way from its beginnings in an online Covid-19 semester at home in Singapore, where a fated group of 4 students liked the idea of creating a website for foodies! We hope this website manages to help you find the food that you have been craving all along!
+                    </p>
+                    <div class='text-center'>
+                        <img src="Images/family-pic.jpg" class="card-img img-fluid w-75 mt-4" alt="...">
                     </div>
                 </div>
+                <div class="container">
+            <h6 class='display-5 text-center fw-bold mt-3 mb-5'>Meet the amazing team!</h6>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card">
+                <img src="Images/yuxiang.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Yu Xiang</h6>
+                    <p class="card-text">Felicitations, malefactors I am endeavoring to misappropriate the formulary for the preparation of affordable comestibles. Who will join me?</p>
+                </div>
+                </div>
             </div>
-        </div>
+            <div class="col">
+                <div class="card">
+                <img src="Images/celeste.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Celeste</h6>
+                    <p class="card-text">I drink at least 3 litres of water everyday.</p>
+                </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                <img src="Images/paul.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Paul</h6>
+                    <p class="card-text">I love eating vegetables especially eggplant!</p>
+                </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                <img src="Images/kezia.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">Kezia</h6>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            
+       
+
+        
+
+            <!-- <div class="card bg-dark text-white w-50 h-50 mx-auto my-4">
+                <img src="Images/family-pic.jpg" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                    <h2 class="card-title text-dark">WAD TEAM 6</h2>
+                </div>
+            </div> -->
+         
+    </div>
+    </div>
     </div>
     </body>
 
