@@ -26,12 +26,8 @@ restaurant_name varchar(100),
 ratings float,
 restaurant_address varchar(255),
 restaurant_type varchar(50),
-restaurant_comment varchar(150),
 restaurant_description varchar(250),
-your_experience int,
-food_experience int,
-customer_service int,
-cleanliness int,
+
 
 constraint wishlist_pk1 primary key(username,restaurant_name),
 constraint wishlist_fk1 foreign key (username) references User(username)

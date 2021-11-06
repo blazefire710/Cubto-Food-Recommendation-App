@@ -251,13 +251,13 @@ if ($stmt->execute()) {
     $dbname = 'cubto';
       
       // Create connection
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
-    $stmt->bindParam(':ratings', $ratings, PDO::PARAM_INT);
+    $stmt->bindParam(':ratings', $ratings, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_address', $restaurant_address, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_description', $restaurant_description, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_type', $restaurant_type, PDO::PARAM_STR);
