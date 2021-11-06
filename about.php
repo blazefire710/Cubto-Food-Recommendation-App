@@ -1,14 +1,14 @@
 <?php 
-// session_start();
-// if (isset($_SESSION['login_details'])){
-//     $key = 1;
-//     $login_details = $_SESSION['login_details'];
-//     $username = $login_details[0];
+session_start();
+if (isset($_SESSION['login_details'])){
+    $key = 1;
+    $login_details = $_SESSION['login_details'];
+    $username = $login_details[0];
 
-// }
-// else {
-//     $key = 0;
-// }
+}
+else {
+    $key = 0;
+}
 $key_true = 1;
 $key_false = 0; 
 $username = 'celeste'; 
@@ -323,7 +323,7 @@ $hi = '';
             },
             computed : {
                 isUser(){
-                    this.key = '<?=$key_true?>';
+                    this.key = '<?=$key?>';
                     if(this.key == 1){
                         this.username = '<?= $username ?>'; 
                         return true;
