@@ -259,7 +259,7 @@ else {
                 <img src="Images/celeste.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">Celeste</h6>
-                    <p class="card-text">I drink at least 3 litres of water everyday.</p>
+                    <p class="card-text">I drink at least 3 litres of water everyday. Fight me</p>
                 </div>
                 </div>
             </div>
@@ -268,7 +268,7 @@ else {
                 <img src="Images/paul.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">Paul</h6>
-                    <p class="card-text">I love eating vegetables especially eggplant!</p>
+                    <p class="card-text">Hi I’m paul! I love eating vegetables especially eggplant!</p>
                 </div>
                 </div>
             </div>
@@ -277,7 +277,7 @@ else {
                 <img src="Images/kezia.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">Kezia</h6>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text">Hi I’m kezia and I love cafe hopping!</p>
                 </div>
                 </div>
             </div>
