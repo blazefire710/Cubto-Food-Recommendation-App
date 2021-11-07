@@ -7,7 +7,15 @@ if (!isset($_SESSION['login_details'])) {
     exit();
 }
 
+<<<<<<< HEAD
 $username =  $_SESSION['login_details'][0];
+=======
+
+//$username =  $_SESSION['login_details'][1];
+
+$username =  $_SESSION['login_details'][0];
+
+>>>>>>> 3a3ba3687772f0744da1892a6d2e315a863c3bd2
 // var_dump($_SESSION); // works
 // var_dump($username); // works
 $new = new AccountDAO();
@@ -31,6 +39,11 @@ var_dump($wishlists); // works
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        <!--axios-->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!--Vue-->
+        <script src="https://unpkg.com/vue@next"></script>
+        
         <style>
             body { /* this is for the background image */
                 background-image: url("Images/BackGround.png");
@@ -65,8 +78,11 @@ var_dump($wishlists); // works
                         type="search"
                         placeholder="Search Places"
                         aria-label="Search"
+                        v-model='queryName'
+                        v-on:change.prevent='isQuery()'
                     />
-                    <button class="btn" type="submit">🔍</button>
+                    <button class="btn" type="submit"
+                    v-on:click.prevent='isQuery()'>🔍</button>
 
                     <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
                     <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
@@ -98,8 +114,9 @@ var_dump($wishlists); // works
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        >Guest
+                        >Hi, {{username}}
                     </a>
+                    
                     <ul
                         class="dropdown-menu"
                         aria-labelledby="navbarDropdownMenuLink"
@@ -123,7 +140,59 @@ var_dump($wishlists); // works
 
 
     <body>
-        <div class="container">
+        <!--content after the search bar is triggered-->
+    <div class='container mt-4' v-if='hasQuery'>
+            <!--cards-->
+
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+                <div class="col" v-for='restaurant of dataArr'>
+                    <div class="card">
+                        <!--should link to the restaurant details page-->
+                        <a :href=' "resturant_details.php#" + restaurant.name'> 
+                            <h5 class="card-title pt-3" v-bind:id='name'>
+                                {{restaurant.name}}
+                            </h5>
+                        </a>
+                        <div>
+                            <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
+                                {{reviewCount}} Reviews</h6>
+                            <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class='text-center'>
+                                <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+
+                                <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+
+                                <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                
+                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                            </div>
+                            <div>
+                                <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
+                                    <b>Cuisine:</b> {{restaurant.cuisine}}
+                                </p>
+                                <p v-else style='margin-left: 20px; margin-top: 20px;'>
+                                    <b>Cuisine: -</b>
+                                </p>
+                            </div>
+                            <div>
+                                <!--resturant tags-->
+                                <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!--wishlist page content-->
+        <div class="container" v-else>
             <div class="card shadow my-5">
                 <div class="card-body p-5">
 
@@ -247,6 +316,86 @@ var_dump($wishlists); // works
             // wishlistdata.innerText = `${wishlists}`
         </script>
 
+        <!-- vue content celeste -->
+        <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    dataArr: [],
+                    name: '',
+                    review: '',
+                    reviewCount: 0,
+                    rating: '',
+                    numResult: 0,
+                    searchQuery: '',
+                    tags: [],
+                    cuisines: '',
+                    typeImg: '',
+                    queryName : '',
+                    //newly added 
+                    username : '',
+                    key : '',
+                    hasQuery : false,
+                }
+            },
+            // computed : {
+            //     isUser(){
+            //         this.key = '<?=$key?>';
+            //         if(this.key == 1){
+            //             this.username = '<?= $username ?>'; 
+            //             return true;
+            //         }
+            //         return false;
+            //     }
+            // },
+           
+            methods: {
+                isQuery() {
+                    
+                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+                    url = encodeURI(url);
+
+                    console.log(url);
+                    console.log(this.queryName);
+
+                    axios.get(url)
+                    .then(response => {
+                        console.log(response.data);
+                        this.dataArr = response.data.data;
+                        console.log(this.dataArr);
+
+                        for (var restaurant of this.dataArr) {
+                           
+                            reviewsArr = restaurant.reviews; //an array of 5 objects
+                           
+
+                            var type = '';
+                            type = restaurant.type;
+                            //console.log(type);
+
+                            this.reviewCount = 0;
+
+                            for (let each of reviewsArr) {
+
+                                this.reviewCount += 1;
+                            }
+                            
+                            this.numResult += 1;
+                            this.hasQuery = true;
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+                }
+            }
+        })
+        const vm = app.mount('#app');
+
+    </script>
+    <!--end of vue instance celeste -->
+
         <script>
             wishlistdata2 = document.getElementById("wishlistdata2")
 
@@ -357,6 +506,11 @@ var_dump($wishlists); // works
                     `
             }
         </script>
+
+     <!--bootstrap JS-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
 
     </body>
 </html>

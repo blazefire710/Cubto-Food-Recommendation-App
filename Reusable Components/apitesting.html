@@ -12,6 +12,9 @@
 <body>
     <input type='text' id='searchQuery'>
     <input type='submit' onclick='data()'>
+
+    <div id ="picture"></div>
+
     <script>
         function data() {
             var searchQuery = document.getElementById('searchQuery').value;
@@ -43,6 +46,8 @@
                         floorNumber = restaurant.address.floorNumber;
                         streetName = restaurant.address.streetName;
                         unitNumber = restaurant.address.unitNumber;
+
+                        
 
                         // console.log(postalCode);
                         // console.log(buildingName);
