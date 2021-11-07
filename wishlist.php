@@ -7,17 +7,11 @@ if (!isset($_SESSION['login_details'])) {
     exit();
 }
 
-if (isset($_SESSION['login_details'])){
-    $key = 1;
-    $login_details = $_SESSION['login_details'];
-    $username = $login_details[0];
-
-}
-else {
-    $key = 0;
-}
 
 //$username =  $_SESSION['login_details'][1];
+
+$username =  $_SESSION['login_details'][0];
+
 // var_dump($_SESSION); // works
 // var_dump($username); // works
 $new = new AccountDAO();
@@ -111,17 +105,9 @@ var_dump($wishlists); // works
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        v-if='isUser'>Hi, {{username}}
+                        >Hi, {{username}}
                     </a>
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-else>Guest
-                    </a>
+                    
                     <ul
                         class="dropdown-menu"
                         aria-labelledby="navbarDropdownMenuLink"
@@ -343,16 +329,16 @@ var_dump($wishlists); // works
                     hasQuery : false,
                 }
             },
-            computed : {
-                isUser(){
-                    this.key = '<?=$key?>';
-                    if(this.key == 1){
-                        this.username = '<?= $username ?>'; 
-                        return true;
-                    }
-                    return false;
-                }
-            },
+            // computed : {
+            //     isUser(){
+            //         this.key = '<?=$key?>';
+            //         if(this.key == 1){
+            //             this.username = '<?= $username ?>'; 
+            //             return true;
+            //         }
+            //         return false;
+            //     }
+            // },
            
             methods: {
                 isQuery() {
