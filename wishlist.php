@@ -7,7 +7,7 @@ if (!isset($_SESSION['login_details'])) {
     exit();
 }
 
-$username =  $_SESSION['login_details'][1];
+$username =  $_SESSION['login_details'][0];
 // var_dump($_SESSION); // works
 // var_dump($username); // works
 $new = new AccountDAO();
