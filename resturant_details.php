@@ -378,7 +378,7 @@ else {
         },
         computed: {
           address() {
-            return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode
+            return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode;
           },
           
           isUser(){
@@ -390,7 +390,7 @@ else {
               return false;
           }
         },
-        methods () {
+        methods: {
           isQuery() {
                     
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
@@ -487,16 +487,16 @@ else {
 
               this.reviewsArr = restaurant.reviews; //an array of 5 objects
 
-              this.latitude = restaurant.location.latitude //Coordinate data for google maps API to load
-              this.longitude = restaurant.location.longitude
+              this.latitude = restaurant.location.latitude; //Coordinate data for google maps API to load
+              this.longitude = restaurant.location.longitude;
               this.mrt = restaurant.nearestMrtStation;
-              this.mapURL += "https://maps.googleapis.com/maps/api/staticmap?center="
+              this.mapURL += "https://maps.googleapis.com/maps/api/staticmap?center=";
 
-              this.mapURL += this.latitude + "," + this.longitude
-              this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C"
-              this.mapURL += this.latitude + "," + this.longitude
-              this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4"
-              console.log(this.mapURL)
+              this.mapURL += this.latitude + "," + this.longitude;
+              this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C";
+              this.mapURL += this.latitude + "," + this.longitude;
+              this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4";
+              console.log(this.mapURL);
 
 
 
@@ -528,7 +528,7 @@ else {
 
             })
             .catch(error => {
-              console.log(error.message)
+              console.log(error.message);
             })
         },
       })
