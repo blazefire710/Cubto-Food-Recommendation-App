@@ -15,8 +15,11 @@ else{
     $gender = $data[7];
     $birthday = $data[8];
     $profile_image = $data[9];
-    $bio = $data[10];   
+    $bio = $data[10];
 
+    if(isset($_POST['signup'])){
+
+    }
 }
 
 
@@ -157,9 +160,10 @@ else{
                 </div>
             </nav>
             <!-- ANOTHER V-ELSE HERE -->
+            <form method="POST">
             <div class="container">
                 <div class="card shadow my-5">
-                    <div class=" card-body p-5" style="background-image: url(https://img.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg?size=626&ext=jpg); background-size: cover; background-position: center top;opacity:1;">
+                    <div class=" card-body p-5" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRvjmzVbiNIHbNHTsL8HZwNBLuyYaOzZm8w&usqp=CAU); background-size: cover; background-position: center top;opacity:1;">
                     <!-- INSERT YOUR PAGE CONTENT HERE -->
                         <div style="margin-bottom:50px">
                             <h1 class="fw-light text-center mb-6">
@@ -193,13 +197,13 @@ else{
                                             <label for="username" class="form-label" >Username</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">@</span>
-                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="Htreborn">
+                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="Htreborn" name="username" disabled>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="email" class="form-label">Email</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="email" aria-describedby="basic-addon3" value="example@gmail.com">
+                                                <input type="text" class="form-control" id="email" aria-describedby="basic-addon3" value="example@gmail.com" name="email" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -275,7 +279,7 @@ else{
                                     </div>
                                 </div>
                             </div>
-
+                            </form>
                         </div>
                             
 

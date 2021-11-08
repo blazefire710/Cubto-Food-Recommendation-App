@@ -159,7 +159,7 @@ else{
             <!-- ANOTHER V-ELSE HERE -->
             <div class="container">
                 <div class="card shadow my-5">
-                    <div class=" card-body p-5" style="background-image: url(https://img.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg?size=626&ext=jpg); background-size: cover; background-position: center top;opacity:1;">
+                    <div class=" card-body p-5" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRvjmzVbiNIHbNHTsL8HZwNBLuyYaOzZm8w&usqp=CAU); background-size: cover; background-position: center top;opacity:1;">
                     <!-- INSERT YOUR PAGE CONTENT HERE -->
                         <div style="margin-bottom:50px">
                             <h1 class="fw-light text-center mb-6">
@@ -177,7 +177,7 @@ else{
                                     <div class="col-1"></div>
                                 </div>
                                 <div class="row" style="margin-top:30px;">
-                                    <div class=" col rounded-3" style="background-color: #FFE6EE">
+                                    <div class=" col rounded-3" style="background-color: white">
                                         <div style="text-align:center; margin-top:30px">About me</div>
                                         <hr>
                                         <div class="rounded m-2" id="bio"></div>
