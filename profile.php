@@ -1,3 +1,16 @@
+<?php 
+session_start();
+if (isset($_SESSION['login_details'])){
+    $key = 1;
+    $login_details = $_SESSION['login_details'];
+    $username = $login_details[0];
+
+}
+else {
+    $key = 0;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,6 +27,16 @@
         <link rel="stylesheet" href="/css/components.css" />
         <link rel="stylesheet" href="/css/styling.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+        <!--bootstrap css-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+        <!--axios-->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!--Vue-->
+        <script src="https://unpkg.com/vue@next"></script>
+
         <style>
             body { /* this is for the background image */
                 background-image: url("Images/BackGround.png");
@@ -66,7 +89,7 @@
         </style>
     </head>
 
-    <header>
+    <body>
         <div id='app'>
             <!-- INSERT V-IF TO DISPLAY THIS VUE PART -->
             <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
@@ -79,8 +102,9 @@
                     /></a>
                     <!-- insert icon here -->
                     <form class="d-flex w-75">
-                        <input class="form-control" type="search" placeholder="Search Places" aria-label="Search"/>
-                        <button class="btn" type="submit">🔍</button>
+                        <input class="form-control" type="search" placeholder="Search Places" aria-label="Search" v-model='queryName'
+                        v-on:change.prevent='isQuery()'/>
+                        <button class="btn" type="submit" v-on:click.prevent='isQuery()'>🔍</button>
 
                         <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
                         <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
@@ -112,7 +136,16 @@
                             role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
-                            >Guest
+                            v-if='isUser'> Hi, {{username}}
+                        </a>
+                        <a
+                            class="nav-link dropdown-toggle text-dark"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            v-else> Guest
                         </a>
                         <ul
                             class="dropdown-menu"
@@ -133,8 +166,61 @@
                     </div>
                 </div>
             </nav>
+
+            <!--content after the search bar is triggered-->
+            <div class='container mt-4' v-if='hasQuery'>
+                    <!--cards-->
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+                        <div class="col" v-for='restaurant of dataArr'>
+                            <div class="card">
+                                <!--should link to the restaurant details page-->
+                                <a :href=' "resturant_details.php#" + restaurant.name'> 
+                                    <h5 class="card-title pt-3" v-bind:id='name'>
+                                        {{restaurant.name}}
+                                    </h5>
+                                </a>
+                                <div>
+                                    <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
+                                        {{reviewCount}} Reviews</h6>
+                                    <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
+
+                                </div>
+
+                                <div class="card-body">
+                                    <div class='text-center'>
+                                        <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+
+                                        <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+
+                                        <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                        
+                                        <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                                    </div>
+                                    <div>
+                                        <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
+                                            <b>Cuisine:</b> {{restaurant.cuisine}}
+                                        </p>
+                                        <p v-else style='margin-left: 20px; margin-top: 20px;'>
+                                            <b>Cuisine: -</b>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <!--resturant tags-->
+                                        <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!--content end of the search bar triggered-->
+
             <!-- ANOTHER V-ELSE HERE -->
-            <div class="container">
+            <div class="container" v-else>
                 <div class="card shadow my-5">
                     <div class=" card-body p-5" style="background-image: url(https://img.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg?size=626&ext=jpg); background-size: cover; background-position: center top;opacity:1;">
                     <!-- INSERT YOUR PAGE CONTENT HERE -->
@@ -233,18 +319,97 @@
                         
                 </div>
             </div>
+
+
+        <!-- end of id='app' div-->    
         </div>
 
-    </header>
-
-
-
-
-    <body>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-        ></script>
     </body>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    dataArr: [],
+                    name: '',
+                    review: '',
+                    reviewCount: 0,
+                    rating: '',
+                    numResult: 0,
+                    searchQuery: '',
+                    tags: [],
+                    cuisines: '',
+                    typeImg: '',
+                    queryName : '',
+                    //newly added 
+                    username : '',
+                    key : '',
+                    hasQuery : false,
+                }
+            },
+            computed : {
+                isUser(){
+                    this.key = '<?=$key?>';
+                    if(this.key == 1){
+                        this.username = '<?= $username ?>'; 
+                        return true;
+                    }
+                    return false;
+                }
+            },
+           
+            methods: {
+                isQuery() {
+                    
+                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+                    url = encodeURI(url);
+
+                    console.log(url);
+                    console.log(this.queryName);
+
+                    axios.get(url)
+                    .then(response => {
+                        console.log(response.data);
+                        this.dataArr = response.data.data;
+                        console.log(this.dataArr);
+
+                        for (var restaurant of this.dataArr) {
+                           
+                            reviewsArr = restaurant.reviews; //an array of 5 objects
+                           
+
+                            var type = '';
+                            type = restaurant.type;
+                            //console.log(type);
+
+                            this.reviewCount = 0;
+
+                            for (let each of reviewsArr) {
+
+                                this.reviewCount += 1;
+                            }
+                            
+                            this.numResult += 1;
+                            this.hasQuery = true;
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+                }
+            }
+        })
+        const vm = app.mount('#app');
+
+    </script>
+
+
+    
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+    ></script>
+    
 </html>
