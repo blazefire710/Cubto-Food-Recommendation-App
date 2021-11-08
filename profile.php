@@ -1,14 +1,25 @@
 <?php 
 session_start();
-if (isset($_SESSION['login_details'])){
-    $key = 1;
-    $login_details = $_SESSION['login_details'];
-    $username = $login_details[0];
+
+if (!isset($_SESSION['login_details'])) {
+    header("Location: login.php");
+    exit();
+}
+else{
+
+    $_SESSION['login_details'] = $_SESSION['login_details'];
+    $data = $_SESSION['login_details'];
+    $username = $data[0];
+    $email = $data[2];
+    $first_name = $data[3];
+    $last_name = $data[4];
+    $gender = $data[7];
+    $birthday = $data[8];
+    $profile_image = $data[9];
+    $bio = $data[10];   
 
 }
-else {
-    $key = 0;
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +35,7 @@ else {
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="/css/components.css" />
-        <link rel="stylesheet" href="/css/styling.css" />
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
         <!--bootstrap css-->
@@ -136,23 +146,15 @@ else {
                             role="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
-                            v-if='isUser'> Hi, {{username}}
+                            > Hi, {{user}}
                         </a>
-                        <a
-                            class="nav-link dropdown-toggle text-dark"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            v-else> Guest
-                        </a>
+                        
                         <ul
                             class="dropdown-menu"
                             aria-labelledby="navbarDropdownMenuLink"
                         >
                             <li>
-                                <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                                <a class="dropdown-item" href="editprofile.php">Profile</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="wishlist.php"
@@ -222,7 +224,7 @@ else {
             <!-- ANOTHER V-ELSE HERE -->
             <div class="container" v-else>
                 <div class="card shadow my-5">
-                    <div class=" card-body p-5" style="background-image: url(https://img.freepik.com/free-photo/healthy-ingredients-white-wooden-desk_23-2148194994.jpg?size=626&ext=jpg); background-size: cover; background-position: center top;opacity:1;">
+                    <div class=" card-body p-5" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRvjmzVbiNIHbNHTsL8HZwNBLuyYaOzZm8w&usqp=CAU); background-size: cover; background-position: center top;opacity:1;">
                     <!-- INSERT YOUR PAGE CONTENT HERE -->
                         <div style="margin-bottom:50px">
                             <h1 class="fw-light text-center mb-6">
@@ -236,14 +238,14 @@ else {
                             <div class=" order-sm-last col-md-2" >
                                 <div class="row ">
                                     <div class="col-1"></div>
-                                    <div class="col-10 align-content-center"><img src="Images/family-pic.jpg" alt="" class="img-fluid" style="border-radius: 50%;width:300px;height:150px;object-fit:cover;"></div>
+                                    <div class="col-10 align-content-center"style="text-align:center"><img id="profile" src="" alt="Missing Profile Image" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
                                     <div class="col-1"></div>
                                 </div>
                                 <div class="row" style="margin-top:30px;">
-                                    <div class=" col rounded-3" style="background-color: #FFE6EE">
+                                    <div class=" col rounded-3" style="background-color: white">
                                         <div style="text-align:center; margin-top:30px">About me</div>
                                         <hr>
-                                        <div class="rounded m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quos deleniti mollitia ex sint vo</div>
+                                        <div class="rounded m-2" id="bio"></div>
                                     </div>
                                 </div>
                             </div>
@@ -252,8 +254,8 @@ else {
 
                             <div class="col-md-9 col-md-9 bg-white rounded-3">
                                 <div class="d-flex justify-content-between" style="margin-top:20px">
-                                    <div class="fs-4">John's Account</div>
-                                    <div><button type="button" class="btn btn-outline-info me-2">Edit Profile</button></div>
+                                    <div class="fs-4" id= "account_title" ></div>
+                                    <div><a class="btn btn-outline-info me-2" href="editprofile.php">Edit Profile</a></div>
                                 </div>
                                 <hr>
                                 <div class="bg-light rounded-3 m-2">
@@ -262,32 +264,32 @@ else {
                                     <!-- 1st Row -->
                                     <div class="row m-2">
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">Username</label>
+                                            <label for="username" class="form-label" >Username</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">@</span>
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Htreborn" readonly>
+                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="Htreborn" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">Email</label>
+                                            <label for="email" class="form-label">Email</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="example@gmail.com" readonly>
+                                                <input type="text" class="form-control" id="email" aria-describedby="basic-addon3" value="example@gmail.com" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- 2nd Row  -->
                                     <div class="row m-2">
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">First Name</label>
+                                            <label for="first_name" class="form-label">First Name</label>
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="John" readonly>
+                                                <input type="text" class="form-control" id="first_name" aria-describedby="basic-addon3" value="John" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">Last Name</label>
+                                            <label for="last_name" class="form-label">Last Name</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Tan" readonly>
+                                                <input type="text" class="form-control" id="last_name" aria-describedby="basic-addon3" value="Tan" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -295,16 +297,16 @@ else {
                                     <!-- 3rd Row  -->
                                     <div class="row m-2 mb-4">
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">Gender</label>
+                                            <label for="gender" class="form-label">Gender</label>
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="Male" readonly>
+                                                <input type="text" class="form-control" id="gender" aria-describedby="basic-addon3" value="Male" readonly>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label for="basic-url" class="form-label">Birthday</label>
+                                            <label for="birthday" class="form-label">Birthday</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="24/03/1999" readonly>
+                                                <input type="text" class="form-control" id="birthday" aria-describedby="basic-addon3" value="24/03/1999" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -348,14 +350,10 @@ else {
                 }
             },
             computed : {
-                isUser(){
-                    this.key = '<?=$key?>';
-                    if(this.key == 1){
-                        this.username = '<?= $username ?>'; 
-                        return true;
-                    }
-                    return false;
+                user(){
+                    this.username = '<?= $username ?>'; 
                 }
+                   
             },
            
             methods: {
@@ -402,6 +400,33 @@ else {
         })
         const vm = app.mount('#app');
 
+    </script>
+
+    <script>
+        var username = '<?= $username ?>';
+        var email = '<?= $email?>';
+        var first_name = '<?= $first_name?>';
+        var last_name = '<?= $last_name?>';
+        var gender = '<?= $gender?>';
+        var birthday = '<?= $birthday?>';
+        var profile_image = '<?= $profile_image?>';
+        var bio = '<?= $bio?>';
+
+        document.getElementById("username").value = username;
+        document.getElementById("email").value = email;
+        document.getElementById("first_name").value = first_name;
+        document.getElementById("last_name").value = last_name;
+        document.getElementById("gender").value = gender;
+        document.getElementById("birthday").value = birthday;
+        document.getElementById("bio").innerText = bio;
+        document.getElementById("account_title").innerText = first_name + "'s Account"
+
+        if (profile_image == "") {
+            document.getElementById("profile").src = "Images/" + user.png;
+        }
+        else{
+            document.getElementById("profile").src = "uploads/" + profile_image;
+        }
     </script>
 
 
