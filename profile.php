@@ -85,7 +85,7 @@ else{
         a {
             text-decoration: none;
         }
-    
+
         </style>
     </head>
 
@@ -124,7 +124,7 @@ else{
                 <div class="container-fluid">
                     <div class="">
                         <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                        <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                        <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
                         <a class="navbar-brand" href="about.php">About us</a>
                     </div>
                     <div class="nav-item dropdown">

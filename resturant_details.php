@@ -8,6 +8,7 @@ if (isset($_SESSION['login_details'])){
 }
 else {
     $key = 0;
+
 }
 
 ?>
@@ -29,15 +30,8 @@ else {
 
 </head>
 
-<body>
-  <!--bootstrap css-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <!--axios-->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!--Vue-->
-  <script src="https://unpkg.com/vue@next"></script>
 
+ 
   <style>
     body {
       background-image: url("Images/BackGround.png");
@@ -95,11 +89,136 @@ else {
     <div id='app'>
       <div id="navbar">
         <!-- Insert Nav Bar here -->
+        <nav
+            id="top-navbar"
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="v3.explorePage.php"
+                    ><img
+                        id="logo"
+                        style="width: 150px; height: auto"
+                        src="Images/Logo photo.PNG"/></a>
+                <!-- insert icon here -->
+                <form class="d-flex w-75">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Search Places"
+                        aria-label="Search"
+                        v-model='queryName'
+                        v-on:change.prevent='isQuery()'/>
+                    <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
+
+                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+
+                </form>
+            </div>
+        </nav>
+
+        <nav
+            id="bottom-navbar"
+            class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2
+                border-bottom border-dark
+            ">
+            <div class="container-fluid">
+                <div class="">
+                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                    <a class="navbar-brand" href="about.php">About us</a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        v-if='isUser'> Hi, {{username}}
+                    </a>
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        v-else> Guest
+                    </a>
+                    <ul
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item" href="editprofile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
       </div>
       
+      <!-- search bar activated -->
+      <div class='container mt-4' v-if='hasQuery'>
+            <!--cards-->
+
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+                <div class="col" v-for='restaurant of dataArr'>
+                    <div class="card">
+                        <!--should link to the restaurant details page-->
+                        <a :href=' "resturant_details.php#" + restaurant.name'> 
+                            <h5 class="card-title pt-3" v-bind:id='name'>
+                                {{restaurant.name}}
+                            </h5>
+                        </a>
+                        <div>
+                            <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
+                                {{reviewCount}} Reviews</h6>
+                            <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
+
+                        </div>
+
+                        <div class="card-body">
+                            <div class='text-center'>
+                                <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+
+                                <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+
+                                <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                
+                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                            </div>
+                            <div>
+                                <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
+                                    <b>Cuisine:</b> {{restaurant.cuisine}}
+                                </p>
+                                <p v-else style='margin-left: 20px; margin-top: 20px;'>
+                                    <b>Cuisine: -</b>
+                                </p>
+                            </div>
+                            <div>
+                                <!--resturant tags-->
+                                <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+    </div>
+      <!-- end of search bar activated -->
 
       <!--main content-->
-      <div class='container p-5 mt-4' id='app' style='background-color: rgb(250, 250, 250);'>
+      <div class='container p-5 mt-4' id='app' style='background-color: rgb(250, 250, 250);' v-else>
         <!--food images-->
         <div class='text-center'>
           <img v-bind:src='typeImg' height="200">
@@ -107,12 +226,24 @@ else {
 
         <!--location info-->
         <div class='location-info'>
-          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}})</h2>
+
+          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}}) </h2>
           <h4 class='display-6 fs-4'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
           <div>
             <!--resturant tags-->
             <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
+            <form action="">
+              <input type="hidden" id="address" :value="this.address">
+              <input type="hidden" id="rating" :value="this.rating">
+              <input type="hidden" id="description" :value="this.description">
+              <input type="text" id="addresstest" :value="this.address">
+              <input type="text" id="ratingtest" :value="this.rating">
+              <input type="text" id="descriptiontest" :value="this.description">
+              
+              <input type="submit" value="Add to Wishlist">
+            </form>
           </div>
+
 
 
           <div>
@@ -175,6 +306,7 @@ else {
       </div>
 
     </div>
+    </body>
 
     <script>
       const app = Vue.createApp({
@@ -207,14 +339,66 @@ else {
             haveHour: false,
             mapURL: '',
             description: '',
+            //newly added 
+            username : '',
+            key : '',
+            hasQuery : false,
           }
         },
         computed: {
           address() {
             return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode
+          },
+          
+          isUser(){
+            this.key = '<?=$key?>';
+            if(this.key == 1){
+                this.username = '<?= $username ?>'; 
+                  return true;
+            }
+              return false;
           }
         },
         methods () {
+          isQuery() {
+                    
+                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+                    url = encodeURI(url);
+
+                    console.log(url);
+                    console.log(this.queryName);
+
+                    axios.get(url)
+                    .then(response => {
+                        console.log(response.data);
+                        this.dataArr = response.data.data;
+                        console.log(this.dataArr);
+
+                        for (var restaurant of this.dataArr) {
+                           
+                            reviewsArr = restaurant.reviews; //an array of 5 objects
+                           
+
+                            var type = '';
+                            type = restaurant.type;
+                            //console.log(type);
+
+                            this.reviewCount = 0;
+
+                            for (let each of reviewsArr) {
+
+                                this.reviewCount += 1;
+                            }
+                            
+                            this.numResult += 1;
+                            this.hasQuery = true;
+                        }
+
+                    })
+                    .catch(error => {
+                        console.log(error.message)
+                    })
+                }
           // function initMap() {
           //   console.log(this.latitude, this.longitude)
           //   // The location of the restaurant
@@ -320,157 +504,6 @@ else {
       const vm = app.mount('#app');
     </script>
 
-<script>
-    var key = '<?=$key?>';
-
-    if (key == 0){
-        document.getElementById('navbar').innerHTML = `
-        <nav
-            id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
-                    ><img
-                        id="logo"
-                        style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
-
-                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
-
-                </form>
-            </div>
-        </nav>
-
-        <nav
-            id="bottom-navbar"
-            class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2
-                border-bottom border-dark
-            "
-        >
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
-                </div>
-                <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        > Guest
-                    </a>
-                    <ul
-                        class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="editprofile.php">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>`;
-    }
-    else{
-        var username = '<?= $username ?>';
-        document.getElementById('navbar').innerHTML = `
-        <nav
-            id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
-                    ><img
-                        id="logo"
-                        style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                </form>
-            </div>
-        </nav>
-
-        <nav
-            id="bottom-navbar"
-            class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2
-                border-bottom border-dark
-            "
-        >
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
-                </div>
-                <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        > Hi, ${username}
-                    </a>
-                    <ul
-                        class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="editprofile.php">Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="login.php">Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>`
-    }
-    </script>
 
 
     <!-- <script 
@@ -482,7 +515,7 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"></script>
-  </body>
+  
 
   <!-- <script 
   defer

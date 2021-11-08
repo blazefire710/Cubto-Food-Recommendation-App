@@ -599,22 +599,22 @@ a.text-white:focus {
 .card-profile-stats {
   padding: 1rem 0;
 }
-
+/* 
 .card-profile-stats>div {
   margin-right: 1rem;
   padding: .875rem;
   text-align: center;
-}
+} */
 
 .card-profile-stats>div:last-child {
   margin-right: 0;
 }
 
-.card-profile-stats>div .heading {
+/* .card-profile-stats>div .heading {
   font-size: 1.1rem;
   font-weight: bold;
   display: block;
-}
+} */
 
 .card-profile-stats>div .description {
   font-size: .875rem;
