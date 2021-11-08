@@ -7,15 +7,10 @@ if (!isset($_SESSION['login_details'])) {
     exit();
 }
 
-<<<<<<< HEAD
 $username =  $_SESSION['login_details'][0];
-=======
 
 //$username =  $_SESSION['login_details'][1];
 
-$username =  $_SESSION['login_details'][0];
-
->>>>>>> 3a3ba3687772f0744da1892a6d2e315a863c3bd2
 // var_dump($_SESSION); // works
 // var_dump($username); // works
 $new = new AccountDAO();

@@ -250,7 +250,7 @@ else {
                 <img src="Images/yuxiang.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">Yu Xiang</h6>
-                    <p class="card-text">Felicitations, malefactors I am endeavoring to misappropriate the formulary for the preparation of affordable comestibles. Who will join me?</p>
+                    <p class="card-text">You kinda smell, like a bakaa ⭐  Eren Jaeger</p>
                 </div>
                 </div>
             </div>

@@ -141,7 +141,7 @@ else {
                         class="dropdown-menu"
                         aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="editprofile.php">Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="wishlist.php"
