@@ -8,6 +8,7 @@ if (isset($_SESSION['login_details'])){
 }
 else {
     $key = 0;
+
 }
 
 ?>
@@ -225,12 +226,24 @@ else {
 
         <!--location info-->
         <div class='location-info'>
-          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}})</h2>
+
+          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}}) </h2>
           <h4 class='display-6 fs-4'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
           <div>
             <!--resturant tags-->
             <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
+            <form action="">
+              <input type="hidden" id="address" :value="this.address">
+              <input type="hidden" id="rating" :value="this.rating">
+              <input type="hidden" id="description" :value="this.description">
+              <input type="text" id="addresstest" :value="this.address">
+              <input type="text" id="ratingtest" :value="this.rating">
+              <input type="text" id="descriptiontest" :value="this.description">
+              
+              <input type="submit" value="Add to Wishlist">
+            </form>
           </div>
+
 
 
           <div>
