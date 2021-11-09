@@ -173,7 +173,7 @@ var_dump($wishlists); // works
 
     <body>
         <!--content after the search bar is triggered-->
-    <div class='container mt-4' v-if='hasQuery'>
+        <div class='container mt-4' v-if='hasQuery'>
             <!--cards-->
 
             <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
@@ -221,7 +221,7 @@ var_dump($wishlists); // works
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
 
     <!--wishlist page content-->
         <div class="container" v-else>
@@ -314,10 +314,12 @@ var_dump($wishlists); // works
                             </div>
                         </div>
                     </div> -->
-
+                </div>
             </div>
         </div>
-    </body>
+
+    
+</body>
 
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
