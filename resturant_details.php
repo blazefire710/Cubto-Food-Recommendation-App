@@ -12,11 +12,13 @@ if (isset($_SESSION['login_details'])){
       $restaurant_address = $_GET['address'];
       $new = new AccountDAO();
       $name = $_GET['name'];
+      $rating = $_GET['rating'];
+      $description = $_GET['description'];
       var_dump($name);
       $added = $new -> existing_wishlist($username,$name);
       var_dump($added);
       if ($added == false) {
-        $sthvariable = $new -> add_to_wishlist($username, $name, "Test Rating", $restaurant_address, "Test Description");
+        $sthvariable = $new -> add_to_wishlist($username, $name, $rating, $restaurant_address, $description);
         var_dump($sthvariable);
       }
       else {
@@ -108,6 +110,10 @@ else {
       display: block;
       width:100%;
       height:auto;
+      margin: auto;
+    }
+
+    #wishlistform {
       margin: auto;
     }
   </style>
@@ -261,26 +267,25 @@ else {
           <div>
             <!--resturant tags-->
             <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
-
-            <form method="GET">
-
+          </div>
+          
+          <div class = "center-block">
+            <form method="GET" >
               <input type="hidden" name="address" :value="this.address">
               <input type="hidden" name="name" :value="this.name">
               <input type="hidden" name="rating" :value="this.rating">
               <input type="hidden" name="description" :value="this.description">
-              <input type="text" id="addresstest" :value="this.address">
+              
+              <!-- <input type="text" id="addresstest" :value="this.address">
               <input type="text" id="ratingtest" :value="this.rating">
               <input type="text" id="descriptiontest" :value="this.description">
               <input type="text" id="nametest" :value="this.name">
-              <input type="text" id="cuisinetest" :value="this.cuisine">
+              <input type="text" id="cuisinetest" :value="this.cuisine"> -->
 
-              <input type="submit" value="Add to Wishlist" name="submit">
+              <input type="submit" class="btn-danger" value="Add to Wishlist" name="submit">
               <!-- <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button> -->
-
             </form>
           </div>
-
-
 
           <div>
             <div class='row'>

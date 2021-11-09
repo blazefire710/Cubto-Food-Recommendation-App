@@ -6,13 +6,21 @@ if (!isset($_SESSION['login_details'])) {
     header("Location: login.php");
     exit();
 }
+else {
+    $username =  $_SESSION['login_details'][0];
+    // var_dump($_SESSION); works
+    // var_dump($username); // works
+    $new = new AccountDAO();
+    $wishlists = $new -> retrieve_all_wishlist($username);
+    if (isset($_GET['submit'])) {
+        // var_dump($_GET['name']); // works
+        $restaurant_name = $_GET['name'];
+        $new = new AccountDAO();
+        $new -> delete_wishlist($username, $restaurant_name);
+    }
 
-$username =  $_SESSION['login_details'][0];
-// var_dump($_SESSION); works
-// var_dump($username); // works
-$new = new AccountDAO();
-$wishlists = $new -> retrieve_all_wishlist($username);
-var_dump($wishlists); // works
+}
+
 
 
 ?>
@@ -237,84 +245,87 @@ var_dump($wishlists); // works
                     <br><div id="wishlistdata2"></div>
                     <br><div id="wishlistdata3"></div>
 
-                    <!-- <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
+                        <!-- <div>
+                            <div class="card mb-3 ">
+                                <div class="row g-0">
+                                    <div class="col-md-4 restaurant-card">
+                                        <img
+                                            src="Images/sarnies.jpg"
+                                            class="img-fluid mh-100"
+                                            alt="..."
+                                        />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title">Restaurant Name Here</h2>
+                                            <br>
+                                            <h4 class="card-text">
+                                                Restaurant Address Here
+                                                ABC Street Block 53
+                                            </h4> 
+                                            <br>
+                                            <div class="card-text d-flex">
+                                                <p class="pink-text">500 reviews &nbsp</p>
+                                                <p class="pink-text">4.6 stars</p>
+                                            </div> 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="card mb-3 ">
+                                <div class="row g-0">
+                                    <div class="col-md-4 restaurant-card">
+                                        <img
+                                            src="Images/sarnies.jpg"
+                                            class="img-fluid mh-100"
+                                            alt="..."
+                                        />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title">Restaurant Name Here</h2>
+                                            <br>
+                                            <h4 class="card-text">
+                                                Restaurant Address Here
+                                                ABC Street Block 53
+                                            </h4> 
+                                            <br>
+                                            <div class="card-text d-flex">
+                                                <p class="pink-text">500 reviews &nbsp</p>
+                                                <p class="pink-text">4.6 stars</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-3 ">
+                                <div class="row g-0">
+                                    <div class="col-md-4 restaurant-card">
+                                        <img
+                                            src="Images/sarnies.jpg"
+                                            class="img-fluid mh-100"
+                                            alt="..."
+                                        />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title">Restaurant Name Here</h2>
+                                            <br>
+                                            <h4 class="card-text">
+                                                Restaurant Address Here
+                                                ABC Street Block 53
+                                            </h4> 
+                                            <br>
+                                            <div class="card-text d-flex">
+                                                <p class="pink-text">500 reviews &nbsp</p>
+                                                <p class="pink-text">4.6 stars</p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
-                    <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 ">
-                        <div class="row g-0">
-                            <div class="col-md-4 restaurant-card">
-                                <img
-                                    src="Images/sarnies.jpg"
-                                    class="img-fluid mh-100"
-                                    alt="..."
-                                />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Restaurant Name Here</h2>
-                                    <br>
-                                    <h4 class="card-text">
-                                        Restaurant Address Here
-                                        ABC Street Block 53
-                                    </h4> 
-                                    <br>
-                                    <div class="card-text d-flex">
-                                        <p class="pink-text">500 reviews &nbsp</p>
-                                        <p class="pink-text">4.6 stars</p>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -437,21 +448,27 @@ var_dump($wishlists); // works
                                     ${description}
                                 </h4><br>
                                 <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-7">
                                         <h5 class="card-text lead text-center fs-5">
                                             ${address}
                                         </h5>
                                         <br>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="card-text d-flex">
                                             <p class="pink-text lead text-center fs-5"> Overall Ratings: ${ratings}/5⭐ 
                                         </div> 
                                     </div>
-                                    <div class="col-3 lead text-center fs-5">
-                                        Type: ${type}
-                                    </div>
+
                                 </div>
+
+                                <form method="GET">
+                                    <input type="hidden" name="address" value="${address}">
+                                    <input type="hidden" name="name" value="${name}">
+                                    <input type="text" id="nametest" value="${name}">
+                                    <input type="submit" class="btn-danger" value="Delete from Wishlist" name="submit">
+                                </form>
+
                             </div>
                         </div>
                     </div>
