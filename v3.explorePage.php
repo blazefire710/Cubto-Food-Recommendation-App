@@ -8,6 +8,9 @@ if (isset($_SESSION['login_details'])){
 else {
     $key = 0;
 }
+// $key = 0;
+// $key_false = 0; 
+// $username = 'celeste'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
