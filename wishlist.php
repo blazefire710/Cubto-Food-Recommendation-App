@@ -53,6 +53,41 @@ var_dump($wishlists); // works
                 height: 260px;
                 width: 396px;
             }
+
+            .nav-link {
+                color: black;
+                padding-top: 10px;  
+            }
+            
+            .btn-outline-info {
+                color: rgb(238, 125, 144);
+                border: 1px solid rgb(238, 125, 144);
+            }
+
+            .btn-outline-info:hover {
+                background-color: rgb(238, 125, 144);
+                border: 1px solid rgb(238, 125, 144);
+                color: white;
+            }
+
+            h5 {
+                color: rgb(238, 125, 144);
+                margin-left: 20px;
+            }
+
+            .tag-btn {
+                background-color: rgb(238, 125, 144);
+                border: 1px solid rgb(238, 125, 144);
+                color: white;
+                margin: 0px 20px 10px 20px;
+                border-radius: 20px;
+                font-size: 14px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
         </style>
     </head>
 
