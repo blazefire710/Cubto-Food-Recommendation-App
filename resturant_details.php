@@ -1,15 +1,39 @@
 <?php
 session_start();
+require_once("ConnectionManager.php");
+
 if (isset($_SESSION['login_details'])){
     $key = 1;
     $login_details = $_SESSION['login_details'];
     $username = $login_details[0];
+
+    if (isset($_GET['submit'])) {
+      var_dump($_GET['address']);
+      $restaurant_address = $_GET['address'];
+      $new = new AccountDAO();
+      $added = $new -> existing_wishlist($username,"Test Name 2");
+      var_dump($added);
+      if ($added == false) {
+        $sthvariable = $new -> add_to_wishlist($username, "Test Name 2", "Test Rating", $restaurant_address, "Test Description");
+        var_dump($sthvariable);
+      }
+      else {
+        $alr_added = "already in wishlist";
+        var_dump($alr_added);
+      }
+      // need to account for 1x click only, cannot add 2x
+    }
 
 }
 else {
     $key = 0;
 
 }
+
+// var_dump($_GET);
+// var_dump($_SESSION);
+
+// if (isset($_SESSION[]))
 
 ?>
 <!DOCTYPE html>
@@ -232,15 +256,22 @@ else {
           <div>
             <!--resturant tags-->
             <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
-            <form action="">
-              <input type="hidden" id="address" :value="this.address">
+
+            <form method="GET">
+
+              <input type="hidden" id="address" name="address" :value="this.address">
+              <input type="hidden" id="name" :value="this.name">
               <input type="hidden" id="rating" :value="this.rating">
               <input type="hidden" id="description" :value="this.description">
               <input type="text" id="addresstest" :value="this.address">
               <input type="text" id="ratingtest" :value="this.rating">
               <input type="text" id="descriptiontest" :value="this.description">
-              
-              <input type="submit" value="Add to Wishlist">
+              <input type="text" id="nametest" :value="this.name">
+              <input type="text" id="cuisinetest" :value="this.cuisine">
+
+              <!-- <input type="submit" value="Add to Wishlist"> -->
+              <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button>
+
             </form>
           </div>
 
