@@ -9,6 +9,11 @@ if (isset($_SESSION['login_details'])){
 else {
     $key = 0;
 }
+
+$key = 1;
+$key_false = 0; 
+$username = 'celeste'; 
+$hi = '';
 ?>
 
 <!DOCTYPE html>
@@ -24,19 +29,19 @@ else {
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="font.css">
+        <!-- <link rel="stylesheet" href="font.css"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!--bootstrap css-->
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> 
 
         <!--axios-->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <!--Vue-->
-        <!-- <script src="https://unpkg.com/vue@next"></script> -->
+       <script src="https://unpkg.com/vue@next"></script>
 
 
         <style>
@@ -57,9 +62,9 @@ else {
                 right: 0;
            
                 z-index: -1;   
-} */
+        } */
 
-body {
+        body {
             background-image: url("Images/BackGround.png");
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -118,7 +123,7 @@ body {
         cursor: pointer;
         }
 
-        /* .nav-link {
+        .nav-link {
                 color: black;
                 padding-top: 10px;  
             }
@@ -152,10 +157,7 @@ body {
                 text-decoration: none;
             }
 
-            .navbar-brand:hover{
-                color: rgb(238, 125, 144);
-                
-            } */
+            
             a.action {
                 background:rgb(247, 104, 130) ;
                 color: white;
@@ -181,24 +183,22 @@ body {
             }
 
     </style>
-
+</head>
 
 
     <body>
         <div id='app'>
             <div id='navbar'>
-            <!-- Insert Navbar here -->
-            <nav
+                <!-- Insert Navbar here -->
+                <nav
                 id="top-navbar"
-                class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-            >
+                class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="updated_explore.html"
+                    <a class="navbar-brand" href="v3.explorePage.php"
                         ><img
                             id="logo"
                             style="width: 150px; height: auto"
-                            src="Images/Logo photo.PNG"
-                    /></a>
+                            src="Images/Logo photo.PNG"/></a>
                     <!-- insert icon here -->
                     <form class="d-flex w-75">
                         <input
@@ -207,172 +207,121 @@ body {
                             placeholder="Search Places"
                             aria-label="Search"
                             v-model='queryName'
-                            v-on:change.prevent='isQuery()'
-                        />
-                        <button class="btn" type="submit" v-on:click.prevent='isQuery()'>🔍</button>
+                            v-on:change.prevent='isQuery()'/>
+                        <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
 
-                        <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                        <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
+                        <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                        <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
 
                     </form>
-</head>
-
-<body>
-    <header>
-        <nav
-            id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
-            <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
-                    ><img
-                        id="logo"
-                        style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
-
-                    <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
-
-                </form>
-            </div>
-        </nav>
-
-        <nav
-            id="bottom-navbar"
-            class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2
-                border-bottom border-dark
-            "
-        >
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
-                </div>
-            </nav>
-
-            <nav
-                id="bottom-navbar"
-                class="
-                    navbar navbar-expand-lg navbar-light
-                    bg-light
-                    pb-2
-                    border-bottom border-dark
-                "
-            >
-                <div class="container-fluid">
-                    <div class="">
-                        <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                        <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                        <a class="navbar-brand" href="about.php">About us</a>
                     </div>
-                    <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-if='isUser'> Hi, {{username}}
-                    </a>
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-else> Guest
-                    </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink"
-                        >
-                            <li>
-                                <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="wishlist.php"
-                                    >Wishlist</a
-                                >
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="login.php">Log Out</a>
-                            </li>
-                        </ul>
+                </nav>
+
+                <nav
+                    id="bottom-navbar"
+                    class="
+                        navbar navbar-expand-lg navbar-light
+                        bg-light
+                        pb-2
+                        border-bottom border-dark
+                    ">
+                    <div class="container-fluid">
+                        <div class="">
+                            <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                            <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                            <a class="navbar-brand" href="about.php">About us</a>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle text-dark"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                v-if='isUser'> Hi, {{username}}
+                            </a>
+                            <a
+                                class="nav-link dropdown-toggle text-dark"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                v-else> Guest
+                            </a>
+                            <ul
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="editprofile.php">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="wishlist.php"
+                                        >Wishlist</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav> 
             </div>
     
             <!--content after the search bar is triggered-->
-            <div class='container mt-4' v-if='hasQuery'>
+            <div class='container mt-4'>
+                <!-- removed v-if='hasQuery' and it works-->
             <!--cards-->
 
-            <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
-                <div class="col" v-for='restaurant of dataArr'>
-                    <div class="card">
-                        <!--should link to the restaurant details page-->
-                        <a :href=' "resturant_details.php#" + restaurant.name'> 
-                            <h5 class="card-title pt-3" v-bind:id='name'>
-                                {{restaurant.name}}
-                            </h5>
-                        </a>
-                        <div>
-                            <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
-                                {{reviewCount}} Reviews</h6>
-                            <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
+                <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+                    <div class="col" v-for='restaurant of dataArr'>
+                        <div class="card">
+                            <!--should link to the restaurant details page-->
+                            <a :href=' "resturant_details.php#" + restaurant.name'> 
+                                <h5 class="card-title pt-3" v-bind:id='name'>
+                                    {{restaurant.name}}
+                                </h5>
+                            </a>
+                            <div>
+                                <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
+                                    {{reviewCount}} Reviews</h6>
+                                <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
+
+                            </div>
+
+                            <div class="card-body">
+                                <div class='text-center'>
+                                    <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+
+                                    <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+
+                                    <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+                                    
+                                    <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                            </div>
+                            <div>
+                                    <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
+                                        <b>Cuisine:</b> {{restaurant.cuisine}}
+                                    </p>
+                                    <p v-else style='margin-left: 20px; margin-top: 20px;'>
+                                        <b>Cuisine: -</b>
+                                    </p>
+                            </div>
+                            <div>
+                                    <!--resturant tags-->
+                                    <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
+                            </div>
 
                         </div>
 
-                        <div class="card-body">
-                            <div class='text-center'>
-                                <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
 
-                                <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
-
-                                <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
-                                
-                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
-                            </div>
-                            <div>
-                                <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
-                                    <b>Cuisine:</b> {{restaurant.cuisine}}
-                                </p>
-                                <p v-else style='margin-left: 20px; margin-top: 20px;'>
-                                    <b>Cuisine: -</b>
-                                </p>
-                            </div>
-                            <div>
-                                <!--resturant tags-->
-                                <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
-                            </div>
-
-                            </div>
-
-
-                            </div>
-                        </div>
                     </div>
+                </div>
+                        
             </div>
             <!--content end of the search bar triggered-->
 
             <!--whatsNext page content-->
-            <div class="container mt-3 my-2 " v-else>
+
+            <!-- <div class="container mt-3 my-2 " v-else>
                 <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color: rgb(248, 246, 246);">
                     <h3 class= "text-center mt-5">Our trusty randomizer helps you decide</h3>
                     <h3 class = "text-center">your next eating destination!</h3>
@@ -384,25 +333,31 @@ body {
                                 window.open("results2.php", "_blank").focus()
                             };
                         </script>
+                    </div> -->
+
+            <!-- removed v-else and it works-->
+            <div class="container " style="width: 900px;">
+            
+                <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color:#FFF0F5;">
+                    <h2 class= "text-center mt-3 " style="font-weight: 600;">Our trusty randomiser helps you decide</h3>
+                    <h2 class = "text-center" style="font-weight: 600;">your next eating destination!</h3>
+                    <div class="col-md-12 text-center mt-5">
+                        <a class="action py-3 px-5 d-inline-block" id="Randresult" >
+                            Just tell me what to eat now!
+                            <i class="fas fa-chevron-right ml-3"></i>
+                        </a>
+                        <!-- <script type="text/javascript"> -->
+                        <script>
+                            document.getElementById("Randresult").onclick = function () {
+                                // location.href = "whatsnext.html";
+                                window.open("results2.php", "_blank").focus()
+                            };
+                        </script>
                     </div>
-
-
-    <div class="container " style="width: 900px;">
-        <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color:#FFF0F5;">
-            <h2 class= "text-center mt-3 " style="font-weight: 600;">Our trusty randomiser helps you decide</h3>
-            <h2 class = "text-center" style="font-weight: 600;">your next eating destination!</h3>
-            <div class="col-md-12 text-center mt-5">
-                <a class="action py-3 px-5 d-inline-block" id="Randresult" >
-                    Just tell me what to eat now!
-                    <i class="fas fa-chevron-right ml-3"></i>
-                </a>
-                <script type="text/javascript">
-                    document.getElementById("Randresult").onclick = function () {
-                        // location.href = "whatsnext.html";
-                        window.open("results2.php", "_blank").focus()
-                    };
-                </script>
+                </div>
             </div> 
+        </div>
+    </body>
 
             <!-- <hr style="height:2px; width:100%; border-width:0;"> -->
 
@@ -435,14 +390,7 @@ body {
                 </div>
 
         -->
-            </div>
-
-            <br>
-    
-      
-
-
-        <br>
+            
        
         <!-- <div class="row ">
             <div class= "col-2 ms-2 mt-2">
@@ -462,8 +410,6 @@ body {
             </div>
         </div> -->
 
-
-            <br><br>
 <!-- 
                     <div class="row justify-content-center ">
                         <div class= "col-2 ms-2">
@@ -495,17 +441,11 @@ body {
                                     document.getElementById("resultfiltered").onclick = function () {
                         // location.href = "whatsnext.html";
                                         window.open("resultsFiltered.php", "_blank").focus()
-                                    }; -->
-                                </script>
-                            </div>
-        
-                        </div>
-
-                    <br>           
-                </div>
+                                    }; 
+                                </script> -->
+               
                 <!--might have 2 /div missing need to double check again -->
-        </div>
-    </body>           
+               
 
     <script>
         const app = Vue.createApp({
