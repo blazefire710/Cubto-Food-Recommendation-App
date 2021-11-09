@@ -7,18 +7,12 @@ if (!isset($_SESSION['login_details'])) {
     exit();
 }
 
-<<<<<<< Updated upstream
 $username =  $_SESSION['login_details'][0];
-=======
->>>>>>> Stashed changes
 
-$username =  $_SESSION['login_details'][1];
+// $username =  $_SESSION['login_details'][1];
 
-<<<<<<< Updated upstream
-=======
 // $username =  $_SESSION['login_details'][0];
 
->>>>>>> Stashed changes
 // var_dump($_SESSION); // works
 // var_dump($username); // works
 $new = new AccountDAO();
