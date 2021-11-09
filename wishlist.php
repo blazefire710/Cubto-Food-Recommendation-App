@@ -102,85 +102,76 @@ else {
         <div id="app">
             
         <!-- Insert Nav Bar here -->
-        <div id="navbar">
-            <nav
-                id="top-navbar"
-                class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-            >
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="v3.explorePage.php"
-                        ><img
-                            id="logo"
-                            style="width: 150px; height: auto"
-                            src="Images/Logo photo.PNG"/></a>
-                    <!-- insert icon here -->
-                    <form class="d-flex w-75">
-                        <input
-                            class="form-control"
-                            type="search"
-                            placeholder="Search Places"
-                            aria-label="Search"
-                            v-model='queryName'
-                            v-on:change.prevent='isQuery()'/>
-                        <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
+            <div id="navbar">
+                <nav
+                    id="top-navbar"
+                    class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+                >
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="v3.explorePage.php"
+                            ><img
+                                id="logo"
+                                style="width: 150px; height: auto"
+                                src="Images/Logo photo.PNG"/></a>
+                        <!-- insert icon here -->
+                        <form class="d-flex w-75">
+                            <input
+                                class="form-control"
+                                type="search"
+                                placeholder="Search Places"
+                                aria-label="Search"
+                                v-model='queryName'
+                                v-on:change.prevent='isQuery()'/>
+                            <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
 
-                        <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                        <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                            <a href="login.php" class="btn btn-outline-info me-2">Login</a>
+                            <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
 
-                    </form>
-                </div>
-            </nav>
-
-            <nav
-                id="bottom-navbar"
-                class="
-                    navbar navbar-expand-lg navbar-light
-                    bg-light
-                    pb-2
-                    border-bottom border-dark
-                ">
-                <div class="container-fluid">
-                    <div class="">
-                        <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                        <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
-                        <a class="navbar-brand" href="about.php">About us</a>
+                        </form>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle text-dark"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            v-if='isUser'> Hi, {{username}}
-                        </a>
-                        <a
-                            class="nav-link dropdown-toggle text-dark"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            v-else> Guest
-                        </a>
-                        <ul
-                            class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="profile.php">Profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="wishlist.php"
-                                    >Wishlist</a>
-                            </li>
-                        </ul>
+                </nav>
+
+                <nav
+                    id="bottom-navbar"
+                    class="
+                        navbar navbar-expand-lg navbar-light
+                        bg-light
+                        pb-2
+                        border-bottom border-dark
+                    ">
+                    <div class="container-fluid">
+                        <div class="">
+                            <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                            <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
+                            <a class="navbar-brand" href="about.php">About us</a>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle text-dark"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"> Hi, {{username}}
+                            </a>
+                            
+                            <ul
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="profile.php">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="wishlist.php"
+                                        >Wishlist</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav> 
-        </div>
+                </nav> 
+            </div>
         
-        <p>{{username}}</p>
+        <!-- <p>{{username}}</p> -->
 
         <!--main content-->
     
@@ -509,17 +500,10 @@ else {
             }
         },
         computed : {
-            // username(){
-            //     this.username = '<?= $username ?>'; 
-            //     }
-            isUser(){
-                this.key = '<?=$key?>';
-                if(this.key == 1){
-                    this.username = '<?= $username ?>'; 
-                    return true;
+            username(){
+                this.username = '<?= $username ?>'; 
                 }
-                return false;
-            }
+               
         },
         
         methods: {
