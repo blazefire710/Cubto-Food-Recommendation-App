@@ -282,6 +282,7 @@ var_dump($wishlists); // works
 
             </div>
         </div>
+    </body>
 
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -335,17 +336,12 @@ var_dump($wishlists); // works
                     hasQuery : false,
                 }
             },
-            // computed : {
-            //     isUser(){
-            //         this.key = '<?=$key?>';
-            //         if(this.key == 1){
-            //             this.username = '<?= $username ?>'; 
-            //             return true;
-            //         }
-            //         return false;
-            //     }
-            // },
-           
+            computed : {
+                username(){
+                    this.username = '<?= $username ?>'; 
+                    }
+            },
+            
             methods: {
                 isQuery() {
                     
@@ -406,6 +402,7 @@ var_dump($wishlists); // works
                 customer_service = wish[6]
                 cleanliness = wish[7]
                 description = wish[8]
+                
 
                 // wishlistdata2.innerHTML += `
                 //     <h1>${name}</h1>
@@ -509,5 +506,5 @@ var_dump($wishlists); // works
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 
-    </body>
+    
 </html>
