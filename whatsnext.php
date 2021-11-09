@@ -30,13 +30,13 @@ else {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!--bootstrap css-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> -->
 
         <!--axios-->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
         <!--Vue-->
-        <script src="https://unpkg.com/vue@next"></script>
+        <!-- <script src="https://unpkg.com/vue@next"></script> -->
 
 
         <style>
@@ -118,7 +118,7 @@ body {
         cursor: pointer;
         }
 
-        .nav-link {
+        /* .nav-link {
                 color: black;
                 padding-top: 10px;  
             }
@@ -155,7 +155,7 @@ body {
             .navbar-brand:hover{
                 color: rgb(238, 125, 144);
                 
-            }
+            } */
             a.action {
                 background:rgb(247, 104, 130) ;
                 color: white;
