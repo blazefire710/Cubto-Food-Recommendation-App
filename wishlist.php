@@ -91,6 +91,9 @@ else {
                 text-decoration: none;
             }
 
+            #deleteform {
+                margin: auto;
+            }
         </style>
     </head>
 
@@ -461,13 +464,13 @@ else {
                                     </div>
 
                                 </div>
-
-                                <form method="GET">
-                                    <input type="hidden" name="address" value="${address}">
-                                    <input type="hidden" name="name" value="${name}">
-                                    <input type="text" id="nametest" value="${name}">
-                                    <input type="submit" class="btn-danger" value="Delete from Wishlist" name="submit">
-                                </form>
+                                <div id='deleteform' class='text-center'>
+                                    <form method="GET">
+                                        <input type="hidden" name="address" value="${address}">
+                                        <input type="hidden" name="name" value="${name}">
+                                        <input type="submit" class="btn-danger" value="Delete from Wishlist" name="submit">
+                                    </form>
+                                </div>
 
                             </div>
                         </div>
