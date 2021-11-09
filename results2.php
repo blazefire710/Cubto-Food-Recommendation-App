@@ -84,6 +84,36 @@ else {
   box-shadow: 0 8px 15px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
 }
 
+a.action {
+    background:rgb(247, 104, 130) ;
+    color: white;
+    letter-spacing: 2px;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0px 0px 50px 0px rgba(230, 37, 164, 0.65);
+    transition: all 0.5s ease-in-out;
+}
+
+a.action:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 50px 0px rgba(230, 37, 164, 1);
+}
+
+.card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+}
+
+.card:hover{
+     transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
 </style>
 </head>
 
@@ -390,7 +420,7 @@ else {
     </script>
 
 <div class= "col mt-1 text-center">
-    <button type="button" class="btn btn-primary mt-3 mb-3 " id="rand" onclick= "refreshPage()">Randomise again!</button>
+    <a class="action py-3 px-5 d-inline-block mt-4 mb-3" id="rand" onclick= "refreshPage()">Randomise again!</a>
     <script type="text/javascript">
         function refreshPage(){
             window.location.reload();
