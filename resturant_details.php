@@ -11,15 +11,20 @@ if (isset($_SESSION['login_details'])){
       var_dump($_GET['address']);
       $restaurant_address = $_GET['address'];
       $new = new AccountDAO();
-      $added = $new -> existing_wishlist($username,"Test Name 2");
+      $name = $_GET['name'];
+      var_dump($name);
+      $added = $new -> existing_wishlist($username,$name);
       var_dump($added);
       if ($added == false) {
-        $sthvariable = $new -> add_to_wishlist($username, "Test Name 2", "Test Rating", $restaurant_address, "Test Description");
+        $sthvariable = $new -> add_to_wishlist($username, $name, "Test Rating", $restaurant_address, "Test Description");
         var_dump($sthvariable);
       }
       else {
-        $alr_added = "already in wishlist";
-        var_dump($alr_added);
+        $alr_added_string = "already in wishlist";
+        var_dump($alr_added_string);
+        $alr_added = true;
+        
+
       }
       // need to account for 1x click only, cannot add 2x
     }
@@ -259,18 +264,18 @@ else {
 
             <form method="GET">
 
-              <input type="hidden" id="address" name="address" :value="this.address">
-              <input type="hidden" id="name" :value="this.name">
-              <input type="hidden" id="rating" :value="this.rating">
-              <input type="hidden" id="description" :value="this.description">
+              <input type="hidden" name="address" :value="this.address">
+              <input type="hidden" name="name" :value="this.name">
+              <input type="hidden" name="rating" :value="this.rating">
+              <input type="hidden" name="description" :value="this.description">
               <input type="text" id="addresstest" :value="this.address">
               <input type="text" id="ratingtest" :value="this.rating">
               <input type="text" id="descriptiontest" :value="this.description">
               <input type="text" id="nametest" :value="this.name">
               <input type="text" id="cuisinetest" :value="this.cuisine">
 
-              <!-- <input type="submit" value="Add to Wishlist"> -->
-              <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button>
+              <input type="submit" value="Add to Wishlist" name="submit">
+              <!-- <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button> -->
 
             </form>
           </div>
@@ -378,7 +383,7 @@ else {
         },
         computed: {
           address() {
-            return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode
+            return this.streetName + " " + this.block + " " + this.buildingName + " " + "Singapore" + " " + this.postalcode;
           },
           
           isUser(){
@@ -390,7 +395,7 @@ else {
               return false;
           }
         },
-        methods () {
+        methods: {
           isQuery() {
                     
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
@@ -487,16 +492,16 @@ else {
 
               this.reviewsArr = restaurant.reviews; //an array of 5 objects
 
-              this.latitude = restaurant.location.latitude //Coordinate data for google maps API to load
-              this.longitude = restaurant.location.longitude
+              this.latitude = restaurant.location.latitude; //Coordinate data for google maps API to load
+              this.longitude = restaurant.location.longitude;
               this.mrt = restaurant.nearestMrtStation;
-              this.mapURL += "https://maps.googleapis.com/maps/api/staticmap?center="
+              this.mapURL += "https://maps.googleapis.com/maps/api/staticmap?center=";
 
-              this.mapURL += this.latitude + "," + this.longitude
-              this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C"
-              this.mapURL += this.latitude + "," + this.longitude
-              this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4"
-              console.log(this.mapURL)
+              this.mapURL += this.latitude + "," + this.longitude;
+              this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C";
+              this.mapURL += this.latitude + "," + this.longitude;
+              this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4";
+              console.log(this.mapURL);
 
 
 
@@ -528,7 +533,7 @@ else {
 
             })
             .catch(error => {
-              console.log(error.message)
+              console.log(error.message);
             })
         },
       })
