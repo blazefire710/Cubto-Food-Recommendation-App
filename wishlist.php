@@ -426,7 +426,7 @@ else {
             wishlistdata3.innerHTML += `
                 <div class="card mb-3 ">
                     <div class="row g-0">
-                        <div class="col-md-4 restaurant-card">
+                        <div class="col-md-4 restaurant-card d-flex align-items-center">
                             <img
                                 src='${imageSrc}'
                                 class="img-fluid"
