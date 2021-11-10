@@ -152,7 +152,7 @@ else {
                                 id="navbarDropdownMenuLink"
                                 role="button"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"> Hi, {{username}}
+                                aria-expanded="false"> Hi, {{user}}
                             </a>
                             
                             <ul
@@ -500,10 +500,11 @@ else {
             }
         },
         computed : {
-            username(){
-                this.username = '<?= $username ?>'; 
-                }
-               
+            user(){
+                return '<?= $username ?>';
+            }
+                // this.username = '<?= $username ?>'; 
+                // return this.username;
         },
         
         methods: {
