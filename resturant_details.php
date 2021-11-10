@@ -273,7 +273,7 @@ else {
               <input type="text" id="descriptiontest" :value="this.description">
               <input type="text" id="nametest" :value="this.name">
               <input type="text" id="cuisinetest" :value="this.cuisine"> -->
-              <input type="submit" class="btn-danger" value="Add to Wishlist" name="submit">
+              <input type="submit" class="btn-danger rounded" value="Add to Wishlist" name="submit">
               <!-- <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button> -->
           </form>
         </div>

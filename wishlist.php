@@ -459,7 +459,7 @@ else {
                                     <form method="GET">
                                         <input type="hidden" name="address" value="${address}">
                                         <input type="hidden" name="name" value="${name}">
-                                        <input type="submit" class="btn-danger" value="Delete from Wishlist" name="submit">
+                                        <input type="submit" class="btn-danger rounded" value="Delete from Wishlist" name="submit">
                                     </form>
                                 </div>
 
