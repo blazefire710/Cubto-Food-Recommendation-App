@@ -6,6 +6,69 @@ if (!isset($_SESSION['login_details'])) {
 }
 else{
     $data = $_SESSION['login_details'];
+    $username = $data[0];
+    $password = $data[1];
+    $email = $data[2];
+    $first_name = $data[3];
+    $last_name = $data[4];
+    $gender = $data[7];
+    $birthday = $data[8];
+    $profile_image = $data[9];
+    $bio = $data[10];
+
+    if(isset($_POST['signup'])){
+        
+
+        // -----------------------------------------------------------------------------------------------------------
+        $image = $_FILES['profile_page'];
+        $fileName = $_FILES['profile_page']['name'];
+        $fileTmpName = $_FILES['profile_page']['tmp_name'];
+        $fileSize = $_FILES['profile_page']['size'];
+        $fileError = $_FILES['profile_page']['error'];
+        $fileType = $_FILES['profile_page']['type'];
+
+
+        $fileExt = explode('.',$fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        $allowed = ['jpg','jpeg','png'];
+        // ------------------------------------------ UPLOAD PICTURE RESTRICTIONS -----------------------------------
+        if (in_array($fileActualExt,$allowed)){
+            if($fileError == 0) {
+                if($fileSize < 50000000){
+                    $fileNameNew = uniqid('',true) . "." . $fileActualExt;
+                    // var_dump($fileNameNew);
+                    $fileDestination = "uploads/" . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                }else{
+                    $message = "Your file is too big";
+                }
+            }
+            else{
+                $message = "There was an error uploading your file!";
+            }
+        }
+        else{
+            $message= "You cannot upload files of this type!";
+        }        
+        
+        $gender = $_POST['gender'];
+        $bio = $_POST['bio'];
+        $first_name = $_POST['first_name'];
+        $last_name =$_POST['last_name'];
+        $birthday = $_POST['birthday'];
+        $profile_image = $fileNameNew;
+
+        var_dump($profile_image);
+        var_dump($username);
+        var_dump($email);
+        var_dump($gender);
+        var_dump($bio);
+        var_dump($first_name);
+        var_dump($last_name);
+        var_dump($birthday);
+
+
+    }
 }
 
 ?>
@@ -45,6 +108,20 @@ else{
 
     <!-- Top Navigation Bar -->
     <header>
+        <div id='app'>
+            <!-- INSERT V-IF TO DISPLAY THIS VUE PART -->
+            <nav id="top-navbar" class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="updated_explore.html"
+                        ><img
+                            id="logo"
+                            style="width: 150px; height: auto"
+                            src="Images/Logo photo.PNG"
+                    /></a>
+                    <!-- insert icon here -->
+                    <form class="d-flex w-75" >
+                        <input class="form-control" type="search" placeholder="Search Places" aria-label="Search"/>
+                        <button class="btn" type="submit">🔍</button>
 
         <nav
             id="top-navbar"
@@ -117,12 +194,108 @@ else{
                         </li>
                     </ul>
                 </div>
+            </nav>
+            <!-- ANOTHER V-ELSE HERE -->
+            <form method="POST" enctype="multipart/form-data">
+            <div class="container">
+                <div class="card shadow my-5">
+                    <div class=" card-body p-5" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRvjmzVbiNIHbNHTsL8HZwNBLuyYaOzZm8w&usqp=CAU); background-size: cover; background-position: center top;opacity:1;">
+                    <!-- INSERT YOUR PAGE CONTENT HERE -->
+                        <div style="margin-bottom:50px">
+                            <h1 class="fw-light text-center mb-6">
+                                Manage Account
+                            </h1>
+                        </div>          
             </div>
         </nav>
 </header>
 
 <body>
 
+                            <div class="col-md col-md bg-white rounded-3">
+                                <div class="d-flex justify-content-between" style="margin-top:20px">
+                                    <div class="fs-4 mx-2" id= "account_title" ></div>
+                                    
+                                </div>
+                                <hr>
+                                <div class="bg-light rounded-3 m-2">
+                                    <div class="fw-light fs-6" style="color:grey; text-align:center">User information<br>
+                                    <span class="form-text">These information will be visible to others</span>
+                                </div>
+                                    
+                                    <!-- Profile Image Row -->
+                                    <div class="row m-2">
+                                        <div class="col-12" style="text-align:center"><img id="profile" src="" alt="" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
+                                        <div class="col-4"></div>
+                                        <div class="col-4 mt-3">
+                                            <input type="file" class="form-control" id="inputGroupFile01" name="profile_page">
+                                            
+                                        </div>
+                                        <div class="col-4"></div>
+                                    </div>
+                                    <!-- 1st Row -->
+                                    <div class="row m-2">
+                                        <div class="col-sm-6">
+                                            <label for="username" class="form-label" >Username</label>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3">@</span>
+                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="" name="username" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="email" aria-describedby="basic-addon3" value="example@gmail.com" name="email" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 2nd Row  -->
+                                    <div class="row m-2">
+                                        <div class="col-sm-6">
+                                            <label for="first_name" class="form-label">First Name</label>
+                                            <div class="input-group mb-3">
+                                                
+                                                <input type="text" class="form-control" id="first_name" aria-describedby="basic-addon3" value="John" name="first_name">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="last_name" class="form-label">Last Name</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" id="last_name" aria-describedby="basic-addon3" value="Tan" name="last_name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 3rd Row  -->
+                                    <div class="row m-2 mb-4">
+                                        <div class="col-sm-6">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <div class="input-group mb-3">
+                                                
+                                                <select class="form-select" aria-label="Default select example" name="gender" id='gender'>
+                                                    <option selected>Prefer not to say</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="birthday" class="form-label">Birthday</label>
+                                            <div class="input-group mb-3">
+                                                <input type="date" class="form-control" id="birthday" aria-describedby="basic-addon3" value="" name="birthday">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mb-4">
+                                        <div class="col-sm-12">
+                                            <label for="gender" class="form-label">Bio</label>
+                                            <div class="input-group mb-3">
+                                                
+                                                <input type="text" class="form-control" id="bio" aria-describedby="basic-addon3" value="" name="bio" >
+                                            </div>
+                                        </div>
     <!-- Start of Edit Page Content  -->
 
 
@@ -219,6 +392,37 @@ else{
                     </div>
         </div>
 
+    </header>
+
+    <script>
+        var username = '<?= $username ?>';
+        var email = '<?= $email?>';
+        var first_name = '<?= $first_name?>';
+        var last_name = '<?= $last_name?>';
+        var gender = '<?= $gender?>';
+        var birthday = '<?= $birthday?>';
+        var profile_image = '<?= $profile_image?>';
+        var bio = '<?= $bio?>';
+        var password = '<?= $password ?>';
+
+
+
+        document.getElementById("username").value = username;
+        document.getElementById("email").value = email;
+        document.getElementById("first_name").value = first_name;
+        document.getElementById("last_name").value = last_name;
+        document.getElementById("gender").value = gender;
+        document.getElementById("birthday").value = birthday;
+        document.getElementById("bio").value = bio;
+        document.getElementById("account_title").innerText = first_name + "'s Account"
+
+        if (profile_image == "") {
+            document.getElementById("profile").src = "Images/" + "user.png";
+        }
+        else{
+            document.getElementById("profile").src = "uploads/" + profile_image;
+        }
+    </script>
 
 
 

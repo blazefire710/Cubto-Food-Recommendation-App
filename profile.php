@@ -238,7 +238,7 @@ else{
                             <div class=" order-sm-last col-md-2" >
                                 <div class="row ">
                                     <div class="col-1"></div>
-                                    <div class="col-10 align-content-center"style="text-align:center"><img id="profile" src="" alt="Missing Profile Image" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
+                                    <div class="col-10 align-content-center"style="text-align:center"><img id="profile" src="Images/user.png" alt="Missing Profile Image" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
                                     <div class="col-1"></div>
                                 </div>
                                 <div class="row" style="margin-top:30px;">
@@ -410,6 +410,7 @@ else{
         var gender = '<?= $gender?>';
         var birthday = '<?= $birthday?>';
         var profile_image = '<?= $profile_image?>';
+        console.log(profile_image);
         var bio = '<?= $bio?>';
 
         document.getElementById("username").value = username;

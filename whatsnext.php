@@ -10,10 +10,10 @@ else {
     $key = 0;
 }
 
-$key = 1;
-$key_false = 0; 
-$username = 'celeste'; 
-$hi = '';
+// $key = 1;
+// $key_false = 0; 
+// $username = 'celeste'; 
+// $hi = '';
 ?>
 
 <!DOCTYPE html>

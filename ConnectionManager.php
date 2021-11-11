@@ -157,6 +157,36 @@ if ($stmt->execute()) {
     }
   }
 
+  public function existing_wishlist($username, $restaurant_name){
+
+    $sql = "select * from wishlist where username= :username and restaurant_name= :restaurant_name";// change this sql to find the particular 
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+      $stmt =null;
+      $conn = null;
+      return true;
+    }
+    else{
+      $stmt = null;
+      $conn = null;
+      return false;
+    }
+  }
+
   public function verify_qna($username, $user_question, $user_answer){
 
     $sql = "SELECT * FROM user where username = :username";
@@ -269,6 +299,66 @@ if ($stmt->execute()) {
     $conn = null;
 
     return null;
+  }
+
+  // public function existing_wishlist($username, $restaurant_name){
+
+  //   $sql = "select * from wishlist where username= :username and restaurant_name= :restaurant_name";
+  //   $servername = 'localhost';
+  //   $root = 'root';
+  //   $db_pw = '';
+  //   $dbname = 'cubto';
+  //     // Create connection
+  //   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+  //   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  //   $stmt = $conn->prepare($sql);
+
+  //   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+  //   $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
+
+  //   $stmt->setFetchMode(PDO::FETCH_ASSOC);
+  //   $stmt->execute();
+
+  //   if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+  //     $stmt =null;
+  //     $conn = null;
+  //     return true;
+  //   }
+  //   else{
+  //     $stmt = null;
+  //     $conn = null;
+  //     return false;
+  //   }
+  // }
+
+  public function delete_wishlist($username, $restaurant_name){
+
+    $sql = "delete from wishlist where username= :username and restaurant_name= :restaurant_name";
+    $servername = 'localhost';
+    $root = 'root';
+    $db_pw = '';
+    $dbname = 'cubto';
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
+
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt->execute();
+
+    // if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+    //   $stmt =null;
+    //   $conn = null;
+    //   return true;
+    // }
+    // else{
+    //   $stmt = null;
+    //   $conn = null;
+    //   return false;
+    // }
   }
 
   public function change_password($username,$password_input){
