@@ -45,24 +45,6 @@ $hi = '';
 
 
         <style>
-            
-
-      
-
-            /* body::after {
-                content: "";
-                background: url(Images/BackGround.png);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-attachment: fixed;
-                opacity: 0.7;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-           
-                z-index: -1;   
-        } */
 
         body {
             background-image: url("Images/BackGround.png");
@@ -342,17 +324,16 @@ $hi = '';
                     <h2 class= "text-center mt-3 " style="font-weight: 600;">Our trusty randomiser helps you decide</h3>
                     <h2 class = "text-center" style="font-weight: 600;">your next eating destination!</h3>
                     <div class="col-md-12 text-center mt-5">
-                        <a class="action py-3 px-5 d-inline-block" id="Randresult" >
+                        <a class="action py-3 px-5 d-inline-block" id="Randresult" href="results2.php">
                             Just tell me what to eat now!
                             <i class="fas fa-chevron-right ml-3"></i>
                         </a>
-                        <!-- <script type="text/javascript"> -->
-                        <script>
+                        <!-- <script type= "text/javascript">
                             document.getElementById("Randresult").onclick = function () {
-                                // location.href = "whatsnext.html";
                                 window.open("results2.php", "_blank").focus()
                             };
                         </script>
+                         -->
                     </div>
                 </div>
             </div> 
