@@ -9,6 +9,7 @@ else{
     $_SESSION['login_details'] = $_SESSION['login_details'];
     $data = $_SESSION['login_details'];
     $username = $data[0];
+    $password = $data[1];
     $email = $data[2];
     $first_name = $data[3];
     $last_name = $data[4];
@@ -18,6 +19,56 @@ else{
     $bio = $data[10];
 
     if(isset($_POST['signup'])){
+        
+
+        // -----------------------------------------------------------------------------------------------------------
+        $image = $_FILES['profile_page'];
+        $fileName = $_FILES['profile_page']['name'];
+        $fileTmpName = $_FILES['profile_page']['tmp_name'];
+        $fileSize = $_FILES['profile_page']['size'];
+        $fileError = $_FILES['profile_page']['error'];
+        $fileType = $_FILES['profile_page']['type'];
+
+
+        $fileExt = explode('.',$fileName);
+        $fileActualExt = strtolower(end($fileExt));
+        $allowed = ['jpg','jpeg','png'];
+        // ------------------------------------------ UPLOAD PICTURE RESTRICTIONS -----------------------------------
+        if (in_array($fileActualExt,$allowed)){
+            if($fileError == 0) {
+                if($fileSize < 50000000){
+                    $fileNameNew = uniqid('',true) . "." . $fileActualExt;
+                    // var_dump($fileNameNew);
+                    $fileDestination = "uploads/" . $fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                }else{
+                    $message = "Your file is too big";
+                }
+            }
+            else{
+                $message = "There was an error uploading your file!";
+            }
+        }
+        else{
+            $message= "You cannot upload files of this type!";
+        }        
+        
+        $gender = $_POST['gender'];
+        $bio = $_POST['bio'];
+        $first_name = $_POST['first_name'];
+        $last_name =$_POST['last_name'];
+        $birthday = $_POST['birthday'];
+        $profile_image = $fileNameNew;
+
+        var_dump($profile_image);
+        var_dump($username);
+        var_dump($email);
+        var_dump($gender);
+        var_dump($bio);
+        var_dump($first_name);
+        var_dump($last_name);
+        var_dump($birthday);
+
 
     }
 }
@@ -104,7 +155,7 @@ else{
                             src="Images/Logo photo.PNG"
                     /></a>
                     <!-- insert icon here -->
-                    <form class="d-flex w-75">
+                    <form class="d-flex w-75" >
                         <input class="form-control" type="search" placeholder="Search Places" aria-label="Search"/>
                         <button class="btn" type="submit">🔍</button>
 
@@ -160,7 +211,7 @@ else{
                 </div>
             </nav>
             <!-- ANOTHER V-ELSE HERE -->
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
             <div class="container">
                 <div class="card shadow my-5">
                     <div class=" card-body p-5" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRvjmzVbiNIHbNHTsL8HZwNBLuyYaOzZm8w&usqp=CAU); background-size: cover; background-position: center top;opacity:1;">
@@ -175,7 +226,7 @@ else{
 
                             <div class="col-md col-md bg-white rounded-3">
                                 <div class="d-flex justify-content-between" style="margin-top:20px">
-                                    <div class="fs-4" id= "account_title" ></div>
+                                    <div class="fs-4 mx-2" id= "account_title" ></div>
                                     
                                 </div>
                                 <hr>
@@ -186,9 +237,12 @@ else{
                                     
                                     <!-- Profile Image Row -->
                                     <div class="row m-2">
-                                        <div class="col-12" style="text-align:center"><img id="profile" src="" alt="Missing Profile Image" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
+                                        <div class="col-12" style="text-align:center"><img id="profile" src="" alt="" class="" style="border-radius:50%;width:150px;height:150px;object-fit:cover;border: 5px solid rgb(238, 125, 144);"></div>
                                         <div class="col-4"></div>
-                                        <div class="col-4 mt-3"><input type="file" class="form-control" id="inputGroupFile01" name="profile_page"></div>
+                                        <div class="col-4 mt-3">
+                                            <input type="file" class="form-control" id="inputGroupFile01" name="profile_page">
+                                            
+                                        </div>
                                         <div class="col-4"></div>
                                     </div>
                                     <!-- 1st Row -->
@@ -197,7 +251,7 @@ else{
                                             <label for="username" class="form-label" >Username</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">@</span>
-                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="Htreborn" name="username" disabled>
+                                                <input type="text" class="form-control" id="username" aria-describedby="basic-addon3" value="" name="username" disabled>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -213,13 +267,13 @@ else{
                                             <label for="first_name" class="form-label">First Name</label>
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" class="form-control" id="first_name" aria-describedby="basic-addon3" value="John">
+                                                <input type="text" class="form-control" id="first_name" aria-describedby="basic-addon3" value="John" name="first_name">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="last_name" class="form-label">Last Name</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="last_name" aria-describedby="basic-addon3" value="Tan" >
+                                                <input type="text" class="form-control" id="last_name" aria-describedby="basic-addon3" value="Tan" name="last_name">
                                             </div>
                                         </div>
                                     </div>
@@ -230,13 +284,18 @@ else{
                                             <label for="gender" class="form-label">Gender</label>
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" class="form-control" id="gender" aria-describedby="basic-addon3" value="Male" >
+                                                <select class="form-select" aria-label="Default select example" name="gender" id='gender'>
+                                                    <option selected>Prefer not to say</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label for="birthday" class="form-label">Birthday</label>
                                             <div class="input-group mb-3">
-                                                <input type="date" class="form-control" id="birthday" aria-describedby="basic-addon3" value="">
+                                                <input type="date" class="form-control" id="birthday" aria-describedby="basic-addon3" value="" name="birthday">
                                             </div>
                                         </div>
                                     </div>
@@ -246,34 +305,15 @@ else{
                                             <label for="gender" class="form-label">Bio</label>
                                             <div class="input-group mb-3">
                                                 
-                                                <input type="text" class="form-control" id="bio" aria-describedby="basic-addon3" value="Male" >
+                                                <input type="text" class="form-control" id="bio" aria-describedby="basic-addon3" value="" name="bio" >
                                             </div>
                                         </div>
 
                                     </div>
 
-                                    <div class="row m-2 mb-4">
-                                        <div class="fw-light fs-6" style="color:grey; text-align:center">Account Particulars<br>
-                                        <span class="form-text"></span>
-                                    </div>
 
                                     <!-- 4th Row DETAILS -->
-                                    <div class="row m-2 mb-4">
-                                        <div class="col-sm-6">
-                                            <label for="gender" class="form-label">Old Password</label>
-                                            <div class="input-group mb-3">
-                                                
-                                                <input type="password" class="form-control" id="gender" aria-describedby="basic-addon3" value="Male" >
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="birthday" class="form-label">New Password</label>
-                                            <div class="input-group mb-3">
-                                                <input type="password" class="form-control" id="birthday" aria-describedby="basic-addon3" value="">
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+
                                     <div class="row">
                                         <button type="submit" class="btn btn-outline-info" name = "signup">Update</button>
                                     </div>
@@ -300,6 +340,9 @@ else{
         var birthday = '<?= $birthday?>';
         var profile_image = '<?= $profile_image?>';
         var bio = '<?= $bio?>';
+        var password = '<?= $password ?>';
+
+
 
         document.getElementById("username").value = username;
         document.getElementById("email").value = email;
@@ -307,11 +350,11 @@ else{
         document.getElementById("last_name").value = last_name;
         document.getElementById("gender").value = gender;
         document.getElementById("birthday").value = birthday;
-        document.getElementById("bio").innerText = bio;
+        document.getElementById("bio").value = bio;
         document.getElementById("account_title").innerText = first_name + "'s Account"
 
         if (profile_image == "") {
-            document.getElementById("profile").src = "Images/" + user.png;
+            document.getElementById("profile").src = "Images/" + "user.png";
         }
         else{
             document.getElementById("profile").src = "uploads/" + profile_image;
