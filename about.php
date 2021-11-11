@@ -224,6 +224,7 @@ else {
                 </div>
             </div>
     </div>
+    <!--content end of the search bar triggered-->
        
         <!--about us page content-->
     <div class="container mt-3" v-else>
