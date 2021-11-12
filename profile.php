@@ -255,7 +255,6 @@ else{
                             <div class="col-md-9 col-md-9 bg-white rounded-3">
                                 <div class="d-flex justify-content-between" style="margin-top:20px">
                                     <div class="fs-4" id= "account_title" ></div>
-                                    <div><a class="btn btn-outline-info me-2" href="editprofile.php">Edit Profile</a></div>
                                 </div>
                                 <hr>
                                 <div class="bg-light rounded-3 m-2">
