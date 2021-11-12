@@ -9,6 +9,11 @@ if (isset($_SESSION['login_details'])){
 else {
     $key = 0;
 }
+
+
+//$key = 1;
+// $key_false = 0; 
+//$username = 'celeste'; 
 ?>
 
 <!DOCTYPE html>
@@ -120,70 +125,70 @@ a.action:hover {
 <body>
     <div id="app">
         <div>
-        <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
-            style='border-bottom: 1px solid rgb(193, 190, 190);'>
-            <div class="container-fluid">
-                <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
-                        src="Images/Logo photo.PNG"></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" v-model='queryName' v-on:change='isQuery()'/>
-                    <button class="btn" type="submit" v-on:click='isQuery()' >
-                        🔍
-                    </button>
-                    <button type="button" class="btn btn-outline-info me-2">Login</button>
-                    <button type="button" class="btn btn-outline-info me-2">Signup</button>
+            <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
+                style='border-bottom: 1px solid rgb(193, 190, 190);'>
+                <div class="container-fluid">
+                    <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
+                            src="Images/Logo photo.PNG"></a>
+                    <!-- insert icon here -->
+                    <form class="d-flex w-75">
+                        <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" v-model='queryName' v-on:change.prevent='isQuery()'/>
+                        <button class="btn" type="submit" v-on:click.prevent='isQuery()' >
+                            🔍
+                        </button>
+                        <button type="button" class="btn btn-outline-info me-2">Login</button>
+                        <button type="button" class="btn btn-outline-info me-2">Signup</button>
 
-                </form>
-            </div>
-        </nav>
+                    </form>
+                </div>
+            </nav>
 
-        <nav id="bottom-navbar" class="
-                navbar navbar-expand-lg navbar-light
-                bg-light
-                pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
+            <nav id="bottom-navbar" class="
+                    navbar navbar-expand-lg navbar-light
+                    bg-light
+                    pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
+                <div class="container-fluid">
+                    <div class="">
+                        <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
+                        <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
+                        <a class="navbar-brand" href="about.php">About us</a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle text-dark"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            v-if='isUser'> Hi, {{username}}
+                        </a>
+                        <a
+                            class="nav-link dropdown-toggle text-dark"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            v-else> Guest
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">Favourites</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Edit Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Booking-History</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Log Out</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-if='isUser'> Hi, {{username}}
-                    </a>
-                    <a
-                        class="nav-link dropdown-toggle text-dark"
-                        href="#"
-                        id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-else> Guest
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="#">Favourites</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Booking-History</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            </nav>
         </div>
 
     <!--content after the search bar is triggered-->
