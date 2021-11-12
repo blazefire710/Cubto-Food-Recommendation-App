@@ -12,6 +12,9 @@ else {
     // var_dump($username); // works
     $new = new AccountDAO();
     $wishlists = $new -> retrieve_all_wishlist($username);
+    if (count($wishlists) == 0) {
+        $empty = true;
+    }
     if (isset($_GET['submit'])) {
         // var_dump($_GET['name']); // works
         $restaurant_name = $_GET['name'];
@@ -236,6 +239,9 @@ else {
                     <h1 class='text-center fs-1'><span id='username'></span>Wishlist</h1>
 
                     <div id="wishlistdata"></div>
+                    <div v-if="empty">
+                        Wishlist is currently empty!
+                    </div>
                     <br><div id="wishlistdata2"></div>
                     <br><div id="wishlistdata3"></div>
 
@@ -502,9 +508,12 @@ else {
         computed : {
             user(){
                 return '<?= $username ?>';
-            }
+            },
                 // this.username = '<?= $username ?>'; 
                 // return this.username;
+            empty(){
+                return '<?= $empty ?>';
+            }
         },
         
         methods: {
