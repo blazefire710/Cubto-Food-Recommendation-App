@@ -255,22 +255,14 @@ else {
       <!--main content-->
       <div class='container p-5 mt-4' id='app' style='background-color: rgb(250, 250, 250);' v-else>
         <!--food images-->
+        <div class="row">
+
+
+        </div>
         <div class='text-center'>
           <img v-bind:src='typeImg' height="200">
-        </div>
-
-        <!--location info-->
-        <div class='location-info'>
-
-          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}}) </h2>
-          <h4 class='display-6 fs-4'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
-          <div>
-            <!--resturant tags-->
-            <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
-          </div>
-          
-          <div class = "center-block">
-            <form method="GET" >
+          <br><br>
+          <form method="GET">
               <input type="hidden" name="address" :value="this.address">
               <input type="hidden" name="name" :value="this.name">
               <input type="hidden" name="rating" :value="this.rating">
@@ -281,11 +273,24 @@ else {
               <input type="text" id="descriptiontest" :value="this.description">
               <input type="text" id="nametest" :value="this.name">
               <input type="text" id="cuisinetest" :value="this.cuisine"> -->
-
-              <input type="submit" class="btn-danger" value="Add to Wishlist" name="submit">
+              <input type="submit" class="btn-danger rounded" value="Add to Wishlist" name="submit">
               <!-- <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button> -->
-            </form>
+          </form>
+        </div>
+
+        <!--location info-->
+        <div class='location-info'>
+          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}}) 
+            <span>
+
+            </span>
+          </h2>
+          <h4 class='display-6 fs-4'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
+          <div>
+            <!--resturant tags-->
+            <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
           </div>
+          
 
           <div>
             <div class='row'>

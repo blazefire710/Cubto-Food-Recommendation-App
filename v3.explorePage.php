@@ -27,65 +27,67 @@ else {
     <!--Vue-->
     <script src="https://unpkg.com/vue@next"></script>
 </head>
+
+<!-- There should only be one body tag, idk what is this -->
 <body>
 
-    <style>
-        body {
-            background-image: url("Images/BackGround.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
+<style>
+body {
+    background-image: url("Images/BackGround.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 
-        }
-
-        .nav-link {
-            color: black;
-            padding-top: 10px;
-        }
-
-        .btn-outline-info {
-            color: rgb(238, 125, 144);
-            border: 1px solid rgb(238, 125, 144);
-        }
-
-        .btn-outline-info:hover {
-            background-color: rgb(238, 125, 144);
-            border: 1px solid rgb(238, 125, 144);
-            color: white;
-        }
-
-        h5 {
-            color: rgb(238, 125, 144);
-            margin-left: 20px;
-        }
-
-        .tag-btn {
-            background-color: rgb(238, 125, 144);
-            border: 1px solid rgb(238, 125, 144);
-            color: white;
-            margin: 0px 20px 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .card{
-            border-radius: 4px;
-            background: #fff;
-            box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-            transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-            padding: 14px 80px 18px 36px;
-            cursor: pointer;
 }
 
-        .card:hover{
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-        }
-    </style>
+.nav-link {
+    color: black;
+    padding-top: 10px;
+}
+
+.btn-outline-info {
+    color: rgb(238, 125, 144);
+    border: 1px solid rgb(238, 125, 144);
+}
+
+.btn-outline-info:hover {
+    background-color: rgb(238, 125, 144);
+    border: 1px solid rgb(238, 125, 144);
+    color: white;
+}
+
+h5 {
+    color: rgb(238, 125, 144);
+    margin-left: 20px;
+}
+
+.tag-btn {
+    background-color: rgb(238, 125, 144);
+    border: 1px solid rgb(238, 125, 144);
+    color: white;
+    margin: 0px 20px 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+</style>
 
 </head>
 

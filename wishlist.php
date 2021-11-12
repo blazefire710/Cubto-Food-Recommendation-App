@@ -152,7 +152,7 @@ else {
                                 id="navbarDropdownMenuLink"
                                 role="button"
                                 data-bs-toggle="dropdown"
-                                aria-expanded="false"> Hi, {{username}}
+                                aria-expanded="false"> Hi, {{user}}
                             </a>
                             
                             <ul
@@ -426,7 +426,7 @@ else {
             wishlistdata3.innerHTML += `
                 <div class="card mb-3 ">
                     <div class="row g-0">
-                        <div class="col-md-4 restaurant-card">
+                        <div class="col-md-4 restaurant-card d-flex align-items-center">
                             <img
                                 src='${imageSrc}'
                                 class="img-fluid"
@@ -438,19 +438,19 @@ else {
                                 <h2 class="card-title lead text-center fs-3 fw-bold">
                                     ${name}
                                 </h2><br>
-                                <h4 class="card-text lead text-center fs-4">
+                                <h4 class="card-text lead text-center fs-5">
                                     ${description}
                                 </h4><br>
                                 <div class="row">
-                                    <div class="col-7">
+                                    <div class="col-md-7">
                                         <h5 class="card-text lead text-center fs-5">
                                             ${address}
                                         </h5>
                                         <br>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="card-text d-flex">
-                                            <p class="pink-text lead text-center fs-5"> Overall Ratings: ${ratings}/5⭐ 
+                                    <div class="col-md-4">
+                                        <div class="card-text">
+                                            <p class="pink-text lead text-center fs-5"> Ratings: ${ratings}/5⭐ 
                                         </div> 
                                     </div>
 
@@ -459,7 +459,7 @@ else {
                                     <form method="GET">
                                         <input type="hidden" name="address" value="${address}">
                                         <input type="hidden" name="name" value="${name}">
-                                        <input type="submit" class="btn-danger" value="Delete from Wishlist" name="submit">
+                                        <input type="submit" class="btn-danger rounded" value="Delete from Wishlist" name="submit">
                                     </form>
                                 </div>
 
@@ -500,10 +500,11 @@ else {
             }
         },
         computed : {
-            username(){
-                this.username = '<?= $username ?>'; 
-                }
-               
+            user(){
+                return '<?= $username ?>';
+            }
+                // this.username = '<?= $username ?>'; 
+                // return this.username;
         },
         
         methods: {
