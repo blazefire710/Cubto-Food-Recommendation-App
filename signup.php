@@ -157,6 +157,26 @@
             a {
                 text-decoration: none;
             }
+        .nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: rgb(238, 125, 144);
+            color: white;
+}
 
     </style>
 </head>
@@ -166,31 +186,23 @@
         <div>
         <nav
             id="top-navbar"
-            class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
-        >
+            class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="updated_explore.html"
-                    ><img
+
+                    
+                    <!-- insert icon here -->
+                        <a class="navbar-brand" href="index.php"
+                        ><img
                         id="logo"
                         style="width: 150px; height: auto"
-                        src="Images/Logo photo.PNG"
-                /></a>
-                <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                        v-model='queryName'
-                        v-on:change.prevent='isQuery()'
-                    />
-                    <button class="btn" type="submit" v-on:click.prevent='isQuery()'>🔍</button>
+                        src="Images/Logo photo.PNG"/></a>
 
-                    <a href="login.php" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-success me-2">Signup</a>
-
-                </form>
+                            <form class="d-flex justify-content-end">
+                            <a v-if="!isUser" href="login.php" class="btn btn-outline-info me-2">Login</a>
+                            <a v-if="!isUser" href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                            <a v-if="isUser" href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
+                            </form>
+                    
             </div>
         </nav>
 
@@ -201,13 +213,12 @@
                 bg-light
                 pb-2
                 border-bottom border-dark
-            "
-        >
+            ">
             <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
+                <div class="nav">
+                    <a class="navbar-brand explore" href="index.php">Explore</a>
+                    <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                    <a class="navbar-brand about" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
                     <a
@@ -230,23 +241,18 @@
                     </a>
                     <ul
                         class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink"
-                    >
+                        aria-labelledby="navbarDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="wishlist.php"
-                                >Wishlist</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="login.php">Log Out</a>
+                                >Wishlist</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> 
         </div>
 
     <!--content after the search bar is triggered-->
@@ -458,7 +464,7 @@
                 isUser(){
                     this.key = '<?=$key?>';
                     if(this.key == 1){
-                        this.username = '<?= $username ?>'; 
+                        this.username = 'celeste'; 
                         return true;
                     }
                     return false;
@@ -478,8 +484,8 @@
 
                 confirmed_password() {
                     if(this.password == this.confirm_password_input && this.confirm_password_input.length > 0){
-                        console.log(this.password);
-                        console.log(this.confirm_password_input);
+                        // console.log(this.password);
+                        // console.log(this.confirm_password_input);
                         this.password_confirmed_status = 1;
                     }
                     else if(this.confirm_password_input.length == 0){
@@ -558,14 +564,14 @@
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                     url = encodeURI(url);
 
-                    console.log(url);
-                    console.log(this.queryName);
+                    // console.log(url);
+                    // console.log(this.queryName);
 
                     axios.get(url)
                     .then(response => {
-                        console.log(response.data);
+                        // console.log(response.data);
                         this.dataArr = response.data.data;
-                        console.log(this.dataArr);
+                        // console.log(this.dataArr);
 
                         for (var restaurant of this.dataArr) {
                            
@@ -589,7 +595,7 @@
 
                     })
                     .catch(error => {
-                        console.log(error.message)
+                        // console.log(error.message)
                     })
                 }
             }

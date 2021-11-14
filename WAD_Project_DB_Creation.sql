@@ -1,3 +1,5 @@
+
+-- use heroku_4d2c49195f6e218;
 drop database cubto;
 create database cubto;
 use cubto;
@@ -25,8 +27,8 @@ username varchar(20) not null,
 restaurant_name varchar(100),
 ratings float,
 restaurant_address varchar(255),
-restaurant_type varchar(50),
 restaurant_description varchar(250),
+restaurant_image varchar(250),
 
 
 constraint wishlist_pk1 primary key(username,restaurant_name),

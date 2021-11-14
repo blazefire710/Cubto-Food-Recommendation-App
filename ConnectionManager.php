@@ -1,5 +1,17 @@
 <?php 
 //   
+//Get Heroku ClearDB connection information
+// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $cleardb_server = $cleardb_url["host"];
+// $cleardb_username = $cleardb_url["user"];
+// $cleardb_password = $cleardb_url["pass"];
+// $cleardb_db = substr($cleardb_url["path"],1);
+// $active_group = 'default';
+// $query_builder = TRUE;
+// Connect to DB
+// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+
 require_once("Account.php");
 
 class AccountDAO {
@@ -12,13 +24,21 @@ class AccountDAO {
       $sql = "insert into User(username,password,email,first_name, last_name, question, answer, gender,birthday, profile_image, bio) 
       values ( :username, :password, :email, :first_name, :last_name, :question, :answer , :gender , :birthday , :profile_image , :bio);";
   
+      // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
       $servername = 'localhost';
-      $root = 'root';
-      $db_pw = '';
+      // $servername = $cleardb_url["host"];
+      $root="root";
+      // $root = $cleardb_url["user"];
+      $db_pw = "";
+      // $db_pw = $cleardb_url["pass"];
       $dbname = 'cubto';
+      // $dbname = substr($cleardb_url["path"],1);
+      // $active_group = 'default';
+      // $query_builder = TRUE;
         
         // Create connection
-      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);  
+      // $conn = mysqli_connect($servername, $root, $db_pw, $dbname);   
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $password_hashed = password_hash($password, PASSWORD_DEFAULT);
@@ -51,10 +71,18 @@ class AccountDAO {
       
       $sql = "SELECT * FROM user where username = :username";
   
+      // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
       $servername = 'localhost';
-      $root = 'root';
-      $db_pw = '';
+      // $servername = $cleardb_url["host"];
+      $root="root";
+      // $root = $cleardb_url["user"];
+      $db_pw = "";
+      // $db_pw = $cleardb_url["pass"];
       $dbname = 'cubto';
+      // $dbname = substr($cleardb_url["path"],1);
+      // $active_group = 'default';
+      // $query_builder = TRUE;
+
         // Create connection
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);     
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -90,10 +118,18 @@ class AccountDAO {
   public function retrieve_all($username){
     $sql = "SELECT * FROM user where username = :username";
   
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -104,37 +140,55 @@ class AccountDAO {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
 
-if ($stmt->execute()) {
-    while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-      $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
-    };
-    $user_name = $user->getusername();
-    $answer = $user -> getAnswer();
-    $gender = $user->getGender();
-    $birthday = $user -> getBirthday();
-    $profile_image = $user -> getProfile_image();
-    $bio = $user -> getBio();
-    
-    $password = $user -> getpassword();
-    $email = $user -> getemail();
-    $first_name = $user -> getfirst_name();
-    $last_name = $user -> getlast_name();
-    $question = $user -> getQuestion();
+  if ($stmt->execute()) {
+      while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $user = new Account($row['username'],$row['password'],$row['email'],$row['first_name'],$row['last_name'],$row['question'],$row['answer'],$row['gender'],$row['birthday'],$row['profile_image'],$row['bio']);
+      };
+      $user_name = $user->getusername();
+      $answer = $user -> getAnswer();
+      $gender = $user->getGender();
+      $birthday = $user -> getBirthday();
+      $profile_image = $user -> getProfile_image();
+      $bio = $user -> getBio();
+      
+      $password = $user -> getpassword();
+      $email = $user -> getemail();
+      $first_name = $user -> getfirst_name();
+      $last_name = $user -> getlast_name();
+      $question = $user -> getQuestion();
 
 
-    $stmt = null;
-    $conn = null;
-    
-    return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
-    }
+      $stmt = null;
+      $conn = null;
+      
+      return [$user_name,$password,$email,$first_name,$last_name,$question,$answer,$gender,$birthday,$profile_image,$bio];
+      }
   }
   public function existing_account($username){
 
     $sql = "select * from user where username= :username";
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
+
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+      
+      // Create connection
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);  
+    // $conn = mysqli_connect($servername, $root, $db_pw, $dbname);   
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -160,10 +214,23 @@ if ($stmt->execute()) {
   public function existing_wishlist($username, $restaurant_name){
 
     $sql = "select * from wishlist where username= :username and restaurant_name= :restaurant_name";// change this sql to find the particular 
+
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -191,10 +258,21 @@ if ($stmt->execute()) {
 
     $sql = "SELECT * FROM user where username = :username";
 
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -236,10 +314,23 @@ if ($stmt->execute()) {
 
   public function retrieve_all_wishlist($username) {
     $sql = "SELECT * FROM wishlist where username = :username";
+
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
     // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -256,29 +347,37 @@ if ($stmt->execute()) {
       $restaurant_name = $row['restaurant_name'];
       $ratings = $row['ratings'];
       $address = $row['restaurant_address'];
-      $type = $row['restaurant_type'];
-      $experience = $row['your_experience'];
-      $food = $row['food_experience'];
-      $customer_service = $row['customer_service'];
-      $cleanliness = $row['cleanliness'];
       $description = $row['restaurant_description'];
-      $extraremark = $row['restaurant_comment'];
-      
-      $result[] = [$restaurant_name, $ratings, $address, $type, $experience, $food, $customer_service, $cleanliness, $description, $extraremark];
+      $restaurant_image = $row['restaurant_image'];
+
+      $result[] = [$restaurant_name, $ratings, $address, $description, $restaurant_image];
     }
 
     return $result;
   }
 
-  public function add_to_wishlist($username, $restaurant_name, $ratings, $restaurant_address, $restaurant_description) {
+  public function add_to_wishlist($username, $restaurant_name, $ratings, $restaurant_address, $restaurant_description, $restaurant_image) {
     // skeleton SQL
-    $sql = "insert into wishlist(username,restaurant_name,ratings,restaurant_address,restaurant_description,restaurant_type) 
-    values (:username,:restaurant_name,:ratings,:restaurant_address,:restaurant_description,:restaurant_type);";
+    $restaurant_type = "";
+    $sql = "insert into wishlist(username,restaurant_name,ratings,restaurant_address, restaurant_description, restaurant_image) 
+    values (:username,:restaurant_name,:ratings,:restaurant_address, :restaurant_description, :restaurant_image);";
 
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
       
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
@@ -290,7 +389,7 @@ if ($stmt->execute()) {
     $stmt->bindParam(':ratings', $ratings, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_address', $restaurant_address, PDO::PARAM_STR);
     $stmt->bindParam(':restaurant_description', $restaurant_description, PDO::PARAM_STR);
-    $stmt->bindParam(':restaurant_type', $restaurant_type, PDO::PARAM_STR);
+    $stmt->bindParam(':restaurant_image', $restaurant_image, PDO::PARAM_STR);
 
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
@@ -301,43 +400,26 @@ if ($stmt->execute()) {
     return null;
   }
 
-  // public function existing_wishlist($username, $restaurant_name){
-
-  //   $sql = "select * from wishlist where username= :username and restaurant_name= :restaurant_name";
-  //   $servername = 'localhost';
-  //   $root = 'root';
-  //   $db_pw = '';
-  //   $dbname = 'cubto';
-  //     // Create connection
-  //   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
-  //   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //   $stmt = $conn->prepare($sql);
-
-  //   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-  //   $stmt->bindParam(':restaurant_name', $restaurant_name, PDO::PARAM_STR);
-
-  //   $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  //   $stmt->execute();
-
-  //   if($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-  //     $stmt =null;
-  //     $conn = null;
-  //     return true;
-  //   }
-  //   else{
-  //     $stmt = null;
-  //     $conn = null;
-  //     return false;
-  //   }
-  // }
-
   public function delete_wishlist($username, $restaurant_name){
 
     $sql = "delete from wishlist where username= :username and restaurant_name= :restaurant_name";
+
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -363,10 +445,23 @@ if ($stmt->execute()) {
 
   public function change_password($username,$password_input){
     $sql = "update User set password= :password where username = :username";
+
+    // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $servername = 'localhost';
-    $root = 'root';
-    $db_pw = '';
+    // $servername = $cleardb_url["host"];
+    $root="root";
+    // $root = $cleardb_url["user"];
+    $db_pw = "";
+    // $db_pw = $cleardb_url["pass"];
     $dbname = 'cubto';
+    // $dbname = substr($cleardb_url["path"],1);
+    // $active_group = 'default';
+    // $query_builder = TRUE;
+
+    // $servername = 'localhost';
+    // $root = 'root';
+    // $db_pw = '';
+    // $dbname = 'cubto';
       // Create connection
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -391,9 +486,104 @@ if ($stmt->execute()) {
       return false;
     }
 
-
   }
 
+  public function update_account($username,$email,$gender,$bio,$first_name,$last_name,$profile_image,$birthday){
+    if($profile_image == ""){
+      $sql = "update User set email= :email, gender = :gender, bio = :bio, first_name = :first_name, last_name= :last_name, birthday= :birthday where username = :username";
+      
+      // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+      $servername = 'localhost';
+      // $servername = $cleardb_url["host"];
+      $root="root";
+      // $root = $cleardb_url["user"];
+      $db_pw = "";
+      // $db_pw = $cleardb_url["pass"];
+      $dbname = 'cubto';
+      // $dbname = substr($cleardb_url["path"],1);
+      // $active_group = 'default';
+      // $query_builder = TRUE;
+
+      // $servername = 'localhost';
+      // $root = 'root';
+      // $db_pw = '';
+      // $dbname = 'cubto';
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+      $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+      $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
+      $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
+      $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+      $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+      $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      $stmt->execute();
+
+      if($stmt->execute()){
+        $stmt =null;
+        $conn = null;
+        return true;
+      }
+      else{
+        $stmt =null;
+        $conn = null;
+        return false;
+      }
+
+      
+  }
+    else {
+      $sql = "update User set email= :email, gender = :gender, bio = :bio, first_name = :first_name, last_name= :last_name, birthday= :birthday, profile_image = :profile_image where username = :username";
+      
+      // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+      $servername = 'localhost';
+      // $servername = $cleardb_url["host"];
+      $root="root";
+      // $root = $cleardb_url["user"];
+      $db_pw = "";
+      // $db_pw = $cleardb_url["pass"];
+      $dbname = 'cubto';
+      // $dbname = substr($cleardb_url["path"],1);
+      // $active_group = 'default';
+      // $query_builder = TRUE;
+
+      // $servername = 'localhost';
+      // $root = 'root';
+      // $db_pw = '';
+      // $dbname = 'cubto';
+      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $root, $db_pw);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $stmt = $conn->prepare($sql);
+
+      $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+      $stmt->bindParam(':gender', $gender, PDO::PARAM_STR);
+      $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
+      $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
+      $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+      $stmt->bindParam(':birthday', $birthday, PDO::PARAM_STR);
+      $stmt->bindParam(':profile_image', $profile_image, PDO::PARAM_STR);
+      $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      $stmt->execute();
+
+      if($stmt->execute()){
+        $stmt =null;
+        $conn = null;
+        return true;
+      }
+      else{
+        $stmt =null;
+        $conn = null;
+        return false;
+      }
+    }
+
+  }
 
 }
 

@@ -4,12 +4,11 @@ if (isset($_SESSION['login_details'])){
     $key = 1;
     $login_details = $_SESSION['login_details'];
     $username = $login_details[0];
-
 }
 else {
     $key = 0;
+    $username = "guest";
 }
-
 // $key = 1;
 // $key_false = 0; 
 // $username = 'celeste'; 
@@ -164,6 +163,27 @@ else {
                 margin-top: 120px;
             }
 
+                .nav a{
+                color: black;
+            }
+
+            .nav a.explore:hover{
+                color: rgb(238, 125, 144);
+            }
+
+            .nav a.next:hover {
+                color: rgb(238, 125, 144);
+            }
+
+            .nav a.about:hover{
+                color: rgb(238, 125, 144);
+            }
+
+            .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+                background-color: rgb(238, 125, 144);
+                color: white;
+            }
+
     </style>
 </head>
 
@@ -172,30 +192,25 @@ else {
         <div id='app'>
             <div id='navbar'>
                 <!-- Insert Navbar here -->
-                <nav
-                id="top-navbar"
-                class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="v3.explorePage.php"
-                        ><img
-                            id="logo"
-                            style="width: 150px; height: auto"
-                            src="Images/Logo photo.PNG"/></a>
-                    <!-- insert icon here -->
-                    <form class="d-flex w-75">
-                        <input
-                            class="form-control"
-                            type="search"
-                            placeholder="Search Places"
-                            aria-label="Search"
-                            v-model='queryName'
-                            v-on:change.prevent='isQuery()'/>
-                        <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
+                        <nav
+                    id="top-navbar"
+                    class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
+                >
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.php"
+                            ><img
+                                id="logo"
+                                style="width: 150px; height: auto"
+                                src="Images/Logo photo.PNG"/></a>
+                        <!-- insert icon here -->
+                        <form class="d-flex justify-content-end">
+                            
 
-                        <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                        <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                        <a v-if="!isUser" href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a v-if="!isUser" href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                    <a v-if="isUser" href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
 
-                    </form>
+                        </form>
                     </div>
                 </nav>
 
@@ -208,10 +223,10 @@ else {
                         border-bottom border-dark
                     ">
                     <div class="container-fluid">
-                        <div class="">
-                            <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                            <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                            <a class="navbar-brand" href="about.php">About us</a>
+                        <div class="nav">
+                            <a class="navbar-brand explore" href="index.php">Explore</a>
+                            <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                            <a class="navbar-brand about" href="about.php">About us</a>
                         </div>
                         <div class="nav-item dropdown">
                             <a
@@ -230,13 +245,13 @@ else {
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
-                                v-else> Guest
+                                v-if='notUser'> Guest
                             </a>
                             <ul
                                 class="dropdown-menu"
                                 aria-labelledby="navbarDropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item" href="editprofile.php">Profile</a>
+                                    <a class="dropdown-item" href="profile.php">Profile</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="wishlist.php"
@@ -246,84 +261,18 @@ else {
                         </div>
                     </div>
                 </nav> 
-            </div>
-    
-            <!--content after the search bar is triggered-->
-            <div class='container mt-4'>
-                <!-- removed v-if='hasQuery' and it works-->
-            <!--cards-->
+        </div>
 
-                <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
-                    <div class="col" v-for='restaurant of dataArr'>
-                        <div class="card">
-                            <!--should link to the restaurant details page-->
-                            <a :href=' "resturant_details.php#" + restaurant.name'> 
-                                <h5 class="card-title pt-3" v-bind:id='name'>
-                                    {{restaurant.name}}
-                                </h5>
-                            </a>
-                            <div>
-                                <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
-                                    {{reviewCount}} Reviews</h6>
-                                <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
-
-                            </div>
-
-                            <div class="card-body">
-                                <div class='text-center'>
-                                    <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
-
-                                    <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
-
-                                    <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
-                                    
-                                    <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
-                            </div>
-                            <div>
-                                    <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
-                                        <b>Cuisine:</b> {{restaurant.cuisine}}
-                                    </p>
-                                    <p v-else style='margin-left: 20px; margin-top: 20px;'>
-                                        <b>Cuisine: -</b>
-                                    </p>
-                            </div>
-                            <div>
-                                    <!--resturant tags-->
-                                    <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
-                        
-            </div>
-            <!--content end of the search bar triggered-->
-
-            <!--whatsNext page content-->
-
-            <!-- <div class="container mt-3 my-2 " v-else>
-                <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color: rgb(248, 246, 246);">
-                    <h3 class= "text-center mt-5">Our trusty randomizer helps you decide</h3>
-                    <h3 class = "text-center">your next eating destination!</h3>
-                    <div class="col-md-12 text-center">
-                        <button type="button" class="btn-lg btn-primary mt-3" id="Randresult" v-on:click='rand()'>Just tell me what to eat now!</button>
-                        <script type="text/javascript">
-                            document.getElementById("Randresult").onclick = function () {
-                                // location.href = "whatsnext.html";
-                                window.open("results2.php", "_blank").focus()
-                            };
-                        </script>
-                    </div> -->
-
-            <!-- removed v-else and it works-->
-            <div class="container " style="width: 900px;">
+            <div class="container" style="margin-top:30px">
             
-                <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color:#FFF0F5;">
-                    <h2 class= "text-center mt-3 " style="font-weight: 600;">Our trusty randomiser helps you decide</h3>
+                <div class = "p-2 mb-5 mt-1 border rounded-3" style= "background-color:#FFF0F5;">
+                    <h2 class= "text-center mt-2 " style="font-weight: 600;">Our trusty randomiser helps you decide</h3>
                     <h2 class = "text-center" style="font-weight: 600;">your next eating destination!</h3>
-                    <div class="col-md-12 text-center mt-5">
+                    
+                    <div class="col-md-12 text-center"><img class="img-fluid mb-3" src="Images/restaurant.png" style="max-height:250px; max-width:250px"></div>
+                    <div class="col-md-12 text-center mt-3 mb-3">
+
+                        
                         <a class="action py-3 px-5 d-inline-block" id="Randresult" href="results2.php">
                             Just tell me what to eat now!
                             <i class="fas fa-chevron-right ml-3"></i>
@@ -333,7 +282,7 @@ else {
                                 window.open("results2.php", "_blank").focus()
                             };
                         </script>
-                         -->
+                        -->
                     </div>
                 </div>
             </div> 
@@ -344,7 +293,7 @@ else {
 
             <!-- <div class = "container mt-3 my-2">
                 <div class = "p-5 mb-5 mt-5 border rounded-3" style= "background-color:white; ">
-           
+        
                     <div class = "text-center mt-3">
                         <h4>Customize Criterias (Optional)</h4>
                     </div>
@@ -372,7 +321,7 @@ else {
 
         -->
             
-       
+
         <!-- <div class="row ">
             <div class= "col-2 ms-2 mt-2">
                 <h6>Location</h6>
@@ -429,7 +378,7 @@ else {
                
 
     <script>
-        const app = Vue.createApp({
+                const app = Vue.createApp({
             data() {
                 return {
                     dataArr: [],
@@ -447,6 +396,12 @@ else {
                     username : '',
                     key : '',
                     hasQuery : false,
+                    hasUuid : false,
+                    uuidSrc : '',
+                    uuidSrc_Arr : [],
+                    each_uuid_img : '',
+                    // index : 0,
+                    
                 }
             },
             computed : {
@@ -457,50 +412,133 @@ else {
                         return true;
                     }
                     return false;
-                }
+                },
+                notUser(){
+                    this.key = '<?=$key?>';
+                    if(this.key == 0){
+                        
+                        return true;
+                    }
+                    return false;
+                },
+                index_increase(){
+                    this.index++;
+                    return this.index;
+                },
+                
             },
-           
-            methods: {
-                isQuery() {
-                    
-                    var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
-                    url = encodeURI(url);
+            // created() {
+            //     //url to extract all the resturants available
 
-                    console.log(url);
-                    console.log(this.queryName);
+            //     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=all&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
 
-                    axios.get(url)
-                    .then(response => {
-                        console.log(response.data);
-                        this.dataArr = response.data.data;
-                        console.log(this.dataArr);
+            //     axios.get(url)
+            //         .then(response => {
+            //             // console.log(response.data);
+            //             this.dataArr = response.data.data;
 
-                        for (var restaurant of this.dataArr) {
-                           
-                            reviewsArr = restaurant.reviews; //an array of 5 objects
-                           
+            //             var uuid_Arr = [];
+            //             for (var restaurant of this.dataArr) {
 
-                            var type = '';
-                            type = restaurant.type;
-                            //console.log(type);
+            //                 // console.log(restaurant.thumbnails);
+            //                 if((restaurant.thumbnails).length != 0){
+            //                     var uuid = restaurant.thumbnails[0].uuid;
+            //                     this.uuidSrc = "https://tih-api.stb.gov.sg/media/v1/download/uuid/" + uuid + "?fileType=Thumbnail%201080h&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8";
 
-                            this.reviewCount = 0;
+            //                     this.uuidSrc_Arr.push(this.uuidSrc);
 
-                            for (let each of reviewsArr) {
+            //                     //console.log(uuid);
+            //                     //console.log(this.uuidSrc);
 
-                                this.reviewCount += 1;
-                            }
+            //                     this.hasUuid = true;
+            //                 }
+            //                 else{
+            //                     this.uuidSrc = 'noUUID';
+            //                     this.uuidSrc_Arr.push(this.uuidSrc);
+            //                     this.hasUuid = false;
+            //                 }
+            //                 //console.log(restaurant.thumbnails[0].uuid);
                             
-                            this.numResult += 1;
-                            this.hasQuery = true;
-                        }
+            //                 // if(uuid.length != 0){
+            //                 //     uuid_Arr.push(uuid);
+            //                 // }
 
-                    })
-                    .catch(error => {
-                        console.log(error.message)
-                    })
-                }
-            }
+                            
+            //                 // uuid_Arr.push(restaurant.thumbnails[0].uuid);
+                            
+                            
+            //                 //this.name = restaurant.name;
+            //                 //console.log(name);
+
+            //                 //this.rating = restaurant.rating;
+            //                 //console.log(rating);
+            //                 // var reviewsArr = [];
+            //                 reviewsArr = restaurant.reviews; //an array of 5 objects
+
+            //                 var type = '';
+            //                 type = restaurant.type;
+            //                 //console.log(type);
+
+            //                 this.reviewCount = 0;
+
+            //                 for (let each of reviewsArr) {
+
+            //                     this.reviewCount += 1;
+            //                 }
+                            
+            //                 this.numResult += 1;
+            //             }
+            //             // console.log(this.uuidSrc_Arr);
+                        
+
+            //         })
+            //         .catch(error => {
+            //             // alert("Search query is not found! ")
+            //             console.log("error")
+            //             window.location.reload(true)
+
+            //         })
+            // },
+
+            // methods: {
+            //     isQuery() {
+                    
+            //         var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
+            //         url = encodeURI(url);
+
+            //         // console.log(url);
+            //         // console.log(this.queryName);
+
+            //         axios.get(url)
+            //         .then(response => {
+            //             // console.log(response.data);
+            //             this.dataArr = response.data.data;
+            //             // console.log(this.dataArr);
+
+            //             for (var restaurant of this.dataArr) {
+            //                 reviewsArr = restaurant.reviews; //an array of 5 objects
+                    
+            //                 var type = '';
+            //                 type = restaurant.type;
+            //                 //console.log(type);
+
+            //                 this.reviewCount = 0;
+
+            //                 for (let each of reviewsArr) {
+
+            //                     this.reviewCount += 1;
+            //                 }
+                            
+            //                 this.numResult += 1;
+            //                 this.hasQuery = true;
+            //             }
+
+            //         })
+            //         .catch(error => {
+            //             alert("Search query is not found! ")
+            //         })
+            //     }
+            // }
         })
         const vm = app.mount('#app');
 

@@ -17,7 +17,7 @@ if(isset($_POST['login'])){
             session_start();
             $_SESSION['login_details'] = $new->retrieve_all($username) ;
             // var_dump($_SESSION['login_details']);
-            header("Location: v3.explorePage.php");
+            header("Location: index.php");
             exit();
         }
         else{
@@ -88,6 +88,26 @@ else{
         a {
             text-decoration: none;
         }
+        .nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: rgb(238, 125, 144);
+            color: white;
+        }
     </style>
 </head>
 
@@ -98,21 +118,15 @@ else{
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand" href="v3.explorePage.php"
+                <a class="navbar-brand" href="index.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
                         src="Images/Logo photo.PNG"
                 /></a>
                 <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
-                        class="form-control"
-                        type="search"
-                        placeholder="Search Places"
-                        aria-label="Search"
-                    />
-                    <button class="btn" type="submit">🔍</button>
+                <form class="d-flex justify-content-end">
+
 
                     <a href="login.php" class="btn btn-outline-info me-2">Login</a>
                     <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
@@ -131,10 +145,10 @@ else{
             "
         >
             <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
+                <div class="nav">
+                    <a class="navbar-brand explore" href="index.php">Explore</a>
+                    <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                    <a class="navbar-brand about" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
 
@@ -153,7 +167,7 @@ else{
                         aria-labelledby="navbarDropdownMenuLink"
                     >
                         <li>
-                            <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="editprofile.php">Profile</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="wishlist.php"
@@ -219,7 +233,7 @@ else{
     
     <script>
         var key = '<?=$key?>';
-        console.log(key);
+        // console.log(key);
 
         if (key == 1){
             document.getElementById("error").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

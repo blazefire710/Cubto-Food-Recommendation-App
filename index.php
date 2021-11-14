@@ -1,4 +1,5 @@
 <?php 
+header('Access-Control-Allow-Origin: *');
 session_start();
 if (isset($_SESSION['login_details'])){
     $key = 1;
@@ -7,10 +8,10 @@ if (isset($_SESSION['login_details'])){
 }
 else {
     $key = 0;
+    $username="guest";
 }
-// $key = 0;
+$key_true = 0;
 // $key_false = 0; 
-// $username = 'celeste'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@ else {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explore Page</title>
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -29,7 +30,7 @@ else {
 </head>
 
 <!-- There should only be one body tag, idk what is this -->
-<body>
+
 
 <style>
 body {
@@ -87,12 +88,33 @@ a {
     transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
+.nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: rgb(238, 125, 144);
+            color: white;
+}
 </style>
 
 </head>
 
 <body>
-    <div id='app'>
+    <div id='app' >
+   
         <!-- Insert Nav Bar here -->
         <div id="navbar">
         <nav
@@ -100,7 +122,7 @@ a {
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
         >
             <div class="container-fluid">
-                <a class="navbar-brand" href="v3.explorePage.php"
+                <a class="navbar-brand" href="index.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
@@ -116,9 +138,10 @@ a {
                         v-on:change.prevent='isQuery()'/>
                     <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
 
-                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
-
+                    <a v-if="!isUser" href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a v-if="!isUser" href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                    <a v-if="isUser" href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
+                    
                 </form>
             </div>
         </nav>
@@ -132,10 +155,11 @@ a {
                 border-bottom border-dark
             ">
             <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
+                <div class="nav">
+                    <a class="navbar-brand explore" href="index.php">Explore</a>
+                    <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                    <a class="navbar-brand about" href="about.php">About us</a>
+                    
                 </div>
                 <div class="nav-item dropdown">
                     <a
@@ -154,7 +178,7 @@ a {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        v-else> Guest
+                        v-if='notUser'> Guest
                     </a>
                     <ul
                         class="dropdown-menu"
@@ -174,11 +198,11 @@ a {
 
         <!--main content-->
 
-        <div class='container mt-4'>
+        <div class='container mt-4 mb-4'>
             <!--cards-->
 
             <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col" v-for='restaurant of dataArr'>
+                <div class="col" v-for='(restaurant,index) in dataArr'>
                     <div class="card">
                         <!--should link to the restaurant details page-->
                         <a :href=' "resturant_details.php#" + restaurant.name'> 
@@ -194,7 +218,29 @@ a {
                         </div>
 
                         <div class="card-body">
+
                             <div class='text-center'>
+                                <div v-if='uuidSrc_Arr[index] != "noUUID"'>
+                                    <img v-bind:src='uuidSrc_Arr[index]' height="250" width='250' onerror="this.onerror=null;this.src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'">
+                                    
+                                    
+                                
+                                    
+                                </div> 
+
+                                <div v-else>
+                                    <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+
+                                    <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
+
+                                    <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
+
+                                    <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                                </div> 
+
+                            </div>
+
+                            <!-- <div class='text-center' v-else>
                                 <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
 
                                 <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
@@ -202,7 +248,7 @@ a {
                                 <img v-else-if='restaurant.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
                                 
                                 <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
-                            </div>
+                            </div> -->
                             <div>
                                 <p v-if='restaurant.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
                                     <b>Cuisine:</b> {{restaurant.cuisine}}
@@ -217,10 +263,10 @@ a {
                             </div>
 
 
-
+                                    
                         </div>
 
-
+                                
                     </div>
                 </div>
             </div>
@@ -228,6 +274,7 @@ a {
 
     </div>
     </div>
+    
     </div>
 
         
@@ -253,6 +300,12 @@ a {
                     username : '',
                     key : '',
                     hasQuery : false,
+                    hasUuid : false,
+                    uuidSrc : '',
+                    uuidSrc_Arr : [],
+                    each_uuid_img : '',
+                    // index : 0,
+                    
                 }
             },
             computed : {
@@ -263,7 +316,20 @@ a {
                         return true;
                     }
                     return false;
-                }
+                },
+                notUser(){
+                    this.key = '<?=$key?>';
+                    if(this.key == 0){
+                        
+                        return true;
+                    }
+                    return false;
+                },
+                index_increase(){
+                    this.index++;
+                    return this.index;
+                },
+                
             },
             created() {
                 //url to extract all the resturants available
@@ -272,10 +338,39 @@ a {
 
                 axios.get(url)
                     .then(response => {
-                        //console.log(response.data);
+                        // console.log(response.data);
                         this.dataArr = response.data.data;
 
+                        var uuid_Arr = [];
                         for (var restaurant of this.dataArr) {
+
+                            // console.log(restaurant.thumbnails);
+                            if((restaurant.thumbnails).length != 0){
+                                var uuid = restaurant.thumbnails[0].uuid;
+                                this.uuidSrc = "https://tih-api.stb.gov.sg/media/v1/download/uuid/" + uuid + "?fileType=Thumbnail%201080h&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8";
+
+                                this.uuidSrc_Arr.push(this.uuidSrc);
+
+                                //console.log(uuid);
+                                //console.log(this.uuidSrc);
+
+                                this.hasUuid = true;
+                            }
+                            else{
+                                this.uuidSrc = 'noUUID';
+                                this.uuidSrc_Arr.push(this.uuidSrc);
+                                this.hasUuid = false;
+                            }
+                            //console.log(restaurant.thumbnails[0].uuid);
+                            
+                            // if(uuid.length != 0){
+                            //     uuid_Arr.push(uuid);
+                            // }
+
+                            
+                            // uuid_Arr.push(restaurant.thumbnails[0].uuid);
+                            
+                            
                             //this.name = restaurant.name;
                             //console.log(name);
 
@@ -297,10 +392,14 @@ a {
                             
                             this.numResult += 1;
                         }
-
+                        // console.log(this.uuidSrc_Arr);
+                        
+                        // console.log("no error")
                     })
                     .catch(error => {
-                        console.log(error.message)
+                        // alert("Search query is not found! ")
+                        console.log('reloading...')
+                        window.location.reload(true)
                     })
             },
 
@@ -310,14 +409,14 @@ a {
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                     url = encodeURI(url);
 
-                    console.log(url);
-                    console.log(this.queryName);
+                    // console.log(url);
+                    // console.log(this.queryName);
 
                     axios.get(url)
                     .then(response => {
-                        console.log(response.data);
+                        // console.log(response.data);
                         this.dataArr = response.data.data;
-                        console.log(this.dataArr);
+                        // console.log(this.dataArr);
 
                         for (var restaurant of this.dataArr) {
                      
@@ -328,6 +427,23 @@ a {
                             type = restaurant.type;
                             //console.log(type);
 
+
+                            if((restaurant.thumbnails).length != 0){
+                                var uuid = restaurant.thumbnails[0].uuid;
+                                this.uuidSrc = "https://tih-api.stb.gov.sg/media/v1/download/uuid/" + uuid + "?fileType=Thumbnail%201080h&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8";
+
+                                this.uuidSrc_Arr.push(this.uuidSrc);
+
+                                //console.log(uuid);
+                                //console.log(this.uuidSrc);
+
+                                this.hasUuid = true;
+                            }
+                            else{
+                                this.uuidSrc = 'noUUID';
+                                this.uuidSrc_Arr.push(this.uuidSrc);
+                                this.hasUuid = false;
+                            }
                             this.reviewCount = 0;
 
                             for (let each of reviewsArr) {
@@ -341,7 +457,7 @@ a {
 
                     })
                     .catch(error => {
-                        console.log(error.message)
+                        alert("Search query is not found! ")
                     })
                 }
             }

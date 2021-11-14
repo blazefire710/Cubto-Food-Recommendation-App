@@ -7,42 +7,51 @@ if (isset($_SESSION['login_details'])){
     $login_details = $_SESSION['login_details'];
     $username = $login_details[0];
 
+    $alr_added = false;
+    // $added = $new -> existing_wishlist($username,$name); //returns true or false  //sadly this is not possible...because we can't do this before we press the form
+    // $new = new AccountDAO();
+    // echo $name = $_COOKIE['restaurant_name'];
+    // var_dump($_COOKIE);
+    // $alr_added = $new -> existing_wishlist($username,$name);
+
     if (isset($_GET['submit'])) {
-      var_dump($_GET['address']);
+      // var_dump($_GET['address']);
       $restaurant_address = $_GET['address'];
       $new = new AccountDAO();
       $name = $_GET['name'];
       $rating = $_GET['rating'];
       $description = $_GET['description'];
-      var_dump($name);
+      $restaurant_image = $_GET['restaurant_image'];
+      // var_dump($name);
       $added = $new -> existing_wishlist($username,$name);
-      var_dump($added);
+      // var_dump($added);
       if ($added == false) {
-        $sthvariable = $new -> add_to_wishlist($username, $name, $rating, $restaurant_address, $description);
-        var_dump($sthvariable);
+        $new -> add_to_wishlist($username, $name, $rating, $restaurant_address, $description, $restaurant_image);
+        // var_dump($sthvariable);
+        $_GET = [];
+        echo "<meta http-equiv='refresh' content='0'>";  //this is to ensure that the page refreshes after clicking on add to wishlist
       }
       else {
         $alr_added_string = "already in wishlist";
-        var_dump($alr_added_string);
+        // var_dump($alr_added_string);
         $alr_added = true;
-        
-
       }
-      // need to account for 1x click only, cannot add 2x
     }
 
 }
 else {
     $key = 0;
+    $added = '';
+    $username = "Guest";
+    $alr_added = false;
+    if (isset($_GET['submit'])) {
+      header("location: login.php");
+    }
 
 }
 
-// var_dump($_GET);
-// var_dump($_SESSION);
-
-// if (isset($_SESSION[]))
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,8 +70,6 @@ else {
 
 </head>
 
-
- 
   <style>
     body {
       background-image: url("Images/BackGround.png");
@@ -116,6 +123,60 @@ else {
     #wishlistform {
       margin: auto;
     }
+
+    .nav a{
+            color: black;
+        }
+
+    .nav a.explore:hover{
+        color: rgb(238, 125, 144);
+    }
+
+    .nav a.next:hover {
+        color: rgb(238, 125, 144);
+    }
+
+    .nav a.about:hover{
+        color: rgb(238, 125, 144);
+    }
+
+    .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+        background-color: rgb(238, 125, 144);
+        color: white;
+    }
+
+    .btn-danger{
+                background-color: rgb(238, 125, 144);
+                color:white;
+                cursor: pointer;
+                text-decoration: none;
+                transition: all 0.25s ease-in-out;
+    }
+
+    .btn-danger:hover{
+        transform: scale(1.01);
+        box-shadow: 0px 0px 20px 0px rgba(238, 125, 144, 1);
+    }
+
+    .btn-success{
+                background-color: rgb(0, 117, 0);
+                color:white;
+                cursor: pointer;
+                text-decoration: none;
+                transition: all 0.25s ease-in-out;
+    }
+
+    img:before {
+      content: ' ';
+      display: block;
+      /* position: absolute; */
+      width: 300px;
+      height: 200px;
+      background-size: cover;
+      /* background-image: url('https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'); */
+      background-image: url('http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg');
+    }
+
   </style>
 
   </head>
@@ -128,24 +189,25 @@ else {
             id="top-navbar"
             class="navbar navbar-light bg-light pb-2 border-bottom border-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="v3.explorePage.php"
+                <a class="navbar-brand" href="index.php"
                     ><img
                         id="logo"
                         style="width: 150px; height: auto"
                         src="Images/Logo photo.PNG"/></a>
                 <!-- insert icon here -->
-                <form class="d-flex w-75">
-                    <input
+                <form class="d-flex justify-content-end">
+                    <!-- <input
                         class="form-control"
                         type="search"
                         placeholder="Search Places"
                         aria-label="Search"
                         v-model='queryName'
                         v-on:change.prevent='isQuery()'/>
-                    <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
+                    <button class="btn" v-on:click.prevent='isQuery()'>🔍</button> -->
 
-                    <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                    <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                    <a v-if="!isUser" href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a v-if="!isUser" href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                    <a v-if="isUser" href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
 
                 </form>
             </div>
@@ -160,10 +222,10 @@ else {
                 border-bottom border-dark
             ">
             <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                    <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                    <a class="navbar-brand" href="about.php">About us</a>
+                <div class="nav">
+                    <a class="navbar-brand explore" href="index.php">Explore</a>
+                    <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                    <a class="navbar-brand about" href="about.php">About us</a>
                 </div>
                 <div class="nav-item dropdown">
                     <a
@@ -201,13 +263,12 @@ else {
       </div>
       
       <!-- search bar activated -->
-      <div class='container mt-4' v-if='hasQuery'>
-            <!--cards-->
+      <!-- <div class='container mt-4' v-if='hasQuery'>
 
             <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
                 <div class="col" v-for='restaurant of dataArr'>
                     <div class="card">
-                        <!--should link to the restaurant details page-->
+
                         <a :href=' "resturant_details.php#" + restaurant.name'> 
                             <h5 class="card-title pt-3" v-bind:id='name'>
                                 {{restaurant.name}}
@@ -239,7 +300,7 @@ else {
                                 </p>
                             </div>
                             <div>
-                                <!--resturant tags-->
+
                                 <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
                             </div>
 
@@ -249,43 +310,42 @@ else {
                     </div>
                 </div>
             </div>
-    </div>
-      <!-- end of search bar activated -->
+    </div>-->
 
       <!--main content-->
-      <div class='container p-5 mt-4' id='app' style='background-color: rgb(250, 250, 250);' v-else>
+      <div class='container p-5 mt-4' id='app' style='background-color: rgb(250, 250, 250);'>
         <!--food images-->
         <div class="row">
 
 
         </div>
         <div class='text-center'>
-          <img v-bind:src='typeImg' height="200">
+          <!-- <img v-bind:src='uuidSrc' height="200" onerror="this.onerror=null;this.src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'"> -->
+          <img v-bind:src='uuidSrc' height="200" style="background-image: url('https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg')">
+          <!-- <img style="background-image: url({{uuidSrc}}), url('https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'); background-size: cover;" class="img-fluid"></img> -->
           <br><br>
           <form method="GET">
               <input type="hidden" name="address" :value="this.address">
               <input type="hidden" name="name" :value="this.name">
               <input type="hidden" name="rating" :value="this.rating">
               <input type="hidden" name="description" :value="this.description">
-              
+              <input type="hidden" name="restaurant_image" :value="this.uuidSrc">
+
               <!-- <input type="text" id="addresstest" :value="this.address">
               <input type="text" id="ratingtest" :value="this.rating">
               <input type="text" id="descriptiontest" :value="this.description">
               <input type="text" id="nametest" :value="this.name">
               <input type="text" id="cuisinetest" :value="this.cuisine"> -->
-              <input type="submit" class="btn-danger rounded" value="Add to Wishlist" name="submit">
-              <!-- <button type="submit" id="addtowishlist" name= "submit"> Add to Wishlist </button> -->
+              <input v-if="added" type="submit" class="btn-success rounded" value="Added to Wishlist" name="submit" disabled>
+              <input v-else type="submit" class="btn-danger rounded" value="Add to Wishlist" name="submit" >
           </form>
         </div>
 
         <!--location info-->
         <div class='location-info'>
-          <h2 class='fw-bold mt-4'>{{this.name}} ({{mrt}}) 
-            <span>
-
-            </span>
+          <h2 class='fw-bold mt-4'><span id='restaurant_name'>{{this.name}}</span> <span style="font-size:20px; color:grey">{{mrt}}</span>
           </h2>
-          <h4 class='display-6 fs-4'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
+          <h4 class='fs-5'>Rating: <span class='lead'>{{this.rating}} </span>⭐️</h4>
           <div>
             <!--resturant tags-->
             <button type="button" class="tag-btn" disabled v-for='tag of this.tags'>{{tag}}</button>
@@ -295,16 +355,16 @@ else {
           <div>
             <div class='row'>
               <div class='col'>
-                <h6 class='mt-3 display-6 fs-3'>Nearest MRT: 
-                  <span class='lead fs-4'>{{mrt}} Station</span>
+                <h6 class='mt-3 fs-5'>Nearest MRT: 
+                  <span class='lead fs-5'>{{mrt}} Station</span>
                 </h6><br>
-                <h6 class='mt-3 display-6 fs-3'>Address:
-                  <span class='lead fs-4'>{{streetName}}, {{block}}, {{buildingName}}, Singapore {{postalcode}}</span>
-                  <br><span class='lead fs-4'>{{address}}</span>
+                <h6 class='mt-3  fs-5'>Address:
+                  
+                  <br><span class='lead fs-5'>{{address}}</span>
                 </h6><br>
-                <h6 class='mt-3 display-6 fs-3'>Opening Hours:
-                  <span class='lead fs-4' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
-                  <span class='lead fs-4' v-else>Hours are not available</span>
+                <h6 class='mt-3 fs-5'>Opening Hours:
+                  <span class='lead fs-5' v-if='haveHour'>{{openTime}}am - {{closeTime}}pm</span>
+                  <span class='lead fs-5' v-else>Hours are not available</span>
                 </h6>
               </div>
               <div class="col-md-7 col-sm-12">
@@ -338,7 +398,7 @@ else {
                         <p class="card-text">
                           <small class="text-muted">{{review.authorName}}</small>
                           <br>
-                          <small class="text-muted">Last updated on {{review.time}}</small>
+                          <small class="text-muted">Last updated on {{review.time.slice(0,-10)}}</small>
                         </p>
                       </div>
                     </div>
@@ -389,6 +449,7 @@ else {
             username : '',
             key : '',
             hasQuery : false,
+            uuidSrc: '',
           }
         },
         computed: {
@@ -403,6 +464,9 @@ else {
                   return true;
             }
               return false;
+          },
+          added() {
+            return '<?= $alr_added ?>';
           }
         },
         methods: {
@@ -411,14 +475,14 @@ else {
                     var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                     url = encodeURI(url);
 
-                    console.log(url);
-                    console.log(this.queryName);
+                    // console.log(url);
+                    // console.log(this.queryName);
 
                     axios.get(url)
                     .then(response => {
-                        console.log(response.data);
+                        // console.log(response.data);
                         this.dataArr = response.data.data;
-                        console.log(this.dataArr);
+                        // console.log(this.dataArr);
 
                         for (var restaurant of this.dataArr) {
                            
@@ -442,25 +506,10 @@ else {
 
                     })
                     .catch(error => {
-                        console.log(error.message)
+                        // console.log(error.message)
                     })
-                }
-          // function initMap() {
-          //   console.log(this.latitude, this.longitude)
-          //   // The location of the restaurant
-          //   // var coordinates = { lat: 1.2892953, lng: 103.8556476}; // this is chinese restaurant location
-          //   var coordinates = {lat: toFloat(this.latitude), lng: toFloat(this.longitude)};
-          //   // The map, centered at restaurant location
-          //   var map = new google.maps.Map(document.getElementById("map"), {
-          //       zoom: 26,
-          //       center: coordinates,
-          //   });
-          //   // The marker, positioned at the restaurant
-          //   var marker = new google.maps.Marker({
-          //       position: coordinates,
-          //       map: map,
-          //   });
-          // }
+                },
+
         },
         created() {
           //need to figure out how to get the name id from the explore page to here, to render the correct page
@@ -475,7 +524,7 @@ else {
 
           axios.get(url)
             .then(response => {
-              console.log(response.data);
+              // console.log(response.data);
               this.dataArr = response.data.data;
               var restaurant = this.dataArr[0];
 
@@ -511,9 +560,12 @@ else {
               this.mapURL += "&zoom=20&size=1000x300&maptype=hybrid&markers=color:red%7C%7C";
               this.mapURL += this.latitude + "," + this.longitude;
               this.mapURL += "&key=AIzaSyChD1BmL1SDUnX5-KmIg5Kr60tLpIBB4q4";
-              console.log(this.mapURL);
+              // console.log(this.mapURL);
 
+              var uuid = restaurant.thumbnails[0].uuid;
 
+              this.uuidSrc = "https://tih-api.stb.gov.sg/media/v1/download/uuid/" + uuid + "?fileType=Thumbnail%201080h&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8";
+              // console.log(this.uuidSrc);
 
               //console.log(this.reviewsArr);
 
@@ -543,14 +595,34 @@ else {
 
             })
             .catch(error => {
-              console.log(error.message);
+              // console.log(error.message);
             })
         },
       })
       const vm = app.mount('#app');
     </script>
 
+    <script> 
+      var restaurant_name = document.getElementById("restaurant_name").innerText;
+      // document.cookie = "restaurant_name = " + restaurant_name ;
+    </script>
 
+    <!-- <script>
+      fixBrokenImages = function( url ){
+          var img = document.getElementsByTagName('img');
+          var i=0, l=img.length;
+          for(;i<l;i++){
+              var t = img[i];
+              if(t.naturalWidth === 0){
+                  //this image is broken
+                  t.src = url;
+              }
+          }
+      }
+      window.onload = function() {
+        fixBrokenImages('https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg');
+      }
+    </script> -->
 
     <!-- <script 
     defer

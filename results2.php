@@ -1,4 +1,5 @@
 <?php 
+header('Access-Control-Allow-Origin: *');
 session_start();
 if (isset($_SESSION['login_details'])){
     $key = 1;
@@ -8,12 +9,10 @@ if (isset($_SESSION['login_details'])){
 }
 else {
     $key = 0;
+    $added = '';
+    $username = "Guest";
+    $alr_added = false;
 }
-
-
-//$key = 1;
-// $key_false = 0; 
-//$username = 'celeste'; 
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +22,7 @@ else {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Randomise me!</title>
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -41,6 +40,7 @@ else {
 
     }
 
+    
     .nav-link {
         color: black;
         padding-top: 10px;
@@ -74,6 +74,26 @@ else {
     a {
         text-decoration: none;
     }
+    .nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: rgb(238, 125, 144);
+            color: white;
+        }
 
     .btn-primary, .btn-primary:active, .btn-primary:focus {
     color: rgb(253, 250, 250);
@@ -119,77 +139,87 @@ a.action:hover {
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
+img:before {
+    content: ' ';
+    display: block;
+      /* position: absolute; */
+    max-width: 300px;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+      /* background-image: url('https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'); */
+    background-image: url('http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg');
+    }
+
+
+ 
+
 </style>
 </head>
 
 <body>
     <div id="app">
         <div>
-            <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
-                style='border-bottom: 1px solid rgb(193, 190, 190);'>
-                <div class="container-fluid">
-                    <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
-                            src="Images/Logo photo.PNG"></a>
-                    <!-- insert icon here -->
-                    <form class="d-flex w-75">
-                        <input class="form-control " type="search" placeholder="Search Places" aria-label="Search" v-model='queryName' v-on:change.prevent='isQuery()'/>
-                        <button class="btn" type="submit" v-on:click.prevent='isQuery()' >
-                            🔍
-                        </button>
-                        <button type="button" class="btn btn-outline-info me-2">Login</button>
-                        <button type="button" class="btn btn-outline-info me-2">Signup</button>
+        <nav id="top-navbar" class="navbar navbar-light bg-light pb-2"
+            style='border-bottom: 1px solid rgb(193, 190, 190);'>
+            <div class="container-fluid">
+                <a class="navbar-brand"><img id="logo" style="width: 150px; height: auto;"
+                        src="Images/Logo photo.PNG"></a>
+                <!-- insert icon here -->
+                <form class="d-flex justify-content-end">
+                <a v-if="!isUser" href="login.php" class="btn btn-outline-info me-2">Login</a>
+                    <a v-if="!isUser" href="signup.php" class="btn btn-outline-info me-2">Signup</a>
+                    <a v-if="isUser" href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
 
-                    </form>
-                </div>
-            </nav>
+                </form>
+            </div>
+        </nav>
 
-            <nav id="bottom-navbar" class="
-                    navbar navbar-expand-lg navbar-light
-                    bg-light
-                    pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
-                <div class="container-fluid">
-                    <div class="">
-                        <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                        <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                        <a class="navbar-brand" href="about.php">About us</a>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle text-dark"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            v-if='isUser'> Hi, {{username}}
-                        </a>
-                        <a
-                            class="nav-link dropdown-toggle text-dark"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            v-else> Guest
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Favourites</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Edit Profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Booking-History</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Log Out</a>
-                            </li>
-                        </ul>
-                    </div>
+        <nav id="bottom-navbar" class="
+                navbar navbar-expand-lg navbar-light
+                bg-light
+                pb-2" style='border-bottom: 1px solid rgb(193, 190, 190);'>
+            <div class="container-fluid">
+                <div class="nav">
+                    <a class="navbar-brand explore" href="index.php">Explore</a>
+                    <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                    <a class="navbar-brand about" href="about.php">About us</a>
                 </div>
-            </nav>
+                <div class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        v-if='isUser'> Hi, {{username}}
+                    </a>
+                    <a
+                        class="nav-link dropdown-toggle text-dark"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        v-else> Guest
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="wishlist.php"
+                                >Wishlist</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         </div>
+
+
+
 
     <!--content after the search bar is triggered-->
     <div class='container mt-4' v-if='hasQuery'>
@@ -197,7 +227,7 @@ a.action:hover {
 
             <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
                 <div class="col" v-for='restaurant of dataArr'>
-                    <div class="card">
+                    <div class="card" >
                         <!--should link to the restaurant details page-->
                         <a :href=' "resturant_details.php#" + restaurant.name'> 
                             <h5 class="card-title pt-3" v-bind:id='name'>
@@ -213,6 +243,7 @@ a.action:hover {
 
                         <div class="card-body">
                             <div class='text-center'>
+                            
                                 <img v-if='restaurant.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
 
                                 <img v-else-if='restaurant.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
@@ -266,14 +297,15 @@ a.action:hover {
                         </div>
 
                         <div class="card-body">
-                            <div class='text-center'>
-                                <img v-if='result.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
+                            <div class="text-center">
+                                <img v-bind:src="uuidSrc" class= "img-fluid">
+                                <!-- <img v-if='result.type == "Restaurants"' src='https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg' height="250">
 
                                 <img v-else-if='result.type == "Cafe"' src='http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg' height="250">
 
                                 <img v-else-if='result.type == "Hawker Centres"' src='https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg' height="250" width='250'>
                                 
-                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'>
+                                <img v-else src='https://4cxqn5j1afk2facwz3mfxg5r-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/Best-vagetarian-Restaurant-Singapore.jpg' height="250" width='250'> -->
                             </div>
                             <div>
                                 <p v-if='result.cuisine.length != 0' style='margin-left: 20px; margin-top: 20px;'>
@@ -294,6 +326,8 @@ a.action:hover {
         </div>
     </div>
  </div>
+
+
 
     <script>
         const app = Vue.createApp({
@@ -317,6 +351,7 @@ a.action:hover {
                     username : '',
                     key : '',
                     hasQuery : false,
+                    uuidSrc: '',
                 }
 
             },
@@ -346,14 +381,14 @@ a.action:hover {
                         this.dataArr = response.data.data; //array -> randomise from here
 
                         let result = this.choose();
-                        console.log(result);
+                        // console.log(result);
                         this.result = result;
                         this.name = result.name;
                         // this.review = result.review;
                         this.rating = result.rating;
                         this.cuisines = result.cuisine;
                         this.tags = result.tags;
-                       
+
                         var reviewsArr = [];
                         reviewsArr = result.reviews;
 
@@ -362,33 +397,40 @@ a.action:hover {
                             this.reviewCount += 1;
                             }
 
+                        var uuid = result.thumbnails[0].uuid;
+
+                        this.uuidSrc = "https://tih-api.stb.gov.sg/media/v1/download/uuid/" + uuid + "?fileType=Thumbnail%201080h&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8";
+                        // console.log(this.uuidSrc);
+
                     })
                     .catch(error => {
-                        console.log(error.message)
+                        // console.log(error.message)
+                        window.location.reload(true)
                     })
             },
 
             methods: {
                         choose(){
+                            
                             // this.dataArr = response.data.data; //array -> randomise from here
                             const chosenNumber = Math.floor(Math.random() * this.dataArr.length);
                             var chosenRest = this.dataArr[chosenNumber]; 
                             return chosenRest;
                         },
-                       
+
                     isQuery() {
                         
                         var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                         url = encodeURI(url);
 
-                        console.log(url);
-                        console.log(this.queryName);
+                        // console.log(url);
+                        // console.log(this.queryName);
 
                         axios.get(url)
                         .then(response => {
-                            console.log(response.data);
+                            // console.log(response.data);
                             this.dataArr = response.data.data;
-                            console.log(this.dataArr);
+                            // console.log(this.dataArr);
 
                             for (var restaurant of this.dataArr) {
                             
@@ -412,7 +454,7 @@ a.action:hover {
 
                         })
                         .catch(error => {
-                            console.log(error.message)
+                            // console.log(error.message)
                         })
                     }
                 }
@@ -440,7 +482,9 @@ a.action:hover {
             } }
     </script> -->
 </div>
-    
+
+
+
 
 
     <!--bootstrap JS-->

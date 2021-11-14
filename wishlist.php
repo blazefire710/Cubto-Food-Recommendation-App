@@ -1,3 +1,4 @@
+
 <?php
 require_once('ConnectionManager.php');
 session_start();
@@ -11,21 +12,23 @@ else {
     // var_dump($_SESSION); works
     // var_dump($username); // works
     $new = new AccountDAO();
-    $wishlists = $new -> retrieve_all_wishlist($username);
+    $wishlists = $new -> retrieve_all_wishlist($username); // retruns array: [0] is name, [1] is rating, [2] is address, [3] is description, [4] is imageuuid
     if (count($wishlists) == 0) {
         $empty = true;
     }
-    if (isset($_GET['submit'])) {
+    else {
+        $empty = false;
+    }
+    if (isset($_POST['submit'])) {
         // var_dump($_GET['name']); // works
-        $restaurant_name = $_GET['name'];
+        $restaurant_name = $_POST['name'];
         $new = new AccountDAO();
         $new -> delete_wishlist($username, $restaurant_name);
+        echo "<meta http-equiv='refresh' content='0'>";
+        // $_GET['submit'] = "";
     }
 
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -97,13 +100,31 @@ else {
             #deleteform {
                 margin: auto;
             }
+            .nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: rgb(238, 125, 144);
+            color: white;
+}
         </style>
     </head>
 
-    
     <body>
         <div id="app">
-            
         <!-- Insert Nav Bar here -->
             <div id="navbar">
                 <nav
@@ -111,26 +132,14 @@ else {
                     class="navbar navbar-light bg-light pb-2 border-bottom border-dark"
                 >
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="v3.explorePage.php"
+                        <a class="navbar-brand" href="index.php"
                             ><img
                                 id="logo"
                                 style="width: 150px; height: auto"
                                 src="Images/Logo photo.PNG"/></a>
                         <!-- insert icon here -->
-                        <form class="d-flex w-75">
-                            <input
-                                class="form-control"
-                                type="search"
-                                placeholder="Search Places"
-                                aria-label="Search"
-                                v-model='queryName'
-                                v-on:change.prevent='isQuery()'/>
-                            <button class="btn" v-on:click.prevent='isQuery()'>🔍</button>
+                        <a href="logout.php" class = "btn btn-outline-info me-2">LogOut</a>
 
-                            <a href="login.php" class="btn btn-outline-info me-2">Login</a>
-                            <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
-
-                        </form>
                     </div>
                 </nav>
 
@@ -143,10 +152,10 @@ else {
                         border-bottom border-dark
                     ">
                     <div class="container-fluid">
-                        <div class="">
-                            <a class="navbar-brand" href="v3.explorePage.php">Explore</a>
-                            <a class="navbar-brand" href="whatsnext.php">What'sNext?</a>
-                            <a class="navbar-brand" href="about.php">About us</a>
+                        <div class="nav">
+                            <a class="navbar-brand explore" href="index.php">Explore</a>
+                            <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                            <a class="navbar-brand about" href="about.php">About us</a>
                         </div>
                         <div class="nav-item dropdown">
                             <a
@@ -173,15 +182,10 @@ else {
                     </div>
                 </nav> 
             </div>
-        
-        <!-- <p>{{username}}</p> -->
-
         <!--main content-->
-    
-        <!--content after the search bar is triggered-->
+        <!--content after the search bar is triggered--> <!-- decide whether to delete this -->
         <div class='container mt-4' v-if='hasQuery'>
             <!--cards-->
-
             <div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
                 <div class="col" v-for='restaurant of dataArr'>
                     <div class="card">
@@ -195,7 +199,6 @@ else {
                             <h6 class="card-title" style='display: inline; margin-left: 20px; margin-right: 20px;'>
                                 {{reviewCount}} Reviews</h6>
                             <h6 class="card-title " style='display: inline;'>{{restaurant.rating}}⭐️</h6>
-
                         </div>
 
                         <div class="card-body">
@@ -220,10 +223,7 @@ else {
                                 <!--resturant tags-->
                                 <button type="button" class="tag-btn" disabled v-for='tag of restaurant.tags'>{{tag}}</button>
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -232,17 +232,23 @@ else {
     <!--wishlist page content-->
         <div class="container" v-else>
             <div class="card shadow my-5">
-                <div class="card-body p-5">
+                <div class="card-body p-5" style="background-color:#fff0f5">
 
                     
                     <!-- Insert Content Here -->
                     <h1 class='text-center fs-1'><span id='username'></span>Wishlist</h1>
 
                     <div id="wishlistdata"></div>
-                    <div v-if="empty">
-                        Wishlist is currently empty!
+                    <div v-if="empty" class="text-center">
+                    <br><br><br>
+                    <div class="alert alert-warning" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                        You do not have any saved restaurants! <a href="index.php" class="alert-link">Click here to explore restaurants</a>
                     </div>
-                    <br><div id="wishlistdata2"></div>
+
+                    </div>
                     <br><div id="wishlistdata3"></div>
 
                         <!-- <div>
@@ -325,16 +331,14 @@ else {
                                 </div>
                             </div>
                         </div> -->
+
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
-    
-    <script> //ok so passing of single variables like this is fine
+    <script> //importing php simple variables to javascript 
         var username = '<?= $username ?>';
         // console.log('username: ', username);
         displayUsername = username.charAt(0).toUpperCase() + username.slice(1);
@@ -349,55 +353,11 @@ else {
         console.log(exampleArr)
     </script> -->
     
-    <script> //this is how to 'import' php variables to javascript variables
-        var wishlists = <?php echo json_encode($wishlists); ?>;
+    <script> //importing php array variables to javascript
+        var wishlists = <?php echo json_encode($wishlists); ?>; //this imports the array variable in a way that javascript can interpret
         // console.log(wishlists);
-    
         // wishlistdata = document.getElementById("wishlistdata");
         // wishlistdata.innerText = `${wishlists}`
-    </script>
-    
-
-    
-    <script>
-        wishlistdata2 = document.getElementById("wishlistdata2")
-    
-        for (wish of wishlists) {
-            name = wish[0]
-            ratings = wish[1]
-            address = wish[2]
-            type = wish[3]
-            experience = wish[4]
-            food = wish[5]
-            customer_service = wish[6]
-            cleanliness = wish[7]
-            description = wish[8]
-            
-    
-            // wishlistdata2.innerHTML += `
-            //     <h1>${name}</h1>
-            //     <h5>${address}</h5>
-            //     <h6>${ratings} Stars</h6>
-            //     <h6>Type: ${type}</h6>
-            //     `
-    
-            // if (experience != null) {
-            //     wishlistdata2.innerHTML += `
-            //         Your Ratings: 
-            //             Experience: ${experience}/5
-            //             Food: ${food}/5
-            //             Customer Service: ${customer_service}/5
-            //             Cleanliness: ${cleanliness}/5
-            //         `
-            // }
-            // else {
-            //     wishlistdata2.innerHTML += `
-            //         You haven't reviewed this restaurant :(
-            //         <a class="btn btn-danger" href="#" role="button">Leave a Review!</a>
-            //     `
-            // }
-    
-        }
     </script>
     
     <script>
@@ -406,67 +366,52 @@ else {
             name = wish[0]
             ratings = wish[1]
             address = wish[2]
-            type = wish[3]
-            experience = wish[4]
-            // food = wish[5]
-            // customer_service = wish[6]
-            // cleanliness = wish[7]
-            description = wish[8]
-            // extraremark = wish[9]
-            
-            // imageSrc = 'Images/sarnies.jpg' //this one not sure cuz unsure of the categories
-    
-            if (type == 'Restaurants') {
-                imageSrc = 'https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg'
-            }
-            else if (type == 'Cafe') {
-                imageSrc = 'http://sethlui.com/wp-content/uploads/2015/03/brunch-7.jpg';
-            }
-            else if (type == 'Hawker Centres') {
-                imageSrc = 'https://sethlui.com/wp-content/uploads/2018/12/Balestier-Food-Centre-13-e1545724838449.jpg';
-            }
-            else {
-                imageSrc = 'Images/sarnies.jpg'
-            }
-    
+            description = wish[3]
+            imageSrc = wish[4]
+            backupImg = "https://sethlui.com/wp-content/uploads/2015/03/clubmeatballs-2-21.jpg"
+
             wishlistdata3.innerHTML += `
-                <div class="card mb-3 ">
+                <div class="card mb-3 " >
                     <div class="row g-0">
                         <div class="col-md-4 restaurant-card d-flex align-items-center">
-                            <img
+                            <!-- <img
                                 src='${imageSrc}'
                                 class="img-fluid"
                                 id='restaurantImg'
-                            />
+                            /> -->
+                            <img style="background-image: url(${imageSrc}), url(${backupImg}); background-size: cover;" class="img-fluid ms-2 my-2" id='restaurantImg'></img>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h2 class="card-title lead text-center fs-3 fw-bold">
+                        <div class="col-md-8 d-flex align-items-center">
+                            <div class="card-body mx-auto">
+                                <h2 class="card-title lead text-center fs-5 fw-bold">
                                     ${name}
-                                </h2><br>
+                                </h2>
                                 <h4 class="card-text lead text-center fs-5">
                                     ${description}
-                                </h4><br>
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <h5 class="card-text lead text-center fs-5">
-                                            ${address}
-                                        </h5>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-4">
+                                </h4>
+                                
+                                    <div class="col-md-12">
+                                
                                         <div class="card-text">
                                             <p class="pink-text lead text-center fs-5"> Ratings: ${ratings}/5⭐ 
                                         </div> 
+                                        
                                     </div>
-
-                                </div>
-                                <div id='deleteform' class='text-center'>
-                                    <form method="GET">
-                                        <input type="hidden" name="address" value="${address}">
-                                        <input type="hidden" name="name" value="${name}">
-                                        <input type="submit" class="btn-danger rounded" value="Delete from Wishlist" name="submit">
-                                    </form>
+                                
+                                
+                                    <div class="col-md-12">
+                                        <h5 class="card-text lead text-center fs-5">
+                                            ${address}
+                                        </h5>
+                                    </div>
+                                    <br>
+                                    <div id='deleteform' class='text-center mb-4'>
+                                        <form method="POST">
+                                            <input type="hidden" name="address" value="${address}">
+                                            <input type="hidden" name="name" value="${name}">
+                                            <input type="submit" class="btn-danger rounded" value="Delete from Wishlist" name="submit">
+                                        </form>
+                                    </div>
                                 </div>
 
                             </div>
@@ -507,10 +452,10 @@ else {
         },
         computed : {
             user(){
-                return '<?= $username ?>';
+                this.username =  '<?= $username ?>';
+                return this.username;
             },
-                // this.username = '<?= $username ?>'; 
-                // return this.username;
+
             empty(){
                 return '<?= $empty ?>';
             }
@@ -522,38 +467,30 @@ else {
                 var url = 'https://tih-api.stb.gov.sg/content/v1/food-beverages/search?keyword=' + this.queryName + '&language=en&apikey=e8o8lSAcpTGJx0xnGiUDzfyZ7ksA29F8';
                 url = encodeURI(url);
     
-                console.log(url);
-                console.log(this.queryName);
+                // console.log(url);
+                // console.log(this.queryName);
     
                 axios.get(url)
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.dataArr = response.data.data;
-                    console.log(this.dataArr);
+                    // console.log(this.dataArr);
     
                     for (var restaurant of this.dataArr) {
-                       
                         reviewsArr = restaurant.reviews; //an array of 5 objects
-                       
-    
                         var type = '';
                         type = restaurant.type;
                         //console.log(type);
-    
                         this.reviewCount = 0;
-    
                         for (let each of reviewsArr) {
-    
                             this.reviewCount += 1;
                         }
-                        
                         this.numResult += 1;
                         this.hasQuery = true;
                     }
-    
                 })
                 .catch(error => {
-                    console.log(error.message)
+                    // console.log(error.message)
                 })
             }
         }
@@ -565,9 +502,5 @@ else {
 
 </body>
 
-
-
-
-    
 </html>
 

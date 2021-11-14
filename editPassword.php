@@ -38,7 +38,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password</title>
+    <title>Edit Password</title>
     <!--bootstrap css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -88,6 +88,22 @@
         a {
             text-decoration: none;
         }
+
+        .nav a{
+            color: black;
+        }
+
+        .nav a.explore:hover{
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.next:hover {
+            color: rgb(238, 125, 144);
+        }
+
+        .nav a.about:hover{
+            color: rgb(238, 125, 144);
+        }
           
     </style>
 </head>
@@ -105,14 +121,8 @@
                     src="Images/Logo photo.PNG"
             /></a>
             <!-- insert icon here -->
-            <form class="d-flex w-75">
-                <input
-                    class="form-control"
-                    type="search"
-                    placeholder="Search Places"
-                    aria-label="Search"
-                />
-                <button class="btn" type="submit">🔍</button>
+            <form class="d-flex justify-content-end">
+
 
                 <a href="login.php" class="btn btn-outline-info me-2">Login</a>
                 <a href="signup.php" class="btn btn-outline-info me-2">Signup</a>
@@ -131,10 +141,10 @@
         "
     >
         <div class="container-fluid">
-            <div class="">
-                <a class="navbar-brand" href="updated_explore.html">Explore</a>
-                <a class="navbar-brand" href="whatsnext.html">What'sNext?</a>
-                <a class="navbar-brand" href="about.php">About us</a>
+            <div class="nav">
+                <a class="navbar-brand explore" href="index.php">Explore</a>
+                <a class="navbar-brand next" href="whatsnext.php">What'sNext?</a>
+                <a class="navbar-brand about" href="about.php">About us</a>
             </div>
             <div class="nav-item dropdown">
                 <a
@@ -151,16 +161,14 @@
                     aria-labelledby="navbarDropdownMenuLink"
                 >
                     <li>
-                        <a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+                        <a class="dropdown-item" href="profile.php">Profile</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="wishlist.php"
                             >Wishlist</a
                         >
                     </li>
-                    <li>
-                        <a class="dropdown-item" href="login.php">Log Out</a>
-                    </li>
+
                 </ul>
             </div>
         </div>
